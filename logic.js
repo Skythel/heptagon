@@ -22,42 +22,11 @@ var levels = {
     }
 };
 
-// Define class game
-class game {
-    constructor(cols, rows, puzzleIcons, puzzleChoices) {
-        this.cols = cols;
-        this.rows = rows;
-        this.puzzleIcons = puzzleIcons;
-        this.puzzleChoices = puzzleChoices;
-        // this.maze = new maze();
-    }
-    setObstacles() {
-        // Sets obstacles for the maze. 
-
-    }
-
-}
-
 // Define class maze
 // class maze {
 //     constructor() {
-
 //     }
 // }
-
-class cell {
-	constructor(x,y) {
-        // The 4 sides attributes indicate whether a border exists on that edge
-        this.x = x;
-        this.y = y;
-        this.left = true;
-        this.right = true;
-        this.top = true;
-        this.down = true;
-        this.visited = false;
-        this.deadend = false;
-    }
-}
 
 function setPath(cols,rows) { 
     // Sets the path for a new maze. 
@@ -183,6 +152,7 @@ function setPath(cols,rows) {
     // Mark last cell as visited
     map[thisCell.x][thisCell.y].visited = true;
     // console.log(map);
+    return map;
 }
 
 // Create new game object and set variables
@@ -211,7 +181,7 @@ function setDifficulty(level) {
 
     console.log("Difficulty has been set to "+level+" with variables "+thisGame.cols+" cols, "+thisGame.rows+" rows, "+thisGame.puzzleIcons+" icons and "+thisGame.puzzleChoices+" choices.");
     // Call the initialise function
-    // initGame();
+    initGame();
 }
 
 function initGame() {
