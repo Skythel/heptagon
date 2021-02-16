@@ -1,16 +1,30 @@
+:root { /* Set base colour variables */
+    --main-bg-color: #F5E9E0;
+    --main-text-color: #4B2A1F;
+    --main-font-family: Verdana, Geneva, Tahoma, sans-serif;
+    --sub-bg-color: #DA7B4C;
+    --sub-font-color: #CA4429;
+    --sub-color3: #24181C;
+}
 body {
-    background-color: mistyrose;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--main-bg-color);
+    font-family: var(--main-font-family);
     font-size: large;
-    color: purple;
+    color: var(--main-text-color);
 }
 .navbar {
-    background: coral;
+    background: var(--sub-bg-color);
 }
 .navbar li {
     display: inline;
+    padding: 0.5em;
+    color: var(--sub-font-color);
 }
 .game { 
     height: 80%;
     width: 80%;
+}
+.footer {
+    text-align: center;
+    font-size: 80%;
 }
