@@ -3,8 +3,8 @@
     --main-text-color: #4B2A1F;
     --main-font-family: Verdana, Geneva, Tahoma, sans-serif;
     --sub-bg-color: #DA7B4C;
-    --sub-font-color: #CA4429;
-    --sub-color3: #24181C;
+    --sub-font-color: #24181C;
+    --sub-color3: #CA4429;
 }
 body {
     background-color: var(--main-bg-color);
