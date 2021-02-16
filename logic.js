@@ -181,10 +181,10 @@ function setDifficulty(level) {
 
     console.log("Difficulty has been set to "+level+" with variables "+thisGame.cols+" cols, "+thisGame.rows+" rows, "+thisGame.puzzleIcons+" icons and "+thisGame.puzzleChoices+" choices.");
     // Call the initialise function
-    initGame();
+    initGame(thisGame);
 }
 
-function initGame() {
+function initGame(thisGame) {
     // Select the game div
     var gameDiv = document.getElementById("game-container");
     // Clear the game div
@@ -192,11 +192,11 @@ function initGame() {
     // Initialise variable we'll be writing all the cells into
     output = "";
     // First, draw the grid according to rows and cols. We are counting from 0
-    for(var y=0; y<rows; y++) {
-        for(var x=0; x<cols; x++) {
+    for(var y=0; y<thisGame.rows; y++) {
+        for(var x=0; x<thisGame.cols; x++) {
             output += "<div class=\"cell x"+x+" y"+y+"\" id=\"x"+x+"y"+y+"\"></div>\n";
         }
     }
-    console.log(output);
+    gameDiv.innerHTML = output;
 }
 
