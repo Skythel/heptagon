@@ -11,11 +11,14 @@ body {
     font-family: var(--main-font-family);
     font-size: large;
     color: var(--main-text-color);
-}
-.wrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
+/* .wrapper {
+    display: flex;
+    justify-content: center;
+} */
 .navbar {
     background: var(--sub-bg-color);
     padding: 0.5em;
