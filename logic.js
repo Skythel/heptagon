@@ -45,75 +45,144 @@ class game {
 //     }
 // }
 
+class cell {
+	constructor(x,y) {
+        // The 4 sides attributes indicate whether a border exists on that edge
+        this.x = x;
+        this.y = y;
+        this.left = true;
+        this.right = true;
+        this.top = true;
+        this.down = true;
+        this.visited = false;
+        this.deadend = false;
+    }
+}
+
 function setPath(cols,rows) { 
     // Sets the path for a new maze. 
-    // Assuming the start is at (0,0) and the end is at (cols-1,rows-1)
-    var start = [0,0];
-    var end = [cols-1,rows-1];
-
-    // Let's draw a map of every cell. 0=not visited, 1=visited. For initialising we set all cells to 0
-    var map = []
+    // Let's draw a map of every cell. 
+    var map = [];
     for(var y=0; y<rows; y++) {
         map.push([]);
         for(var x=0; x<cols; x++) {
-            map[y].push(0);
+            var newCell = new cell(x,y);
+            map[y].push(newCell);
         }
     }
-    console.log(map);
-
+    
+    // Assuming the start is at 0,0 (top left) and the end is at cols-1,rows-1 (bottom right).
+    var start = map[0][0];
+    var end = map[cols-1][rows-1];
+    console.log("The end is at "+end.x+","+end.y);
+    
     // Trace a path through the map
     var thisCell = start;
-    while(thisCell!=end) {
+    while(thisCell.x!==end.x || thisCell.y!==end.y) {
         // Mark the current cell as visited
-        map[thisCell[0]][thisCell[1]] = 1;
-        console.log("I visited "+thisCell);
+        map[thisCell.x][thisCell.y].visited = true;
+        console.log("I visited "+thisCell.x+","+thisCell.y);
+        // console.log("The map now looks like this: ");
+        // console.log(map); 
+        
         // Pick a random neighbour and move there.
+        
         var neighbourOptions = [];
+        var direction = ""; // For easy removing of border later
         // First check all 4 neighbours for invalid positions or already visited. 
-        // Shift left
-        if(thisCell[0]-1>-1 && map[thisCell[0]-1][thisCell[1]]==0) {
-            neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+        if(thisCell.y-1>-1 && map[thisCell.y-1][thisCell.x].visited==false) {
+            direction = "left";
+            neighbourOptions.push([map[thisCell.y-1][thisCell.x],direction]);
         }
-        // Shift right
-        if(thisCell[0]+1<cols && map[thisCell[0]+1][thisCell[1]]==0) {
-            neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+        if(thisCell.y+1<rows && map[thisCell.y+1][thisCell.x].visited==false) {
+            direction = "right";
+            neighbourOptions.push([map[thisCell.y+1][thisCell.x],direction]);
         }
-        // Shift up
-        if(thisCell[1]+1<rows && map[thisCell[0]][thisCell[1]+1]==0) {
-            neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+        if(thisCell.x+1<cols && map[thisCell.y][thisCell.x+1].visited==false) {
+            direction = "down";
+            neighbourOptions.push([map[thisCell.y][thisCell.x+1],direction]);
         }
-        // Shift down
-        if(thisCell[1]-1>-1 && map[thisCell[0]][thisCell[1]-1]==0) {
-            neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+        if(thisCell.x-1>-1 && map[thisCell.y][thisCell.x-1].visited==false) {
+            direction = "up";
+            neighbourOptions.push([map[thisCell.y][thisCell.x-1],direction]);
         }
-        if(neighbourOptions !== []) {
+        if(neighbourOptions.length>0) {
             // Choose random neighbour
-            thisCell = neighbourOptions[Math.floor(Math.random()*(neighbourOptions.length))];
-            console.log("I'm going to "+thisCell);
+            var randIndex = Math.floor(Math.random()*(neighbourOptions.length));
+            // Remove border between the cells
+            switch(neighbourOptions[randIndex][1]) {
+                case "up": // Remove top border
+                    thisCell.top = false; break;
+                case "down": // Remove bottom border
+                    thisCell.down = false; break;
+                case "left": // Remove left border
+                    thisCell.left = false; break;
+                case "right": // Remove right border
+                    thisCell.right = false; break;
+                default: // Something went wrong
+                    break;
+            }
+            console.log("I have removed a border in the direction of "+neighbourOptions[randIndex][1]);
+            // Change cells
+            thisCell = neighbourOptions[randIndex][0];
+            console.log("I'm going to "+thisCell.x+","+thisCell.y);
         }
         else {
             // No valid neighbours, backtrack. Loop through all neighbouring visited cells and pick a random one.
-            if(typeof map[thisCell[0]-1][thisCell[1]]!=="undefined" && map[thisCell[0]-1][thisCell[1]]==1) {
-                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+            if(typeof map[thisCell.y-1]!=="undefined") {
+            	if(typeof map[thisCell.y-1][thisCell.x]!=="undefined") {
+                    neighbourOptions.push(map[thisCell.y-1][thisCell.x]);
+                }
             }
-            // Shift right
-            if(typeof map[thisCell[0]+1][thisCell[1]]!=="undefined" && map[thisCell[0]+1][thisCell[1]]==1) {
-                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+            if(typeof map[thisCell.y+1]!=="undefined") {
+            	if(typeof map[thisCell.y+1][thisCell.x]!=="undefined"){ 
+                    neighbourOptions.push(map[thisCell.y+1][thisCell.x]);
+                }
             }
-            // Shift up
-            if(typeof map[thisCell[0]][thisCell[1]+1]!=="undefined" && map[thisCell[0]][thisCell[1]+1]==1) {
-                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+            if(typeof map[thisCell.y][thisCell.x+1]!=="undefined") {
+                neighbourOptions.push(map[thisCell.y][thisCell.x+1]);
             }
-            // Shift down
-            if(typeof map[thisCell[0]][thisCell[1]-1]!=="undefined" && map[thisCell[0]][thisCell[1]-1]==1) {
-                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+            if(typeof map[thisCell.y][thisCell.x-1]!=="undefined") {
+                neighbourOptions.push(map[thisCell.y][thisCell.x-1]);
             }
             thisCell = neighbourOptions[Math.floor(Math.random()*(neighbourOptions.length))];
-            console.log("I couldn't find a valid neighbour. I'm going back to "+thisCell);
+            
+            // Set current cell as dead end; not to revisit
+            // thisCell.deadend = true;
+            // // Select a random wall out of the open ones and cross to that cell
+            // var openBorders = [];
+            // if(!thisCell.top && !map[thisCell.y-1][thisCell.x].deadend) {
+            //     openBorders.push("top");
+            // }
+            // if(!thisCell.left && !map[thisCell.y][thisCell.x-1].deadend) {
+            //     openBorders.push("left");
+            // }
+            // if(!thisCell.right && !map[thisCell.y][thisCell.x+1].deadend) {
+            //     openBorders.push("right");
+            // }
+            // if(!thisCell.down && !map[thisCell.y+1][thisCell.x].deadend) {
+            //     openBorders.push("down");
+            // }
+            // var randBorder = Math.floor(Math.random()*(openBorders.length));
+            // switch(openBorders[randBorder]) {
+            //     case "top": // Move across the top border
+            //         thisCell = map[thisCell.y-1][thisCell.x]; break;
+            //     case "down": // Move across the bottom border
+            //         thisCell = map[thisCell.y+1][thisCell.x]; break;
+            //     case "left": // Move across the left border
+            //         thisCell = map[thisCell.y][thisCell.x-1]; break;
+            //     case "right": // Move across the right border
+            //         thisCell = map[thisCell.y][thisCell.x+1]; break;
+            //     default: // Something went wrong
+            //         break;
+            // }
+            console.log("I couldn't find a valid neighbour. I'm going back to "+thisCell.x+","+thisCell.y);
         }
     }
     console.log("I reached the end!");
-    console.log(map);
+    // Mark last cell as visited
+    map[thisCell.x][thisCell.y].visited = true;
+    // console.log(map);
 }
 
 // Create new game object and set variables
