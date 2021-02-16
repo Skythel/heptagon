@@ -141,7 +141,7 @@ function setDifficulty(level) {
 
     console.log("Difficulty has been set to "+level+" with variables "+thisGame.cols+" cols, "+thisGame.rows+" rows, "+thisGame.puzzleIcons+" icons and "+thisGame.puzzleChoices+" choices.");
     // Call the initialise function
-    initGame();
+    // initGame();
 }
 
 function initGame() {
