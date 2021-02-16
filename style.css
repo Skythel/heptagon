@@ -1,0 +1,16 @@
+body {
+    background-color: mistyrose;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+    color: purple;
+}
+.navbar {
+    background: coral;
+}
+.navbar li {
+    display: inline;
+}
+.game { 
+    height: 80%;
+    width: 80%;
+}
