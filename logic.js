@@ -69,13 +69,13 @@ function setPath(cols,rows) {
         console.log("I visited "+thisCell);
         // Pick a random neighbour and move there.
         var neighbourOptions = [];
-        // First check all 4 neighbours for invalid positions or already visited
+        // First check all 4 neighbours for invalid positions or already visited. We have to do a little extra work for searching x-axes in case the first index is undefined.
         // Shift left
-        if(typeof map[thisCell[0]-1][thisCell[1]]!=="undefined" && map[thisCell[0]-1][thisCell[1]]==0) {
+        if((typeof map[thisCell[0]-1]!=="undefined" || map[thisCell[0]-1][thisCell[1]]!=="undefined") && map[thisCell[0]-1][thisCell[1]]==0) {
             neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
         }
         // Shift right
-        if(typeof map[thisCell[0]+1][thisCell[1]]!=="undefined" && map[thisCell[0]+1][thisCell[1]]==0) {
+        if((typeof map[thisCell[0]+1]!=="undefined" || typeof map[thisCell[0]+1][thisCell[1]]!=="undefined") && map[thisCell[0]+1][thisCell[1]]==0) {
             neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
         }
         // Shift up
