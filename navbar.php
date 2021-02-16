@@ -1,4 +1,4 @@
-<?php if(!$logged_in) { 
+<?php if(!isset($logged_in) || $logged_in==false) { 
     // Load navbar for non-logged in users ?>
     <ul classs="navbar">
         <li id="nav-register">Register</li>
