@@ -2,9 +2,9 @@
     --main-bg-color: #F5E9E0;
     --main-text-color: #4B2A1F;
     --main-font-family: Verdana, Geneva, Tahoma, sans-serif;
-    --sub-bg-color: #CA4429;
+    --sub-bg-color: #DA7B4C;
     --sub-font-color: #24181C;
-    --sub-color3: #DA7B4C;
+    --sub-color3: #CA4429;
 }
 body {
     background-color: var(--main-bg-color);
@@ -20,11 +20,12 @@ body {
     display: inline;
     padding: 0.5em;
     color: var(--sub-font-color);
+    transition: 0.25s;
 }
 .navbar li:hover {
     cursor: hand;
     cursor: pointer;
-    box-shadow: 0 0 0.5em var(--sub-color3);
+    box-shadow: 0 0 0.5em var(--main-bg-color);
 }
 .game { 
     height: 80%;

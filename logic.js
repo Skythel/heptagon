@@ -25,29 +25,33 @@ var levels = {
 // Set variables to initials
 function setDifficulty(level) {
     if(level=="hard") {
-        var cols = levels.hard.cols;
-        var rows = levels.hard.rows;
-        var puzzleIcons = levels.hard.puzzleIcons;
-        var puzzleChoices = levels.hard.puzzleChoices;
+        const cols = levels.hard.cols;
+        const rows = levels.hard.rows;
+        const puzzleIcons = levels.hard.puzzleIcons;
+        const puzzleChoices = levels.hard.puzzleChoices;
     }
     else if(level=="med") {
-        var cols = levels.med.cols;
-        var rows = levels.med.rows;
-        var puzzleIcons = levels.med.puzzleIcons;
-        var puzzleChoices = levels.med.puzzleChoices;
+        const cols = levels.med.cols;
+        const rows = levels.med.rows;
+        const puzzleIcons = levels.med.puzzleIcons;
+        const puzzleChoices = levels.med.puzzleChoices;
     }
     else { // Default easy
-        var cols = levels.easy.cols;
-        var rows = levels.easy.rows;
-        var puzzleIcons = levels.easy.puzzleIcons;
-        var puzzleChoices = levels.easy.puzzleChoices;
+        const cols = levels.easy.cols;
+        const rows = levels.easy.rows;
+        const puzzleIcons = levels.easy.puzzleIcons;
+        const puzzleChoices = levels.easy.puzzleChoices;
     }
-    console.log("Difficulty has been set to "+level+" with variables "+cols+" cols, "+rows+"rows, "+puzzleIcons+"icons and "+puzzleChoices+" choices.");
+    console.log("Difficulty has been set to "+level+" with variables "+cols+" cols, "+rows+" rows, "+puzzleIcons+" icons and "+puzzleChoices+" choices.");
     // Call the initialise function
     initGame();
 }
 
 function initGame() {
+    // Select the game div
+    var gameDiv = document.getElementById("game-container");
+    // Clear the game div
+    gameDiv.innerHTML = "";
     // Initialise variable we'll be writing all the cells into
     output = "";
     // First, draw the grid according to rows and cols

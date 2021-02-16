@@ -1,5 +1,5 @@
 <!-- File for the game container and everything within. -->
-<div class="game">
+<div class="game" id="game-container">
     Select Difficulty:<br/>
     <div class="button difficulty" onclick="setDifficulty('easy')" id="sel-easy">Easy</div>
     <div class="button difficulty" onclick="setDifficulty('med')" id="sel-med"> Medium</div>
