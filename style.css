@@ -11,14 +11,12 @@ body {
     font-family: var(--main-font-family);
     font-size: large;
     color: var(--main-text-color);
+}
+.wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-/* .wrapper {
-    display: flex;
-    justify-content: center;
-} */
 .navbar {
     background: var(--sub-bg-color);
     padding: 0.5em;
@@ -33,10 +31,6 @@ body {
     cursor: hand;
     cursor: pointer;
     box-shadow: 0 0 0.5em var(--main-bg-color);
-}
-.game { 
-    height: 80%;
-    width: 80%;
 }
 .footer {
     text-align: center;
