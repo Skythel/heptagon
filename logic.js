@@ -194,8 +194,9 @@ function initGame(thisGame) {
     // First, draw the grid according to rows and cols. We are counting from 0
     for(var y=0; y<thisGame.rows; y++) {
         for(var x=0; x<thisGame.cols; x++) {
-            output += "<div class=\"cell x"+x+" y"+y+"\" id=\"x"+x+"y"+y+"\"></div>\n";
+            output += "<div class=\"cell x"+x+" y"+y+"\" id=\"x"+x+"y"+y+"\"></div>";
         }
+        output += "<br/>";
     }
     gameDiv.innerHTML = output;
 }

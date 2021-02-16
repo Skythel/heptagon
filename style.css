@@ -49,4 +49,6 @@ body {
     height: 3em;
     width: 3em;
     background: var(--sub-color3);
+    display: inline;
+    border: 1px solid var(--sub-bg-color);
 }
