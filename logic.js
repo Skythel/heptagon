@@ -31,76 +31,6 @@ class game {
         this.puzzleChoices = puzzleChoices;
         // this.maze = new maze();
     }
-    setPath() { 
-        // Sets the path for a new maze. 
-        // Assuming the start is at (0,0) and the end is at (cols-1,rows-1)
-        var start = [0,0];
-        var end = [cols-1,rows-1];
-
-        // Let's draw a map of every cell. 0=not visited, 1=visited. For initialising we set all cells to 0
-        var map = []
-        for(var y=0; y<rows; y++) {
-            map.push([]);
-            for(var x=0; x<cols; x++) {
-                map[y].push(0);
-            }
-        }
-        console.log(map);
-
-        // Trace a path through the map
-        var thisCell = start;
-        while(thisCell!=end) {
-            // Mark the current cell as visited
-            map[thisCell[0]][thisCell[1]] = 1;
-            console.log("I visited "+thisCell);
-            // Pick a random neighbour and move there.
-            var neighbourOptions = [];
-            // First check all 4 neighbours for invalid positions or already visited
-            // Shift left
-            if(typeof map[thisCell[0]-1][thisCell[1]]!=="undefined" && map[thisCell[0]-1][thisCell[1]]==0) {
-                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
-            }
-            // Shift right
-            if(typeof map[thisCell[0]+1][thisCell[1]]!=="undefined" && map[thisCell[0]+1][thisCell[1]]==0) {
-                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
-            }
-            // Shift up
-            if(typeof map[thisCell[0]][thisCell[1]+1]!=="undefined" && map[thisCell[0]][thisCell[1]+1]==0) {
-                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
-            }
-            // Shift down
-            if(typeof map[thisCell[0]][thisCell[1]-1]!=="undefined" && map[thisCell[0]][thisCell[1]-1]==0) {
-                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
-            }
-            if(neighbourOptions !== []) {
-                // Choose random neighbour
-                thisCell = neighbourOptions[Math.floor(Math.random()*(neighbourOptions.length))];
-                console.log("I'm going to "+thisCell);
-            }
-            else {
-                // No valid neighbours, backtrack. Loop through all neighbouring visited cells and pick a random one.
-                if(typeof map[thisCell[0]-1][thisCell[1]]!=="undefined" && map[thisCell[0]-1][thisCell[1]]==1) {
-                    neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
-                }
-                // Shift right
-                if(typeof map[thisCell[0]+1][thisCell[1]]!=="undefined" && map[thisCell[0]+1][thisCell[1]]==1) {
-                    neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
-                }
-                // Shift up
-                if(typeof map[thisCell[0]][thisCell[1]+1]!=="undefined" && map[thisCell[0]][thisCell[1]+1]==1) {
-                    neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
-                }
-                // Shift down
-                if(typeof map[thisCell[0]][thisCell[1]-1]!=="undefined" && map[thisCell[0]][thisCell[1]-1]==1) {
-                    neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
-                }
-                thisCell = neighbourOptions[Math.floor(Math.random()*(neighbourOptions.length))];
-                console.log("I couldn't find a valid neighbour. I'm going back to "+thisCell);
-            }
-        }
-        console.log("I reached the end!");
-        console.log(map);
-    }
     setObstacles() {
         // Sets obstacles for the maze. 
 
@@ -114,6 +44,77 @@ class game {
 
 //     }
 // }
+
+function setPath(cols,rows) { 
+    // Sets the path for a new maze. 
+    // Assuming the start is at (0,0) and the end is at (cols-1,rows-1)
+    var start = [0,0];
+    var end = [cols-1,rows-1];
+
+    // Let's draw a map of every cell. 0=not visited, 1=visited. For initialising we set all cells to 0
+    var map = []
+    for(var y=0; y<rows; y++) {
+        map.push([]);
+        for(var x=0; x<cols; x++) {
+            map[y].push(0);
+        }
+    }
+    console.log(map);
+
+    // Trace a path through the map
+    var thisCell = start;
+    while(thisCell!=end) {
+        // Mark the current cell as visited
+        map[thisCell[0]][thisCell[1]] = 1;
+        console.log("I visited "+thisCell);
+        // Pick a random neighbour and move there.
+        var neighbourOptions = [];
+        // First check all 4 neighbours for invalid positions or already visited
+        // Shift left
+        if(typeof map[thisCell[0]-1][thisCell[1]]!=="undefined" && map[thisCell[0]-1][thisCell[1]]==0) {
+            neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+        }
+        // Shift right
+        if(typeof map[thisCell[0]+1][thisCell[1]]!=="undefined" && map[thisCell[0]+1][thisCell[1]]==0) {
+            neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+        }
+        // Shift up
+        if(typeof map[thisCell[0]][thisCell[1]+1]!=="undefined" && map[thisCell[0]][thisCell[1]+1]==0) {
+            neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+        }
+        // Shift down
+        if(typeof map[thisCell[0]][thisCell[1]-1]!=="undefined" && map[thisCell[0]][thisCell[1]-1]==0) {
+            neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+        }
+        if(neighbourOptions !== []) {
+            // Choose random neighbour
+            thisCell = neighbourOptions[Math.floor(Math.random()*(neighbourOptions.length))];
+            console.log("I'm going to "+thisCell);
+        }
+        else {
+            // No valid neighbours, backtrack. Loop through all neighbouring visited cells and pick a random one.
+            if(typeof map[thisCell[0]-1][thisCell[1]]!=="undefined" && map[thisCell[0]-1][thisCell[1]]==1) {
+                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+            }
+            // Shift right
+            if(typeof map[thisCell[0]+1][thisCell[1]]!=="undefined" && map[thisCell[0]+1][thisCell[1]]==1) {
+                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+            }
+            // Shift up
+            if(typeof map[thisCell[0]][thisCell[1]+1]!=="undefined" && map[thisCell[0]][thisCell[1]+1]==1) {
+                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+            }
+            // Shift down
+            if(typeof map[thisCell[0]][thisCell[1]-1]!=="undefined" && map[thisCell[0]][thisCell[1]-1]==1) {
+                neighbourOptions.push([thisCell[0]-1,thisCell[1]]);
+            }
+            thisCell = neighbourOptions[Math.floor(Math.random()*(neighbourOptions.length))];
+            console.log("I couldn't find a valid neighbour. I'm going back to "+thisCell);
+        }
+    }
+    console.log("I reached the end!");
+    console.log(map);
+}
 
 // Create new game object and set variables
 function setDifficulty(level) {
