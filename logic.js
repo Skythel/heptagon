@@ -49,7 +49,7 @@ function setPath(cols,rows) {
     var thisCell = start;
     while(thisCell.x!==end.x || thisCell.y!==end.y) {
         // Mark the current cell as visited
-        map[thisCell.x][thisCell.y].visited = true;
+        map[thisCell.x][thisCell.y].setVisited();
         console.log("I visited "+thisCell.x+","+thisCell.y);
         // console.log("The map now looks like this: ");
         // console.log(map); 
@@ -78,22 +78,31 @@ function setPath(cols,rows) {
         if(neighbourOptions.length>0) {
             // Choose random neighbour
             var randIndex = Math.floor(Math.random()*(neighbourOptions.length));
+            var nextCell = neighbourOptions[randIndex][0];
             // Remove border between the cells
             switch(neighbourOptions[randIndex][1]) {
-                case "up": // Remove top border
-                    thisCell.top = false; break;
-                case "down": // Remove bottom border
-                    thisCell.down = false; break;
-                case "left": // Remove left border
-                    thisCell.left = false; break;
-                case "right": // Remove right border
-                    thisCell.right = false; break;
+                case "up": // Remove top border of current cell and bottom border of new cell
+                    thisCell.removeTopBorder(); 
+                    nextCell.removeBottomBorder();
+                    break;
+                case "down": // Remove bottom border and top border of new cell
+                    thisCell.removeBottomBorder(); 
+                    nextCell.removeTopBorder();
+                    break;
+                case "left": // Remove left border and right border of new cell
+                    thisCell.removeLeftBorder(); 
+                    nextCell.removeRightBorder();
+                    break;
+                case "right": // Remove right border and left border of new cell
+                    thisCell.removeRightBorder();
+                    nextCell.removeLeftBorder(); 
+                    break;
                 default: // Something went wrong
                     break;
             }
             console.log("I have removed a border in the direction of "+neighbourOptions[randIndex][1]);
             // Change cells
-            thisCell = neighbourOptions[randIndex][0];
+            thisCell = nextCell;
             console.log("I'm going to "+thisCell.x+","+thisCell.y);
         }
         else {
@@ -150,7 +159,7 @@ function setPath(cols,rows) {
     }
     console.log("I reached the end!");
     // Mark last cell as visited
-    map[thisCell.x][thisCell.y].visited = true;
+    map[thisCell.x][thisCell.y].setVisited();
     // console.log(map);
     return map;
 }
@@ -189,15 +198,75 @@ function initGame(thisGame) {
     var gameDiv = document.getElementById("game-container");
     // Clear the game div
     gameDiv.innerHTML = "";
+    // Set the current player position to 0,0
+    currentCell = thisGame.map[0][0];
+    // Mark the cell as visited
+    currentCell.setVisited();
     // Initialise variable we'll be writing all the cells into
     output = "";
     // First, draw the grid according to rows and cols. We are counting from 0
     for(var y=0; y<thisGame.rows; y++) {
         for(var x=0; x<thisGame.cols; x++) {
-            output += "<div class=\"cell x"+x+" y"+y+"\" id=\"x"+x+"y"+y+"\"></div>";
+            output += "<div class=\"cell x"+x+" y"+y+(map[y][x].visited ? " visited" : "")+"\" id=\"x"+x+"y"+y+"\" onclick=\"navigateMaze(thisGame,currentCell,x,y)\"></div>";
         }
         output += "<br/>";
     }
+    // Write all the grid info to the game box
     gameDiv.innerHTML = output;
 }
 
+function navigateMaze(thisGame,currentCell,newX,newY) {
+    // Event triggered onclick for each maze cell
+    // We're going to set it so any cell to the right of the current one will move the player to the right, regardless of whether it's the immediate right or has some other cells in between. 
+    
+    // We ignore diagonal taps because you can't move diagonally, that's cheating!
+    if(newY !== currentCell.y && newX !== currentCell.x) {
+        console.log("Sorry, no diagonal moves"); 
+        return;
+    }
+
+    // Check if wall exists on both ends. If not, mark the new cell as visited and set it as current.
+    newCell = thisGame.map[newY][newX];
+    if(newY > currentCell.y) { // Move down
+        if(currentCell.down || newCell.top) {
+            hitWall(); return;
+        }
+        else {
+            newCell.visualSetVisited();
+        }
+    }
+    else if(newY < currentCell.y) { // Move up
+        if(currentCell.top || newCell.down) {
+            hitWall(); return;
+        }
+        else {
+            
+        }
+    }
+    else if(newX > currentCell.x) { // Move right
+        if(currentCell.right || newCell.left) {
+            hitWall(); return;
+        }
+        else {
+            
+        }
+    }
+    else if(newX < currentCell.x) { // Move left
+        if(currentCell.left || newCell.right) {
+            hitWall(); return;
+        }
+        else {
+            
+        }
+    }
+}
+
+function hitWall() {
+    console.log("Ouch, you hit a wall!");
+}
+
+function visualSetVisited(cell) {
+    console.log("Marking "+cell.x+","+cell.y+" as visited.");
+    cell.setVisited();
+    document.getElementById("x"+cell.x+"y"+cell.y).classList.add("visited");
+}

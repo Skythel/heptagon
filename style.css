@@ -24,8 +24,10 @@ body {
     flex: 1 0 auto;
 }
 .navbar {
-    background: linear-gradient(var(--sub-color3),var(--sub-bg-color));
+    background: linear-gradient(var(--sub-bg-color),var(--sub-color3));
     padding: 0.5em;
+    width: 100%;
+    top: 0;
 }
 .navbar li {
     display: inline;
@@ -55,4 +57,7 @@ body {
     background: var(--sub-color3);
     display: inline-block;
     border: 1px solid var(--sub-bg-color);
+}
+.visited {
+    background: var(--main-bg-color);
 }

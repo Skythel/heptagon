@@ -7,8 +7,7 @@ class game {
         this.map = setPath(cols,rows);
         // this.maze = new maze();
     }
-    setObstacles() {
-        // Sets obstacles for the maze. 
+    setObstacles() { // Sets obstacles for the maze. 
     }
 
 }
