@@ -221,6 +221,7 @@ function generateCellHTML(thisGame,x,y) {
 }
 
 function navigateMaze(thisGame,currentCell,newX,newY) {
+    // TODO: Record invalid moves. Flash cells when correct/wrong.
     // Event triggered onclick for each maze cell
     // We're going to set it so any cell to the right of the current one will move the player to the right, regardless of whether it's the immediate right or has some other cells in between. 
     

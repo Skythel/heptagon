@@ -8,6 +8,10 @@
     --sub-bg-color: #DA7B4C;
     --sub-font-color: #24181C;
     --sub-color3: #CA4429;
+    --default-cell-color: #ccc;
+    /* Flash for a short while */
+    --correct-cell-color: limegreen; 
+    --wrong-cell-color: firebrick;
 }
 html, body {
     height: 100%;
@@ -20,7 +24,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
     flex-direction: column;
 }
 .wrapper {
@@ -60,9 +63,9 @@ body {
     border-radius: 100%;
 }
 .cell {
-    height: 3em;
-    width: 3em;
-    background: var(--sub-color3);
+    height: 7em;
+    width: 7em;
+    background: var(--default-cell-color);
     display: inline-block;
     border: 2px solid var(--sub-bg-color);
 }
