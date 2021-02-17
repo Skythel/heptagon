@@ -6,19 +6,25 @@
     --sub-font-color: #24181C;
     --sub-color3: #CA4429;
 }
+html, body {
+    height: 100%;
+}
 body {
     background-color: var(--main-bg-color);
     font-family: var(--main-font-family);
     font-size: large;
     color: var(--main-text-color);
-}
-.wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+.wrapper {
+    flex: 1 0 auto;
 }
 .navbar {
-    background: var(--sub-bg-color);
+    background: linear-gradient(var(--sub-color3),var(--sub-bg-color));
     padding: 0.5em;
 }
 .navbar li {
@@ -35,6 +41,7 @@ body {
 .footer {
     text-align: center;
     font-size: 80%;
+    flex-shrink: 0;
 }
 .button {
     height: 5em;
