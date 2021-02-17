@@ -13,6 +13,9 @@ class cell {
     setVisited() { 
         this.visited = true;
     }
+    setDeadEnd() {
+        this.deadend = true;
+    }
     removeLeftBorder() {
         this.left = false;
     }

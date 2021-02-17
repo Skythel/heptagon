@@ -44,38 +44,44 @@ function setPath(cols,rows) {
     var start = map[0][0];
     var end = map[cols-1][rows-1];
     console.log("The end is at "+end.x+","+end.y);
+
+    // Record the path taken in order 
+    var path = [];
     
     // Trace a path through the map
     var thisCell = start;
     while(thisCell.x!==end.x || thisCell.y!==end.y) {
         // Mark the current cell as visited
-        map[thisCell.x][thisCell.y].setVisited();
-        console.log("I visited "+thisCell.x+","+thisCell.y);
+        thisCell.setVisited();
+        // Add cell to path
+        path.push(thisCell);
+        console.log("Move #"+path.length+": I visited "+thisCell.x+","+thisCell.y);
         // console.log("The map now looks like this: ");
         // console.log(map); 
         
         // Pick a random neighbour and move there.
-        
         var neighbourOptions = [];
         var direction = ""; // For easy removing of border later
         // First check all 4 neighbours for invalid positions or already visited. 
         if(thisCell.y-1>-1 && map[thisCell.y-1][thisCell.x].visited==false) {
-            direction = "left";
+            direction = "up";
             neighbourOptions.push([map[thisCell.y-1][thisCell.x],direction]);
         }
         if(thisCell.y+1<rows && map[thisCell.y+1][thisCell.x].visited==false) {
-            direction = "right";
+            direction = "down";
             neighbourOptions.push([map[thisCell.y+1][thisCell.x],direction]);
         }
         if(thisCell.x+1<cols && map[thisCell.y][thisCell.x+1].visited==false) {
-            direction = "down";
+            direction = "right";
             neighbourOptions.push([map[thisCell.y][thisCell.x+1],direction]);
         }
         if(thisCell.x-1>-1 && map[thisCell.y][thisCell.x-1].visited==false) {
-            direction = "up";
+            direction = "left";
             neighbourOptions.push([map[thisCell.y][thisCell.x-1],direction]);
         }
         if(neighbourOptions.length>0) {
+            console.log("Possible neighbours: ");
+            console.log(neighbourOptions);
             // Choose random neighbour
             var randIndex = Math.floor(Math.random()*(neighbourOptions.length));
             var nextCell = neighbourOptions[randIndex][0];
@@ -83,10 +89,10 @@ function setPath(cols,rows) {
             switch(neighbourOptions[randIndex][1]) {
                 case "up": // Remove top border of current cell and bottom border of new cell
                     thisCell.removeTopBorder(); 
-                    nextCell.removeBottomBorder();
+                    nextCell.removeDownBorder();
                     break;
                 case "down": // Remove bottom border and top border of new cell
-                    thisCell.removeBottomBorder(); 
+                    thisCell.removeDownBorder(); 
                     nextCell.removeTopBorder();
                     break;
                 case "left": // Remove left border and right border of new cell
@@ -106,62 +112,37 @@ function setPath(cols,rows) {
             console.log("I'm going to "+thisCell.x+","+thisCell.y);
         }
         else {
-            // No valid neighbours, backtrack. Loop through all neighbouring visited cells and pick a random one.
-            if(typeof map[thisCell.y-1]!=="undefined") {
-            	if(typeof map[thisCell.y-1][thisCell.x]!=="undefined") {
-                    neighbourOptions.push(map[thisCell.y-1][thisCell.x]);
-                }
+            // No valid neighbours, backtrack to prev cell. 
+            if((thisCell.x == path[path.length-1].x && thisCell.y == path[path.length-1].y) || path[path.length-1].deadend) {
+                // We're going back and forth, this cell is a dead end
+                console.log("We're going in circles around "+thisCell.x+","+thisCell.y+"!");
+                // Set the cell as dead end
+                thisCell.setDeadEnd();
+                // Find a cell to backtrack to that isn't a dead end
+                thisCell = findCell(path);
             }
-            if(typeof map[thisCell.y+1]!=="undefined") {
-            	if(typeof map[thisCell.y+1][thisCell.x]!=="undefined"){ 
-                    neighbourOptions.push(map[thisCell.y+1][thisCell.x]);
-                }
-            }
-            if(typeof map[thisCell.y][thisCell.x+1]!=="undefined") {
-                neighbourOptions.push(map[thisCell.y][thisCell.x+1]);
-            }
-            if(typeof map[thisCell.y][thisCell.x-1]!=="undefined") {
-                neighbourOptions.push(map[thisCell.y][thisCell.x-1]);
-            }
-            thisCell = neighbourOptions[Math.floor(Math.random()*(neighbourOptions.length))];
-            
-            // Set current cell as dead end; not to revisit
-            // thisCell.deadend = true;
-            // // Select a random wall out of the open ones and cross to that cell
-            // var openBorders = [];
-            // if(!thisCell.top && !map[thisCell.y-1][thisCell.x].deadend) {
-            //     openBorders.push("top");
-            // }
-            // if(!thisCell.left && !map[thisCell.y][thisCell.x-1].deadend) {
-            //     openBorders.push("left");
-            // }
-            // if(!thisCell.right && !map[thisCell.y][thisCell.x+1].deadend) {
-            //     openBorders.push("right");
-            // }
-            // if(!thisCell.down && !map[thisCell.y+1][thisCell.x].deadend) {
-            //     openBorders.push("down");
-            // }
-            // var randBorder = Math.floor(Math.random()*(openBorders.length));
-            // switch(openBorders[randBorder]) {
-            //     case "top": // Move across the top border
-            //         thisCell = map[thisCell.y-1][thisCell.x]; break;
-            //     case "down": // Move across the bottom border
-            //         thisCell = map[thisCell.y+1][thisCell.x]; break;
-            //     case "left": // Move across the left border
-            //         thisCell = map[thisCell.y][thisCell.x-1]; break;
-            //     case "right": // Move across the right border
-            //         thisCell = map[thisCell.y][thisCell.x+1]; break;
-            //     default: // Something went wrong
-            //         break;
-            // }
+            thisCell = path[path.length-1];
+      
             console.log("I couldn't find a valid neighbour. I'm going back to "+thisCell.x+","+thisCell.y);
         }
     }
     console.log("I reached the end!");
     // Mark last cell as visited
-    map[thisCell.x][thisCell.y].setVisited();
+    thisCell.setVisited();
     // console.log(map);
     return map;
+}
+
+// Find a suitable cell for backtracking. Returns object cell
+function findCell(path) {
+    for(var i=path.length-1; i>=0; i--) {
+        if(!path[path.length-1].deadend) {
+            return path[path.length-1];
+        }
+    }
+    console.log("Oops, something in the backtracking went wrong.")
+    console.log(path);
+    return;
 }
 
 // Create new game object and set variables
@@ -203,16 +184,40 @@ function initGame(thisGame) {
     // Mark the cell as visited
     currentCell.setVisited();
     // Initialise variable we'll be writing all the cells into
-    output = "";
+    output = "<table class=\"gameBox\">";
     // First, draw the grid according to rows and cols. We are counting from 0
     for(var y=0; y<thisGame.rows; y++) {
+        output += "<tr class=\"horiz-wrapper\" id=\"horiz-wrapper"+y+"\">";
         for(var x=0; x<thisGame.cols; x++) {
-            output += "<div class=\"cell x"+x+" y"+y+(map[y][x].visited ? " visited" : "")+"\" id=\"x"+x+"y"+y+"\" onclick=\"navigateMaze(thisGame,currentCell,x,y)\"></div>";
+            output += generateCellHTML(thisGame,x,y);
         }
-        output += "<br/>";
+        output += "</tr>";
     }
+    output += "</table>";
     // Write all the grid info to the game box
     gameDiv.innerHTML = output;
+    // Adjust border styling for edges of game grid
+    // var tRows = document.getElementsByClassName("horiz-wrapper");
+    // for(var t=0; t<tRows.length; t++) {
+    //     tRows[t].style.borderLeft = "3px solid var(--sub-font-color)";
+    //     tRows[t].style.borderRight = "3px solid var(--sub-font-color)";
+    //     if(t==0) {
+    //         tRows[t].style.borderTop = "3px solid var(--sub-font-color)"
+    //     }
+    //     if(t==tRows-1) {
+    //         tRows[t].style.borderBottom = "3px solid var(--sub-font-color)"
+    //     }
+    // }
+}
+
+function generateCellHTML(thisGame,x,y) {
+    return "<td class=\"cell x"+x+" y"+y+
+    // (thisGame.map[y][x].visited ? " visited" : "")+
+    (thisGame.map[y][x].top ? " border-top" : "")+
+    (thisGame.map[y][x].down ? " border-down" : "")+
+    (thisGame.map[y][x].left ? " border-left" : "")+
+    (thisGame.map[y][x].right ? " border-right" : "")+
+    "\" id=\"x"+x+"y"+y+"\" onclick=\"navigateMaze(thisGame,currentCell,x,y)\"></td>";
 }
 
 function navigateMaze(thisGame,currentCell,newX,newY) {

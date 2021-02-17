@@ -1,7 +1,10 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap');
+
 :root { /* Set base colour variables */
     --main-bg-color: #F5E9E0;
     --main-text-color: #4B2A1F;
-    --main-font-family: Verdana, Geneva, Tahoma, sans-serif;
+    --main-font-family: 'Source Sans Pro', sans-serif;
     --sub-bg-color: #DA7B4C;
     --sub-font-color: #24181C;
     --sub-color3: #CA4429;
@@ -50,14 +53,32 @@ body {
     width: 5em;
     background: var(--sub-bg-color);
     color: var(--sub-font-color);
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
 }
 .cell {
     height: 3em;
     width: 3em;
     background: var(--sub-color3);
     display: inline-block;
-    border: 1px solid var(--sub-bg-color);
+    border: 2px solid var(--sub-bg-color);
 }
 .visited {
     background: var(--main-bg-color);
+}
+.border-top {
+    border-top: 2px solid var(--sub-font-color);
+}
+.border-down {
+    border-bottom: 2px solid var(--sub-font-color);
+}
+.border-left {
+    border-left: 2px solid var(--sub-font-color);
+}
+.border-right {
+    border-right: 2px solid var(--sub-font-color);
+}
+.horiz-wrapper {
+    display: block;
 }
