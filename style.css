@@ -56,6 +56,8 @@ body {
     text-align: center;
     vertical-align: middle;
     margin: auto;
+    display: table-cell;
+    border-radius: 100%;
 }
 .cell {
     height: 3em;
