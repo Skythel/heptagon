@@ -9,12 +9,16 @@ class cell {
         this.down = true;
         this.visited = false;
         this.deadend = false;
+        this.content = "";
     }
     setVisited() { 
         this.visited = true;
     }
     setDeadEnd() {
         this.deadend = true;
+    }
+    setContent(content) {
+        this.content = content;
     }
     removeLeftBorder() {
         this.left = false;

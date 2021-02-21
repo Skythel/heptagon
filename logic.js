@@ -104,6 +104,7 @@ function setPath(cols,rows) {
                     nextCell.removeLeftBorder(); 
                     break;
                 default: // Something went wrong
+                    console.log("An error occured when removing neighbouring borders.")
                     break;
             }
             console.log("I have removed a border in the direction of "+neighbourOptions[randIndex][1]);
@@ -129,6 +130,48 @@ function setPath(cols,rows) {
     console.log("I reached the end!");
     // Mark last cell as visited
     thisCell.setVisited();
+    // BEFORE returning the map, we have to make sure to visit every unvisited cell and set false paths
+    for(var y=0; y<thisGame.rows; y++) {
+        for(var x=0; x<thisGame.cols; x++) {
+            // Find visited cells with 2 borders existing (i.e. only 1 way in and 1 way out of the cell)
+            var cell = thisGame.map[y][x];
+            if(cell.visited && !cell.deadend) {
+                // Count number of borders
+                var borders = [];                
+                if(cell.left) { borders.push("left"); }
+                if(cell.right) { borders.push("right"); }
+                if(cell.top) { borders.push("top"); }
+                if(cell.down) { borders.push("down"); }
+                if(borders.length==2) {
+                    // Select 1 border at random to remove
+                    var rand = Math.floor(Math.random()*borders.length);
+                    switch(borders[rand]) {
+                        case "top": // Remove top border of current cell and bottom border of new cell
+                            cell.removeTopBorder(); 
+                            map[cell.y-1][cell.x].removeDownBorder();
+                            break;
+                        case "down": // Remove bottom border and top border of new cell
+                            cell.removeDownBorder(); 
+                            map[cell.y+1][cell.x].removeTopBorder();
+                            break;
+                        case "left": // Remove left border and right border of new cell
+                            cell.removeLeftBorder(); 
+                            map[cell.y][cell.x+1].removeRightBorder();
+                            break;
+                        case "right": // Remove right border and left border of new cell
+                            cell.removeRightBorder();
+                            map[cell.y][cell.x-1].removeLeftBorder(); 
+                            break;
+                        default: // Something went wrong
+                            console.log("An error occured when removing neighbouring borders.")
+                            break;
+                    }
+                }
+                // Mark as visited
+                cell.setVisited();
+            }
+        }
+    }
     // console.log(map);
     return map;
 }
@@ -179,10 +222,14 @@ function initGame(thisGame) {
     var gameDiv = document.getElementById("game-container");
     // Clear the game div
     gameDiv.innerHTML = "";
+    // Set start and end points visuals
+    thisGame.map[0][0].setContent('<i class="fas fa-play"></i>');
+    thisGame.map[rows-1][cols-1].setContent('<i class="fas fa-flag"></i>');
     // Set the current player position to 0,0
     currentCell = thisGame.map[0][0];
     // Mark the cell as visited
     currentCell.setVisited();
+    // currentCell.setContent('<i class="fas fa-walking"></i>');
     // Initialise variable we'll be writing all the cells into
     output = "<table class=\"gameBox\">";
     // First, draw the grid according to rows and cols. We are counting from 0
@@ -196,6 +243,7 @@ function initGame(thisGame) {
     output += "</table>";
     // Write all the grid info to the game box
     gameDiv.innerHTML = output;
+
     // Adjust border styling for edges of game grid
     // var tRows = document.getElementsByClassName("horiz-wrapper");
     // for(var t=0; t<tRows.length; t++) {
@@ -217,7 +265,7 @@ function generateCellHTML(thisGame,x,y) {
     (thisGame.map[y][x].down ? " border-down" : "")+
     (thisGame.map[y][x].left ? " border-left" : "")+
     (thisGame.map[y][x].right ? " border-right" : "")+
-    "\" id=\"x"+x+"y"+y+"\" onclick=\"navigateMaze(thisGame,currentCell,x,y)\"></td>";
+    "\" id=\"x"+x+"y"+y+"\" onclick=\"navigateMaze(thisGame,currentCell,x,y)\">"+thisGame.map[y][x].content+"</td>";
 }
 
 function navigateMaze(thisGame,currentCell,newX,newY) {
