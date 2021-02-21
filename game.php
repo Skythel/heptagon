@@ -6,6 +6,6 @@
     <div class="button difficulty" onclick="setDifficulty('hard')" id="sel-hard">Hard</div>
 </div>
 <!-- Include game logic -->
-<script src="logic.js?v=<?php echo $scripts_ver; ?>"></script>
 <script src="game.js?v=<?php echo $scripts_ver; ?>"></script>
 <script src="cell.js?v=<?php echo $scripts_ver; ?>"></script> 
+<script src="logic.js?v=<?php echo $scripts_ver; ?>"></script>
