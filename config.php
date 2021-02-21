@@ -16,7 +16,7 @@ if(!isset($logged_in)) {
 $conn = new mysqli($db_serv, $db_user, $db_pass, $db_name);
 
 // Versioning for easier reference
-$app_ver = "0.0.0"; // General application version
-$assets_ver = "0.0.0"; // Stylesheets version
-$scripts_ver = "0.0.0"; // Scripts version
+$app_ver = "0.0.1"; // General application version
+$assets_ver = "0.0.1b"; // Stylesheets version
+$scripts_ver = "0.0.2"; // Scripts version
 ?>
