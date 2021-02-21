@@ -76,7 +76,7 @@ body {
     width: 5em;
     background: var(--default-cell-color);
     display: inline-block;
-    border: 2px solid #aaa;
+    border: 2px dashed rgba(170,170,170,0.75);
 }
 .visited {
     background: var(--main-bg-color);
