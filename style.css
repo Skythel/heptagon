@@ -14,7 +14,7 @@
     --wrong-cell-color: firebrick;
 }
 html, body {
-    height: 100%;
+    height: 98%;
 }
 body {
     background-color: var(--main-bg-color);
@@ -29,11 +29,20 @@ body {
 .wrapper {
     flex: 1 0 auto;
 }
+.game {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
 .navbar {
     background: linear-gradient(var(--sub-bg-color),var(--sub-color3));
     padding: 0.5em;
     width: 100%;
     top: 0;
+    margin: 0;
+    position: fixed;
 }
 .navbar li {
     display: inline;
