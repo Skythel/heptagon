@@ -63,11 +63,11 @@ body {
     border-radius: 100%;
 }
 .cell {
-    height: 7em;
-    width: 7em;
+    height: 5em;
+    width: 5em;
     background: var(--default-cell-color);
     display: inline-block;
-    border: 2px solid var(--sub-bg-color);
+    border: 2px solid var(--main-bg-color);
 }
 .visited {
     background: var(--main-bg-color);
