@@ -114,78 +114,132 @@ function setPath(cols,rows) {
         }
         else {
             // No valid neighbours, backtrack to prev cell. 
-            if((thisCell.x == path[path.length-1].x && thisCell.y == path[path.length-1].y) || path[path.length-1].deadend) {
-                // We're going back and forth, this cell is a dead end
-                console.log("We're going in circles around "+thisCell.x+","+thisCell.y+"!");
-                // Set the cell as dead end
-                thisCell.setDeadEnd();
-                // Find a cell to backtrack to that isn't a dead end
-                thisCell = findCell(path);
-            }
-            thisCell = path[path.length-1];
-      
-            console.log("I couldn't find a valid neighbour. I'm going back to "+thisCell.x+","+thisCell.y);
+            // if((thisCell.x == path[path.length-1].x && thisCell.y == path[path.length-1].y) || path[path.length-1].deadend) {
+            //     // We're going back and forth, this cell is a dead end
+            //     console.log("We're going in circles around "+thisCell.x+","+thisCell.y+"!");
+            //     // Set the cell as dead end
+            //     thisCell.setDeadEnd();
+            //     // Find a cell to backtrack to that isn't a dead end
+            //     thisCell = findCell(path);
+            //     if(thisCell==1) {
+            //         console.log("An error occurred."); break;
+            //     }
+            // }
+            // thisCell = path[path.length-1];
+            console.log("I couldn't find a valid neighbour. I'm going back to "+path[path.length-1].x+","+path[path.length-1].y);
+            thisCell.setDeadEnd();
+            thisCell = findCell(map,path);
         }
     }
     console.log("I reached the end!");
     // Mark last cell as visited
     thisCell.setVisited();
-    // BEFORE returning the map, we have to make sure to visit every unvisited cell and set false paths
-    for(var y=0; y<thisGame.rows; y++) {
-        for(var x=0; x<thisGame.cols; x++) {
-            // Find visited cells with 2 borders existing (i.e. only 1 way in and 1 way out of the cell)
-            var cell = thisGame.map[y][x];
-            if(cell.visited && !cell.deadend) {
-                // Count number of borders
-                var borders = [];                
-                if(cell.left) { borders.push("left"); }
-                if(cell.right) { borders.push("right"); }
-                if(cell.top) { borders.push("top"); }
-                if(cell.down) { borders.push("down"); }
-                if(borders.length==2) {
-                    // Select 1 border at random to remove
-                    var rand = Math.floor(Math.random()*borders.length);
-                    switch(borders[rand]) {
-                        case "top": // Remove top border of current cell and bottom border of new cell
-                            cell.removeTopBorder(); 
-                            map[cell.y-1][cell.x].removeDownBorder();
-                            break;
-                        case "down": // Remove bottom border and top border of new cell
-                            cell.removeDownBorder(); 
-                            map[cell.y+1][cell.x].removeTopBorder();
-                            break;
-                        case "left": // Remove left border and right border of new cell
-                            cell.removeLeftBorder(); 
-                            map[cell.y][cell.x+1].removeRightBorder();
-                            break;
-                        case "right": // Remove right border and left border of new cell
-                            cell.removeRightBorder();
-                            map[cell.y][cell.x-1].removeLeftBorder(); 
-                            break;
-                        default: // Something went wrong
-                            console.log("An error occured when removing neighbouring borders.")
-                            break;
-                    }
+    // Ensure no cells are left unvisited
+    console.log("Looping through unvisited cells.");
+    for(var y=0; y<rows; y++) {
+        for(var x=0; x<cols; x++) {
+            console.log(x+","+y+": "+map[y][x].visited);
+            if(!map[y][x].visited) {
+                // Mark visited
+                map[y][x].setVisited();
+                // Still has 4 borders, select a random one adjacent to a visited cell to unlock
+                var options = [];
+                if(y-1>-1 && map[y-1][x].visited) {
+                    options.push(map[y-1][x]);
                 }
-                // Mark as visited
-                cell.setVisited();
+                if(y+1<map.length && map[y+1][x].visited) {
+                    options.push(map[y+1][x]);
+                }
+                if(x+1<map[0].length && map[y][x+1].visited) {
+                    options.push(map[y][x+1]);
+                }
+                if(x-1>-1 && map[y][x-1].visited) {
+                    options.push(map[y][x-1]);
+                }
+                var newCell = options[Math.floor(Math.random()*options.length)];
+                // Remove borders
+                if(y-1==newCell.y && x==newCell.x) {
+                    map[y][x].removeTopBorder(); 
+                    newCell.removeDownBorder();
+                    console.log("Removing top border of "+x+","+y+" and bottom border of "+newCell.x+","+newCell.y);
+                }
+                else if(y+1==newCell.y && x==newCell.x) {
+                    map[y][x].removeDownBorder(); 
+                    newCell.removeTopBorder();
+                    console.log("Removing bottom border of "+x+","+y+" and top border of "+newCell.x+","+newCell.y);
+                }            
+                else if(y==newCell.y && x+1==newCell.x) {
+                    map[y][x].removeRightBorder(); 
+                    newCell.removeLeftBorder();
+                    console.log("Removing right border of "+x+","+y+" and left border of "+newCell.x+","+newCell.y);
+                }
+                else if(y==newCell.y && x-1==newCell.x) {
+                    map[y][x].removeLeftBorder(); 
+                    newCell.removeRightBorder();
+                    console.log("Removing left border of "+x+","+y+" and right border of "+newCell.x+","+newCell.y);
+                }   
             }
         }
     }
-    // console.log(map);
     return map;
 }
 
 // Find a suitable cell for backtracking. Returns object cell
-function findCell(path) {
-    for(var i=path.length-1; i>=0; i--) {
-        if(!path[path.length-1].deadend) {
-            return path[path.length-1];
+function findCell(map,path) {
+    // for(var i=path.length-1; i>=0; i--) {
+        // if(!path[path.length-1].deadend) {
+        //     return path[path.length-1];
+        // }
+        var thisCell = path[path.length-1];
+        console.log("Checking "+thisCell.x+","+thisCell.y);
+        var neighbourOptions = [];
+        if(thisCell.y-1>-1 && map[thisCell.y-1][thisCell.x].visited==false) {
+            neighbourOptions.push(map[thisCell.y-1][thisCell.x]);
         }
-    }
-    console.log("Oops, something in the backtracking went wrong.")
-    console.log(path);
-    return;
+        if(thisCell.y+1<map.length && map[thisCell.y+1][thisCell.x].visited==false) {
+            neighbourOptions.push(map[thisCell.y+1][thisCell.x]);
+        }
+        if(thisCell.x+1<map[0].length && map[thisCell.y][thisCell.x+1].visited==false) {
+            neighbourOptions.push(map[thisCell.y][thisCell.x+1]);
+        }
+        if(thisCell.x-1>-1 && map[thisCell.y][thisCell.x-1].visited==false) {
+            neighbourOptions.push(map[thisCell.y][thisCell.x-1]);
+        }
+        if(neighbourOptions.length > 0) {
+            var newCell = neighbourOptions[Math.floor(Math.random()*neighbourOptions.length)];
+            // Remove borders
+            if(thisCell.y-1==newCell.y && thisCell.x==newCell.x) {
+                thisCell.removeTopBorder(); 
+                newCell.removeDownBorder();
+                console.log("Removing top border of "+thisCell.x+","+thisCell.y+" and bottom border of "+newCell.x+","+newCell.y);
+            }
+            else if(thisCell.y+1==newCell.y && thisCell.x==newCell.x) {
+                thisCell.removeDownBorder(); 
+                newCell.removeTopBorder();
+                console.log("Removing bottom border of "+thisCell.x+","+thisCell.y+" and top border of "+newCell.x+","+newCell.y);
+            }            
+            else if(thisCell.y==newCell.y && thisCell.x+1==newCell.x) {
+                thisCell.removeRightBorder(); 
+                newCell.removeLeftBorder();
+                console.log("Removing right border of "+thisCell.x+","+thisCell.y+" and left border of "+newCell.x+","+newCell.y);
+            }
+            else if(thisCell.y==newCell.y && thisCell.x-1==newCell.x) {
+                thisCell.removeLeftBorder(); 
+                newCell.removeRightBorder();
+                console.log("Removing left border of "+thisCell.x+","+thisCell.y+" and right border of "+newCell.x+","+newCell.y);
+            }   
+            return newCell;
+        }
+        else {
+            console.log(thisCell.x+","+thisCell.y+" is also a dead end.");
+            thisCell.setDeadEnd();
+            path.pop();
+            return findCell(map,path);
+        }
+    // }
+    // console.log("Oops, something in the backtracking went wrong.")
+    // console.log(path);
+    // return 1;
 }
 
 // Create new game object and set variables
@@ -224,7 +278,7 @@ function initGame(thisGame) {
     gameDiv.innerHTML = "";
     // Set start and end points visuals
     thisGame.map[0][0].setContent('<i class="fas fa-play"></i>');
-    thisGame.map[rows-1][cols-1].setContent('<i class="fas fa-flag"></i>');
+    thisGame.map[thisGame.rows-1][thisGame.cols-1].setContent('<i class="fas fa-flag"></i>');
     // Set the current player position to 0,0
     currentCell = thisGame.map[0][0];
     // Mark the cell as visited
