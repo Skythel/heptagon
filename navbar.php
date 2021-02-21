@@ -8,6 +8,8 @@
     // Load navbar for logged in users ?>
     <ul class="navbar">
         <li id="nav-user">Welcome, {user}!</li>
-        <li id="#">Placeholder</li>
+        <a href="profile"><li id="nav-profile"><i class="fas fa-user" aria-hidden="true"></i> Profile</li></a>
+        <a href="my-scores"><li id="nav-scores"><i class="fas fa-award" aria-hidden="true"></i> My Scores</li><a/>
+        <a href="leaderboard"><li id="nav-leaderboard"><i class="fas fa-trophy" aria-hidden="true"></i> Leaderboard</li></a>
     </ul>
 <?php } ?>

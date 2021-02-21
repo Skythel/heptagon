@@ -76,7 +76,8 @@ body {
     width: 5em;
     background: var(--default-cell-color);
     display: inline-block;
-    border: 2px solid var(--main-bg-color);
+    /* border: 2px solid var(--main-bg-color); */
+    border: 2px transparent;
 }
 .visited {
     background: var(--main-bg-color);
