@@ -7,3 +7,9 @@ function throwError(e) {
     element.innerHTML = e;
     document.body.appendChild(element);
 }
+function successMessage(m) {
+    var element = document.createElement("div");
+    element.classList.add("success");
+    element.innerHTML = m;
+    document.body.appendChild(element);
+}

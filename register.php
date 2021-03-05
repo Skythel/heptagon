@@ -6,15 +6,6 @@ include 'header.php'; ?>
 
 <!-- Content goes here -->
 <div class="wrapper">
-
-    <?php 
-    if(isset($_GET["verify"])) {
-        echo "<div class=\"success\">
-            Successfully registered! You can now log in. <!--Please check your email to complete the verification process.-->
-        </div>";
-    }
-    ?>
-
     <h1>Register for MemoryMaze</h1>
     
     <form id="form">
@@ -53,7 +44,7 @@ function register() {
                 return;
             }
             else {
-                window.location.replace("./register?verify=1");
+                successMessage("Successfully registered! You can now <a href=\"./login\">log in</a>. <!--Please check your email to complete the verification process.-->");
             }
         }
     }

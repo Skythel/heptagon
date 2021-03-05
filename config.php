@@ -20,7 +20,7 @@ if ($conn -> connect_errno) {
 }
 
 // Versioning for easier reference
-$app_ver = "0.0.1"; // General application version
+$app_ver = "1.0.0"; // General application version
 $assets_ver = "0.0.1b"; // Stylesheets version
 $scripts_ver = "0.0.2"; // Scripts version
 ?>
