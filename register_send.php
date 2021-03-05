@@ -3,6 +3,8 @@
 // Inputs: username, email and password
 // Outputs: int 1 if email exists. int 2 if server error. int 0 if registration successful. 
 
+include 'config.php';
+
 // Function for generating verification code
 function getRandomString($n) {
     $characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

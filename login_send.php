@@ -2,6 +2,9 @@
 // Login validation file
 // Inputs: username and password
 // Outputs: int 1 if wrong credentials. int 2 if server error. int 0 if login successful. 
+
+include 'config.php';
+
 if(isset($_POST["u"]) && isset($_POST["p"])) {
     $u = $conn->real_escape_string($_POST["u"]);
     $p = $conn->real_escape_string($_POST["p"]);
