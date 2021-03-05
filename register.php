@@ -29,7 +29,7 @@ function register() {
         }
     }
     // Validate password >= 8 chars
-    if(form.getElementById("input-pass").value.length < 8) {
+    if(document.getElementById("input-pass").value.length < 8) {
         throwError("Your password must be at least 8 characters long.");
         return;
     }
