@@ -35,6 +35,7 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && isset($_POST["p"])) {
         }
     }
     else {
+        echo $conn->error;
         return 2;
     }
     $sql->close();
@@ -60,6 +61,7 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && isset($_POST["p"])) {
             return 0;
         }
         else {
+            echo $conn->error;
             return 2;
         }
         $sql->close();

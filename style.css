@@ -101,6 +101,11 @@ body {
     background: lightpink;
     padding: 0.5em;
 }
+.success {
+    border-left: 3px solid green;
+    background: lightgreen;
+    padding: 0.5em;
+}
 label {
     width: 15em;
     display: inline-block;
