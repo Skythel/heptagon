@@ -8,12 +8,12 @@ include 'header.php'; ?>
 <div class="wrapper">
     <h1>Register for MemoryMaze</h1>
     
-    <form id="form">
+    <div id="form">
         <label for="input-user">Username: </label><input type="text" class="input" id="input-user" /><br/>
         <label for="input-email">Email: </label><input type="email" class="input" id="input-email" /><br/>
         <label for="input-pass">Password: </label><input type="password" class="input" id="input-pass" /><br/>
         <button onclick="register()">Register</button>
-    </form>
+    </div>
 
     <a href="./login">Already have an account? Login!</a>
 </div>

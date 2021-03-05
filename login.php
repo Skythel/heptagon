@@ -8,11 +8,11 @@ include 'header.php'; ?>
 <div class="wrapper">
     <h1>Login to MemoryMaze</h1>
     
-    <form id="form">
+    <div id="form">
         <label for="input-user">Email: </label><input type="email" class="input" id="input-user" /><br/>
         <label for="input-pass">Password: </label><input type="password" class="input" id="input-pass" /><br/>
         <button onclick="login()">Login</button>
-    </form>
+    </div>
     <a href="./forgot_password">Forgot your password?</a><br/><br/>
 
     <a href="./register">Don't have an account? Register now!</a>

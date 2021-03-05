@@ -103,7 +103,11 @@ body {
 }
 label {
     width: 15em;
+    display: inline-block;
 }
 button {
     background: var(--sub-color3);
+    padding: 0.5em;
+    border-radius: 0.25em;
+    color: var(--sub-font-color);
 }
