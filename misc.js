@@ -23,10 +23,10 @@ function successMessage(m) {
 // Clears all message elements of a certain type.
 function clearMessages(t) {
     if(t=="all") {
-        var path = "document.getElementsByClassName(\"message\")";
+        var path = document.getElementsByClassName("message");
     }
     else {
-        var path = "document.getElementsByClassName(t)";
+        var path = document.getElementsByClassName(t);
     }
     if(path.length > 0) {
         for(var i=0; i<path.length; i++) {
