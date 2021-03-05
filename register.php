@@ -44,6 +44,7 @@ function register() {
                 return;
             }
             else {
+                console.log(this.responseText);
                 successMessage("Successfully registered! You can now <a href=\"./login\">log in</a>. <!--Please check your email to complete the verification process.-->");
             }
         }

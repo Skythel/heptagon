@@ -46,8 +46,8 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && isset($_POST["p"])) {
         // Generate random email verification code
         $hash = getRandomString(5);
         // Store into users db
-        $sql = $conn->prepare("INSERT INTO `users` (`usertag`,`username`,`email`,`password`,`registration_timestamp`,`registration_ip`,`verification_code`) VALUES (?,?,?,?,?,?,?)");
-        echo "INSERT INTO `users` (`usertag`,`username`,`email`,`password`,`registration_timestamp`,`registration_ip`,`verification_code`) VALUES (?,?,?,?,?,?,?)";
+        $query = "INSERT INTO `users` (`usertag`,`username`,`email`,`password`,`registration_timestamp`,`registration_ip`,`verification_code`) VALUES (?,?,?,?,?,?,?)"
+        $sql = $conn->prepare($query);
         if(
             $sql &&
             $sql->bind_param('isssiss',$tag,$u,$e,$p,time(),$_SERVER["REMOTE_ADDR"],$hash) &&
@@ -59,7 +59,7 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && isset($_POST["p"])) {
             // $txt = "Please click on this link to activate your account:";
             // $headers = "From: webmaster@example.com";
             // mail($e,$subject,$txt,$headers);
-            return 0;
+            return $query;
         }
         else {
             echo $conn->error;
