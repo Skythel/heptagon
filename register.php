@@ -53,7 +53,7 @@ function register() {
                 return;
             }
             else {
-                window.location.replace("./register?verify");
+                window.location.replace("./register?verify=1");
             }
         }
     }
