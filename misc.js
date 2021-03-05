@@ -28,7 +28,9 @@ function clearMessages(t) {
     else {
         var path = "document.getElementsByClassName(t)";
     }
-    for(var i=0; i<path.length; i++) {
-        path[i].parentNode.removeChild(path[i]);
+    if(path.length > 0) {
+        for(var i=0; i<path.length; i++) {
+            path[i].parentNode.removeChild(path[i]);
+        }
     }
 }
