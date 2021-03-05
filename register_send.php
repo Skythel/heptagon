@@ -47,6 +47,7 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && isset($_POST["p"])) {
         $hash = getRandomString(5);
         // Store into users db
         $sql = $conn->prepare("INSERT INTO `users` (`usertag`,`username`,`email`,`password`,`registration_timestamp`,`registration_ip`,`verification_code`) VALUES (?,?,?,?,?,?,?)");
+        echo "INSERT INTO `users` (`usertag`,`username`,`email`,`password`,`registration_timestamp`,`registration_ip`,`verification_code`) VALUES (?,?,?,?,?,?,?)";
         if(
             $sql &&
             $sql->bind_param('isssiss',$tag,$u,$e,$p,time(),$_SERVER["REMOTE_ADDR"],$hash) &&
