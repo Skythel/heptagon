@@ -53,9 +53,10 @@ if(isset($_POST["u"]) && isset($_POST["p"])) {
                         $_SESSION["userid"] = $uid;
                         // Update last login time in database
                         $sql2 = $conn->prepare("INSERT INTO `logins` (`userid`,`timestamp`,`ip`) VALUES (?,?,?)");
+                        $time = time();
                         if( 
                             $sql2 &&
-                            $sql2->bind_param('iis',$uid,time(),$_SERVER['REMOTE_ADDR']) &&
+                            $sql2->bind_param('iis',$uid,$time,$_SERVER['REMOTE_ADDR']) &&
                             $sql2->execute()
                         ) {
                             return 0;

@@ -50,9 +50,10 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && isset($_POST["p"])) {
         // Store into users db
         $query = "INSERT INTO `users` (`usertag`,`username`,`email`,`password`,`registration_timestamp`,`registration_ip`,`verification_code`) VALUES (?,?,?,?,?,?,?)";
         $sql = $conn->prepare($query);
+        $time = time();
         if(
             $sql &&
-            $sql->bind_param('isssiss',$tag,$u,$e,$p,time(),$_SERVER["REMOTE_ADDR"],$hash) &&
+            $sql->bind_param('isssiss',$tag,$u,$e,$p,$time,$_SERVER["REMOTE_ADDR"],$hash) &&
             $sql->execute()
         ) {
             // On hold, low priority
