@@ -12,7 +12,7 @@ include 'header.php'; ?>
         <label for="input-user">Username: </label><input type="text" class="input" id="input-user" /><br/>
         <label for="input-email">Email: </label><input type="email" class="input" id="input-email" /><br/>
         <label for="input-pass">Password: </label><input type="password" class="input" id="input-pass" /><br/>
-        <input type="submit" value="Register" onclick="register()">
+        <button onclick="register()">Register</button>
     </form>
 
     <a href="./login">Already have an account? Login!</a>

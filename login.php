@@ -11,7 +11,7 @@ include 'header.php'; ?>
     <form id="form">
         <label for="input-user">Email: </label><input type="email" class="input" id="input-user" /><br/>
         <label for="input-pass">Password: </label><input type="password" class="input" id="input-pass" /><br/>
-        <input type="submit" value="Login" onclick="login()">
+        <button onclick="login()">Login</button>
     </form>
     <a href="./forgot_password">Forgot your password?</a><br/><br/>
 
