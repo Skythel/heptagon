@@ -46,7 +46,7 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && isset($_POST["p"])) {
         // Generate random email verification code
         $hash = getRandomString(5);
         // Store into users db
-        $query = "INSERT INTO `users` (`usertag`,`username`,`email`,`password`,`registration_timestamp`,`registration_ip`,`verification_code`) VALUES (?,?,?,?,?,?,?)"
+        $query = "INSERT INTO `users` (`usertag`,`username`,`email`,`password`,`registration_timestamp`,`registration_ip`,`verification_code`) VALUES (?,?,?,?,?,?,?)";
         $sql = $conn->prepare($query);
         if(
             $sql &&
