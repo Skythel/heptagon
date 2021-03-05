@@ -1,6 +1,6 @@
 <?php
 // DB login info
-include 'secrets.php';
+// include 'secrets.php';
 
 // Start the session if not exists
 if(!isset($_SESSION)) {
@@ -13,7 +13,7 @@ if(!isset($logged_in)) {
 }
 
 // Create connection
-$conn = new mysqli($db_serv, $db_user, $db_pass, $db_name);
+// $conn = new mysqli($db_serv, $db_user, $db_pass, $db_name);
 
 // Versioning for easier reference
 $app_ver = "0.0.1"; // General application version
