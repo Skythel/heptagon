@@ -96,3 +96,8 @@ body {
 .horiz-wrapper {
     display: block;
 }
+.error {
+    border-left: 3px solid var(--sub-color3);
+    background: lightpink;
+    padding: 0.5em;
+}
