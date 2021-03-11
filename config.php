@@ -1,6 +1,6 @@
 <?php
 // DB login info
-if (file_exists('secrets.php')) include 'secrets.php';
+file_exists('secrets.php') AND include 'secrets.php';
 
 // Start the session if not exists
 if(!isset($_SESSION)) {
