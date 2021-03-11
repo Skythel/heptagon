@@ -26,15 +26,35 @@ body {
     align-items: center;
     flex-direction: column;
 }
+a {
+    text-decoration: none;
+    color: var(--sub-color3);
+}
 .wrapper {
     flex: 1 0 auto;
+    width: 100%;
+    padding-top: 1.5em;
 }
 .game {
     position: relative;
-    top: 50%;
+    top: 40%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+    /* border: 3px solid var(--sub-color3); */
+    text-align: center;
+    max-width: 60%;
+    height: auto;
+    min-width: 50%;
+    min-height: 50%;
+    margin: auto;
+    padding: 1em;
+}
+table.gameBox {
+    margin: auto;
+}
+.mobile_navbar {
+    display: none;
 }
 .navbar {
     background: linear-gradient(var(--sub-bg-color),var(--sub-color3));
@@ -47,13 +67,22 @@ body {
 .navbar li {
     display: inline;
     padding: 0.5em;
+}
+.navbar li, button, .button {
     color: var(--sub-font-color);
     transition: 0.25s;
 }
-.navbar li:hover {
+.navbar li a {
+    color: var(--sub-font-color);
+}
+.navbar li:hover, button:hover, .button:hover {
     cursor: hand;
     cursor: pointer;
-    box-shadow: 0 0 0.5em var(--main-bg-color);
+    box-shadow: 0 0 0.5em var(--main-bg-color),inset 0 0 0.25em #333;
+    text-shadow: -1px 1px 2px var(--main-bg-color);
+}
+.navbar li:active, button:active, .button:active {
+    background: linear-gradient(var(--sub-color3),var(--sub-bg-color));
 }
 .footer {
     text-align: center;
@@ -61,15 +90,15 @@ body {
     flex-shrink: 0;
 }
 .button {
-    height: 5em;
     width: 5em;
+    padding: 1em;
     background: var(--sub-bg-color);
     color: var(--sub-font-color);
     text-align: center;
     vertical-align: middle;
     margin: auto;
-    display: table-cell;
-    border-radius: 100%;
+    /* display: table-cell; */
+    border-radius: 5%;
 }
 .cell {
     height: 5em;
@@ -115,4 +144,17 @@ button {
     padding: 0.5em;
     border-radius: 0.25em;
     color: var(--sub-font-color);
+}
+
+/* Fixes for small screens */
+@media only screen and (max-width: 800px)  {
+    .navbar {
+        display: none;
+    }
+    .mobile_navbar {
+        display: block;
+    }
+}
+.playerMarker {
+    margin: 20%;
 }

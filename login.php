@@ -5,18 +5,16 @@ $cfg_title = "Login - MemoryMaze";
 include 'header.php'; ?>
 
 <!-- Content goes here -->
-<div class="wrapper">
-    <h1>Login to MemoryMaze</h1>
-    
-    <div id="form">
-        <label for="input-user">Email: </label><input type="email" class="input" id="input-user" /><br/>
-        <label for="input-pass">Password: </label><input type="password" class="input" id="input-pass" /><br/>
-        <button onclick="login()">Login</button>
-    </div>
-    <a href="./forgot_password">Forgot your password?</a><br/><br/>
+<h1>Login to MemoryMaze</h1>
 
-    <a href="./register">Don't have an account? Register now!</a>
+<div id="form">
+    <label for="input-user">Email: </label><input type="email" class="input" id="input-user" /><br/>
+    <label for="input-pass">Password: </label><input type="password" class="input" id="input-pass" /><br/>
+    <button onclick="login()">Login</button>
 </div>
+<a href="./forgot_password">Forgot your password?</a><br/><br/>
+
+<a href="./register">Don't have an account? Register now!</a>
 
 <script>
 function login() {
@@ -31,15 +29,16 @@ function login() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if(this.responseText==2) { // Backend error
+            if(this.responseText=="2") { // Backend error
                 throwError("Sorry, the server experienced an error. Please try again later.");
                 return;
-            } else if(this.responseText==1) { // Wrong username or password
+            } else if(this.responseText=="1") { // Wrong username or password
                 throwError("Sorry, that wasn't right. Please check your information and try again.");
                 return;
             }
             else {
-                window.location.replace("./?login");
+                console.log(this.responseText);
+                // window.location.replace("./?login");
             }
         }
     }
