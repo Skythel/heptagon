@@ -61,3 +61,18 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+.scoretable {
+    position: relative;
+    top: 40%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+    max-width: 80%;
+    height: auto;
+    min-width: 50%;
+    min-height: 50%;
+    margin: auto;
+    padding: 1em;
+}
