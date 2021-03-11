@@ -1,0 +1,98 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root { /* Set base colour variables */
+    --main-bg-color: #F5E9E0;
+    --main-text-color: #4B2A1F;
+    --main-font-family: 'Source Sans Pro', sans-serif;
+    --sub-bg-color: #DA7B4C;
+    --sub-font-color: #24181C;
+    --sub-color3: #CA4429;
+    --default-cell-color: #ccc;
+    /* Flash for a short while */
+    --correct-cell-color: limegreen; 
+    --wrong-cell-color: firebrick;
+}
+html, body {
+    height: 98%;
+}
+body {
+    background-color: var(--main-bg-color);
+    font-family: var(--main-font-family);
+    font-size: large;
+    color: var(--main-text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.wrapper {
+    flex: 1 0 auto;
+}
+.game {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.navbar {
+    background: linear-gradient(var(--sub-bg-color),var(--sub-color3));
+    padding: 0.5em;
+    width: 100%;
+    top: 0;
+    margin: 0;
+    position: fixed;
+}
+.navbar li {
+    display: inline;
+    padding: 0.5em;
+    color: var(--sub-font-color);
+    transition: 0.25s;
+}
+.navbar li:hover {
+    cursor: hand;
+    cursor: pointer;
+    box-shadow: 0 0 0.5em var(--main-bg-color);
+}
+.footer {
+    text-align: center;
+    font-size: 80%;
+    flex-shrink: 0;
+}
+.button {
+    height: 5em;
+    width: 5em;
+    background: var(--sub-bg-color);
+    color: var(--sub-font-color);
+    text-align: center;
+    vertical-align: middle;
+    margin: auto;
+    display: table-cell;
+    border-radius: 100%;
+}
+.cell {
+    height: 5em;
+    width: 5em;
+    background: var(--default-cell-color);
+    display: inline-block;
+    border: 2px dashed rgba(170,170,170,0.75);
+}
+.visited {
+    background: var(--main-bg-color);
+}
+.border-top {
+    border-top: 2px solid var(--sub-font-color);
+}
+.border-down {
+    border-bottom: 2px solid var(--sub-font-color);
+}
+.border-left {
+    border-left: 2px solid var(--sub-font-color);
+}
+.border-right {
+    border-right: 2px solid var(--sub-font-color);
+}
+.horiz-wrapper {
+    display: block;
+}
