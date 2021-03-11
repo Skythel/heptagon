@@ -3,7 +3,6 @@
     <ul class="navbar">
         <li id="nav-register"><i class="fas fa-user-plus" aria-hidden="true"></i> Register</li>
         <li id="nav-login"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</li>
-
         <a href="leaderboard"><li id="nav-leaderboard"><i class="fas fa-trophy" aria-hidden="true"></i> Leaderboard</li></a>
 
     </ul>
