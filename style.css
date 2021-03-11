@@ -96,3 +96,23 @@ body {
 .horiz-wrapper {
     display: block;
 }
+.error {
+    border-left: 3px solid var(--sub-color3);
+    background: lightpink;
+    padding: 0.5em;
+}
+.success {
+    border-left: 3px solid green;
+    background: lightgreen;
+    padding: 0.5em;
+}
+label {
+    width: 15em;
+    display: inline-block;
+}
+button {
+    background: var(--sub-color3);
+    padding: 0.5em;
+    border-radius: 0.25em;
+    color: var(--sub-font-color);
+}
