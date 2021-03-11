@@ -1,7 +1,8 @@
 /* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap');
 
-:root { /* Set base colour variables */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap');
+:root {
+    /* Set base colour variables */
     --main-bg-color: #F5E9E0;
     --main-text-color: #4B2A1F;
     --main-font-family: 'Source Sans Pro', sans-serif;
@@ -10,12 +11,15 @@
     --sub-color3: #CA4429;
     --default-cell-color: #ccc;
     /* Flash for a short while */
-    --correct-cell-color: limegreen; 
+    --correct-cell-color: limegreen;
     --wrong-cell-color: firebrick;
 }
-html, body {
+
+html,
+body {
     height: 98%;
 }
+
 body {
     background-color: var(--main-bg-color);
     font-family: var(--main-font-family);
@@ -26,15 +30,18 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
 a {
     text-decoration: none;
     color: var(--sub-color3);
 }
+
 .wrapper {
     flex: 1 0 auto;
     width: 100%;
     padding-top: 1.5em;
 }
+
 .game {
     position: relative;
     top: 40%;
@@ -50,45 +57,61 @@ a {
     margin: auto;
     padding: 1em;
 }
+
 table.gameBox {
     margin: auto;
 }
+
 .mobile_navbar {
     display: none;
 }
+
 .navbar {
-    background: linear-gradient(var(--sub-bg-color),var(--sub-color3));
+    background: linear-gradient(var(--sub-bg-color), var(--sub-color3));
     padding: 0.5em;
     width: 100%;
     top: 0;
     margin: 0;
     position: fixed;
 }
+
 .navbar li {
     display: inline;
     padding: 0.5em;
 }
-.navbar li, button, .button {
+
+.navbar li,
+button,
+.button {
     color: var(--sub-font-color);
     transition: 0.25s;
 }
+
 .navbar li a {
     color: var(--sub-font-color);
 }
-.navbar li:hover, button:hover, .button:hover {
+
+.navbar li:hover,
+button:hover,
+.button:hover {
     cursor: hand;
     cursor: pointer;
-    box-shadow: 0 0 0.5em var(--main-bg-color),inset 0 0 0.25em #333;
+    box-shadow: 0 0 0.5em var(--main-bg-color), inset 0 0 0.25em #333;
     text-shadow: -1px 1px 2px var(--main-bg-color);
 }
-.navbar li:active, button:active, .button:active {
-    background: linear-gradient(var(--sub-color3),var(--sub-bg-color));
+
+.navbar li:active,
+button:active,
+.button:active {
+    background: linear-gradient(var(--sub-color3), var(--sub-bg-color));
 }
+
 .footer {
     text-align: center;
     font-size: 80%;
     flex-shrink: 0;
 }
+
 .button {
     width: 5em;
     padding: 1em;
@@ -100,45 +123,56 @@ table.gameBox {
     /* display: table-cell; */
     border-radius: 5%;
 }
+
 .cell {
     height: 5em;
     width: 5em;
     background: var(--default-cell-color);
     display: inline-block;
-    border: 2px dashed rgba(170,170,170,0.75);
+    border: 2px dashed rgba(170, 170, 170, 0.75);
 }
+
 .visited {
     background: var(--main-bg-color);
 }
+
 .border-top {
     border-top: 2px solid var(--sub-font-color);
 }
+
 .border-down {
     border-bottom: 2px solid var(--sub-font-color);
 }
+
 .border-left {
     border-left: 2px solid var(--sub-font-color);
 }
+
 .border-right {
     border-right: 2px solid var(--sub-font-color);
 }
+
 .horiz-wrapper {
     display: block;
 }
+
 .error {
     border-left: 3px solid var(--sub-color3);
     background: lightpink;
     padding: 0.5em;
 }
+
 .success {
     border-left: 3px solid green;
     background: lightgreen;
     padding: 0.5em;
 }
+
 label {
     width: 15em;
     display: inline-block;
 }
+
 button {
     background: var(--sub-color3);
     padding: 0.5em;
@@ -146,8 +180,10 @@ button {
     color: var(--sub-font-color);
 }
 
+
 /* Fixes for small screens */
-@media only screen and (max-width: 800px)  {
+
+@media only screen and (max-width: 800px) {
     .navbar {
         display: none;
     }
@@ -155,6 +191,7 @@ button {
         display: block;
     }
 }
+
 .playerMarker {
     margin: 20%;
 }
