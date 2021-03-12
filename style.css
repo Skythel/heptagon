@@ -215,6 +215,18 @@ button {
     border-left: 1px solid var(--main-text-color);
 }
 
+.score::before {
+    content: "Score: ";
+}
+
+.timer::before {
+    content: "Time: ";
+}
+
+.obstacleCount::before {
+    content: "Obstacles Hit: ";
+}
+
 .fruit {
     display: inline;
 }
