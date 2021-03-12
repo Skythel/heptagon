@@ -1,20 +1,20 @@
 <ul class="navbar">
-    <li id="nav-home"><a href="./"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+    <a href="./"><li id="nav-home"><i class="fa fa-home" aria-hidden="true"></i> Home</li></a>
     <?php if(!isset($logged_in) || $logged_in==false) { 
         // Load navbar for non-logged in users ?>
-        <li id="nav-register"><a href="./register"><i class="fas fa-user-plus" aria-hidden="true"></i> Register</a></li>
-        <li id="nav-login"><a href="./login"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</a></li>
+        <a href="./register"><li id="nav-register"><i class="fas fa-user-plus" aria-hidden="true"></i> Register</li></a>
+        <a href="./login"><li id="nav-login"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</li></a>
     <?php } else { 
     // Load navbar for logged in users ?>
         <li id="nav-user">Welcome, {user}!</li>
-        <li id="nav-profile"><a href="./profile"><i class="fas fa-user" aria-hidden="true"></i> Profile</a></li>
-        <li id="nav-scores"><a href="./my-scores"><i class="fas fa-award" aria-hidden="true"></i> My Scores<a/></li>   
+        <a href="./profile"><li id="nav-profile"><i class="fas fa-user" aria-hidden="true"></i> Profile</li></a>
+        <a href="./my-scores"><li id="nav-scores"><i class="fas fa-award" aria-hidden="true"></i> My Scores</li></a>   
     <?php } ?>
-    <li id="nav-leaderboard"><a href="./leaderboard"><i class="fas fa-trophy" aria-hidden="true"></i> Leaderboard</a></li>
+    <a href="./leaderboard"><li id="nav-leaderboard"><i class="fas fa-trophy" aria-hidden="true"></i> Leaderboard</li></a>
 </ul>
 
 <div class="mobile_navbar">
-    <div id="mobile-menu"><i class="fas fa-bars"></i></div>
-    <h1>MemoryMaze</h1>
-    <div id="mobile-quicklogin"><i class="fas fa-sign-in-alt"></i></div>
+    <div id="mobile-menu" onclick="openMobileMenu()"><i class="fas fa-bars fa-2x"></i></div>
+    <a href="./"><h1>MemoryMaze</h1></a>
+    <a href="./login"><div id="mobile-quicklogin"><i class="fas fa-sign-in-alt fa-2x"></i></div></a>
 </div>

@@ -127,13 +127,21 @@ button:active,
 .cell {
     height: 5em;
     width: 5em;
-    background: var(--default-cell-color);
+    background-color: #cccccc;
     display: inline-block;
     border: 2px dashed rgba(170, 170, 170, 0.75);
 }
 
 .visited {
-    background: var(--main-bg-color);
+    background-color: #F5E9E0;
+}
+
+.wrong {
+    background-color: var(--wrong-cell-color);
+}
+
+.correct {
+    background-color: var(--correct-cell-color);
 }
 
 .border-top {
@@ -180,18 +188,33 @@ button {
     color: var(--sub-font-color);
 }
 
-
-/* Fixes for small screens */
-
-@media only screen and (max-width: 800px) {
-    .navbar {
-        display: none;
-    }
-    .mobile_navbar {
-        display: block;
-    }
-}
-
 .playerMarker {
     margin: 20%;
+}
+
+.stats {
+    width: 70%;
+    margin: auto;
+}
+
+.gameDisplay {
+    min-height: 2em;
+    background: var(--sub-bg-color);
+    padding: 0.25em;
+    font-size: 150%;
+    margin: auto;
+    line-height: 2em;
+    min-width: 28%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.timer,
+.countdown {
+    border-right: 1px solid var(--main-text-color);
+    border-left: 1px solid var(--main-text-color);
+}
+
+.fruit {
+    display: inline;
 }

@@ -10,3 +10,4 @@
 <script src="cell.js?v=<?php echo $scripts_ver; ?>"></script> 
 <script src="logic.js?v=<?php echo $scripts_ver; ?>"></script>
 <script src="gameplay.js?v=<?php echo $scripts_ver; ?>"></script>
+<script src="fruits.js?v=<?php echo $scripts_ver; ?>"></script>
