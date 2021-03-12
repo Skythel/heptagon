@@ -338,8 +338,8 @@ function launchPuzzle(thisGame) {
 
     // Create onclicks
     const f = document.getElementsByClassName("fruit")[0];
-    f.addEventListener('click', function(event) {
-        console.log(`You selected ` + this.id);
+    f.addEventListener('click', function() {
+        console.log('You selected ' + this.id);
     });
 
 }
