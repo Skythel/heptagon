@@ -34,7 +34,7 @@ function initGame(thisGame) {
 
     document.getElementsByClassName("score")[0].innerHTML = 0;
     document.getElementsByClassName("timer")[0].innerHTML = 0;
-    document.getElementsByClassName("countdown")[0].innerHTML = 3;
+    document.getElementsByClassName("countdown")[0].innerHTML = thisGame.countdownTimer;
     document.getElementsByClassName("obstacleCount")[0].innerHTML = 0;
 
     // Commenting because already defined in class
@@ -79,7 +79,7 @@ function initGame(thisGame) {
     //     }
     // }
 
-    countdown(thisGame, 3);
+    countdown(thisGame, thisGame.countdownTimer);
 }
 
 function generateCellHTML(thisGame, x, y) {
@@ -332,25 +332,86 @@ function launchPuzzle(thisGame) {
     var puzzle = '<div class="puzzle">' +
         'Select the correct icons in order<br/>' +
         fruitChoicesHTML +
+        '<br/><br/>Your answers:<br/>' +
+        '<div class="answers" id="userAnswers"></div>' +
+        '<button id="backspace" onclick="backspace()">Backspace</button><br/>' +
+        'Incorrect attempts: <span id="attemptNum">0</span>/<span id="attemptsAllowed">3</span>' +
         '</div>';
     gameDiv.innerHTML = showAnswer;
-    setTimeout(function() { gameDiv.innerHTML = puzzle; }, (2000 * thisGame.puzzleIcons));
+    setTimeout(doPuzzle, (2000 * thisGame.puzzleIcons), thisGame, puzzle, answers);
+}
 
+function backspace() {
+    // Removes last element in user answer.
+    var userAnswers = document.getElementById("userAnswers").getElementsByClassName("fruit");
+    if (userAnswers.length > 0) {
+        userAnswers[userAnswers.length - 1].remove();
+    }
+}
+
+function doPuzzle(thisGame, puzzle, answerKey) {
+    // Function called only once during initialisation of the puzzle
+    document.getElementById("game-container").innerHTML = puzzle;
     // Create onclicks
-    const f = document.getElementsByClassName("fruit")[0];
-    f.addEventListener('click', function() {
-        console.log('You selected ' + this.id);
-    });
+    for (var i = 0; i < thisGame.puzzleChoices; i++) {
+        console.log("adding onclick to " + i);
+        document.getElementsByClassName("fruit")[i].addEventListener('click', function() {
+            validatePuzzle(thisGame, this.id, answerKey);
+            console.log(this.id + " was clicked");
+        });
+    }
+}
+
+function validatePuzzle(thisGame, clickedFruit, answerKey) {
+    var currentAnswers = document.getElementById("userAnswers").getElementsByClassName("fruit");
+    document.getElementById("userAnswers").innerHTML += '<div class="fruit" id="' + clickedFruit + '"><img src="./assets/' + clickedFruit + '.png"/></div>';
+    // Special handling if the fruit is the last one remaining
+    if (currentAnswers.length == answerKey.length) {
+        // Loop thru the user answers and check against answer key
+        for (var i = 0; i < currentAnswers.length; i++) {
+            if (answerKey[i]["name"] !== currentAnswers[i].id) {
+                console.log("answer was incorrect");
+                // Record as incorrect attempt
+                // Cheaty way to get it from dom value cause lazy
+                var incorrect = parseInt(document.getElementById("attemptNum").innerHTML);
+                var maxAttempts = parseInt(document.getElementById("attemptsAllowed").innerHTML);
+                if (incorrect == maxAttempts) {
+                    // Jump to final score
+                    showFinalScore(thisGame, 0);
+                } else {
+                    console.log("resetting answers");
+                    // +1 incorrect
+                    document.getElementById("attemptNum").innerHTML = incorrect + 1;
+                    // Clear answers and try again
+                    document.getElementById("userAnswers").innerHTML = "";
+                }
+                return;
+            }
+        }
+        // Assume no errors caught
+        var bonus = 100;
+        showFinalScore(thisGame, bonus);
+    }
+}
+
+function showFinalScore(thisGame, bonus) {
+    // Calculate score things
 
 }
 
 function randFruits(thisGame) {
     // Select the choices
     var puzzleChoices = [];
-    for (var i = 0; i < thisGame.puzzleChoices; i++) {
+    var count = 0;
+    while (count < thisGame.puzzleChoices) { // || fruits.length > 0
         var rand = Math.floor(Math.random() * fruits.length);
-        puzzleChoices.push(fruits.pop(rand));
-        console.log(puzzleChoices);
+        if (puzzleChoices.indexOf(fruits[rand]) === -1) {
+            // console.log(fruits[rand]);
+            count++;
+            puzzleChoices.push(fruits[rand]);
+            fruits.pop(rand);
+        } else
+            continue;
     }
     return puzzleChoices;
 }
@@ -361,7 +422,6 @@ function randFruitAnswers(thisGame, choices) {
     for (var i = 0; i < thisGame.puzzleIcons; i++) {
         var rand = Math.floor(Math.random() * choices.length);
         puzzleAnswers.push(choices[rand]);
-        console.log(puzzleAnswers);
     }
     return puzzleAnswers;
 }

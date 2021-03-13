@@ -3,10 +3,13 @@ CZ3002
 
 ## TODO: 
 - Scoring system
-- Complete puzzle logic
 - Backend - login, friend systems
 - Optimise for mobile viewports
 - Login message for homepage (on GET `?login`)
+
+### v1.1.1 - 14 Mar 2020
+- Completed fruit puzzle
+- Increased masking countdown for higher levels
 
 ### v1.1.0 - 12 Mar 2020
 - Add maze masking

@@ -200,11 +200,11 @@ button {
 .gameDisplay {
     min-height: 2em;
     background: var(--sub-bg-color);
-    padding: 0.25em;
-    font-size: 150%;
+    padding: 0.15em;
+    font-size: 140%;
     margin: auto;
     line-height: 2em;
-    min-width: 28%;
+    min-width: 20%;
     display: inline-block;
     vertical-align: middle;
 }
