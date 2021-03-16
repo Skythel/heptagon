@@ -21,12 +21,10 @@ if(isset($_POST["u"]) && isset($_POST["p"])) {
             $continue = true;
         }
         else {
-            // user does not exist
             echo "1";
         }
     }
     else {
-        // echo $conn->error;
         echo "2";
     }
     $sql->close();
@@ -38,60 +36,57 @@ if(isset($_POST["u"]) && isset($_POST["p"])) {
             $sql &&
             $sql->bind_param('s',$u) &&
             $sql->execute() &&
-            $sql->store_result() &&
-            $sql->bind_result($hash)
+            $sql->store_result() 
         ) {
             while($sql->fetch()) {
-                if(password_verify($p,$hash)) {
-                    // Get userid
-                    $sql2 = $conn->prepare("SELECT `userid`,`username`,`usertag` FROM `users` WHERE `email`=?");
-                    if( 
-                        $sql2 &&
-                        $sql2->bind_param('s',$u) &&
-                        $sql2->execute() &&
-                        $sql2->store_result() &&
-                        $sql2->bind_result($uid,$uname,$utag)
-                    ) {
-                        if($sql2->fetch()) {
-                            // Log the user in
-                            $_SESSION["userid"] = $uid;
-                            $_SESSION["username"] = $uname;
-                            $_SESSION["usertag"] = $utag;
-                            $logged_in = true;
-                            // Update last login time in database
-                            $sql2 = $conn->prepare("INSERT INTO `logins` (`userid`,`timestamp`,`ip`) VALUES (?,?,?)");
-                            $time = time();
-                            if( 
-                                $sql2 &&
-                                $sql2->bind_param('iis',$uid,$time,$_SERVER['REMOTE_ADDR']) &&
-                                $sql2->execute()
-                            ) {
-                                echo "0";
-                            }
-                            else {
-                                // echo $conn->error;
-                                echo "2";
-                            }
+            if(password_verify($p,$hash)) {
+                // Get userid
+                $sql2 = $conn->prepare("SELECT `userid` FROM `users` WHERE `email`=?");
+                if( 
+                    $sql2 &&
+                    $sql2->bind_param('s',$u) &&
+                    $sql2->execute() &&
+                    $sql2->store_result() &&
+                    $sql2->bind_result($uid)
+                ) {
+                    if($sql2->fetch()) {
+                        // Log the user in
+                        $_SESSION["userid"] = $uid;
+                        // Update last login time in database
+                        $sql2 = $conn->prepare("INSERT INTO `logins` (`userid`,`timestamp`,`ip`) VALUES (?,?,?)");
+                        $time = time();
+                        if( 
+                            $sql2 &&
+                            $sql2->bind_param('iis',$uid,$time,$_SERVER['REMOTE_ADDR']) &&
+                            $sql2->execute()
+                        ) {
+                            echo "0";
                         }
                         else {
                             // echo $conn->error;
                             echo "2";
                         }
                     }
-                    $sql2->close();
+                    else {
+                        // echo $conn->error;
+                        echo "2";
+                    }
                 }
-                else {
-                    // echo "wrong password";
-                    echo "1";
-                }
+                $sql2->close();
             }
+            else {
+                echo "1";
+            }
+            }
+            
         }
         else {
             // echo $conn->error;
             echo "2";
+            $sql->close();
         }
-        $sql->close();
     }
+
 }
 
 ?>
