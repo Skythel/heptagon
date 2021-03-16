@@ -5,18 +5,16 @@ $cfg_title = "Register - MemoryMaze";
 include 'header.php'; ?>
 
 <!-- Content goes here -->
-<div class="wrapper">
-    <h1>Register for MemoryMaze</h1>
-    
-    <div id="form">
-        <label for="input-user">Username: </label><input type="text" class="input" id="input-user" /><br/>
-        <label for="input-email">Email: </label><input type="email" class="input" id="input-email" /><br/>
-        <label for="input-pass">Password: </label><input type="password" class="input" id="input-pass" /><br/>
-        <button onclick="register()">Register</button>
-    </div>
+<h1>Register for MemoryMaze</h1>
 
-    <a href="./login">Already have an account? Login!</a>
+<div id="form">
+    <label for="input-user">Username: </label><input type="text" class="input" id="input-user" /><br/>
+    <label for="input-email">Email: </label><input type="email" class="input" id="input-email" /><br/>
+    <label for="input-pass">Password: </label><input type="password" class="input" id="input-pass" /><br/>
+    <button onclick="register()">Register</button>
 </div>
+
+<a href="./login">Already have an account? Login!</a>
 
 <script>
 function register() {
@@ -36,15 +34,15 @@ function register() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if(this.responseText==2) { // Backend error
+            console.log(this.responseText);
+            if(this.responseText=="2") { // Backend error
                 throwError("Sorry, the server experienced an error. Please try again later.");
                 return;
-            } else if(this.responseText==1) { // Email already exists
+            } else if(this.responseText=="1") { // Email already exists
                 throwError("Sorry, that email address is already registered. Please use a different email and try again.");
                 return;
             }
             else {
-                console.log(this.responseText);
                 successMessage("Successfully registered! You can now <a href=\"./login\">log in</a>. <!--Please check your email to complete the verification process.-->");
             }
         }

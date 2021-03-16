@@ -21,11 +21,11 @@ if(isset($_POST["u"]) && isset($_POST["p"])) {
             $continue = true;
         }
         else {
-            return 1;
+            echo "1";
         }
     }
     else {
-        return 2;
+        echo "2";
     }
     $sql->close();
 
@@ -38,6 +38,7 @@ if(isset($_POST["u"]) && isset($_POST["p"])) {
             $sql->execute() &&
             $sql->store_result() 
         ) {
+            while($sql->fetch()) {
             if(password_verify($p,$hash)) {
                 // Get userid
                 $sql2 = $conn->prepare("SELECT `userid` FROM `users` WHERE `email`=?");
@@ -59,28 +60,30 @@ if(isset($_POST["u"]) && isset($_POST["p"])) {
                             $sql2->bind_param('iis',$uid,$time,$_SERVER['REMOTE_ADDR']) &&
                             $sql2->execute()
                         ) {
-                            return 0;
+                            echo "0";
                         }
                         else {
-                            echo $conn->error;
-                            return 2;
+                            // echo $conn->error;
+                            echo "2";
                         }
                     }
                     else {
-                        echo $conn->error;
-                        return 2;
+                        // echo $conn->error;
+                        echo "2";
                     }
                 }
                 $sql2->close();
             }
             else {
-                return 1;
+                echo "1";
             }
-            $sql->close();
+            }
+            
         }
         else {
-            echo $conn->error;
-            return 2;
+            // echo $conn->error;
+            echo "2";
+            $sql->close();
         }
     }
 
