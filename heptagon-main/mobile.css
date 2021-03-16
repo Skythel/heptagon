@@ -1,0 +1,51 @@
+/* Fixes for small screens */
+
+:root {
+    /* Set base colour variables */
+    --main-bg-color: #F5E9E0;
+    --main-text-color: #4B2A1F;
+    --sub-bg-color: #DA7B4C;
+    --sub-font-color: #24181C;
+    --sub-color3: #CA4429;
+    --default-cell-color: #ccc;
+}
+
+@media only screen and (max-width: 800px) {
+    .navbar {
+        display: none;
+    }
+    .mobile_navbar {
+        display: block;
+        background: linear-gradient(var(--sub-bg-color), var(--sub-color3));
+        width: 100%;
+        position: absolute;
+        top: 0;
+        text-align: center;
+    }
+    .mobile_navbar a {
+        color: var(--sub-font-color);
+    }
+    h1 {
+        display: none;
+    }
+    .mobile_navbar h1 {
+        margin: auto;
+    }
+    .mobile_navbar div,
+    .mobile_navbar h1 {
+        display: inline-block;
+    }
+    #mobile-menu {
+        float: left;
+        padding: 0.25em;
+    }
+    #mobile-quicklogin {
+        float: right;
+        padding: 0.25em;
+    }
+    table {
+        zoom: 0.5;
+        -moz-transform: scale(0.5);
+        -moz-transform-origin: 0 0;
+    }
+}
