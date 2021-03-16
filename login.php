@@ -37,8 +37,8 @@ function login() {
                 return;
             }
             else {
-                console.log(this.responseText);
-                // window.location.replace("./?login");
+                console.log("logged in!")
+                window.location.href = "./?login";
             }
         }
     }

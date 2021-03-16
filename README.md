@@ -1,11 +1,29 @@
 # heptagon
 CZ3002
 
+## Credits
+- UI icons by FontAwesome
+- Puzzle icons by Icons8
+
 ## TODO: 
-- Scoring system
-- Backend - login, friend systems
+- Backend - friend systems, view performance history, update profile, change password, logout
+- Add a feedback for clicking the wrong fruit
+- Cache fruits before starting timer [?]
 - Optimise for mobile viewports
-- Login message for homepage (on GET `?login`)
+
+## Placeholders: 
+- My Scores
+
+## Fix bugs: 
+- Limit incorrect passcodes to 3
+
+### v1.1.3 - 15 Mar 2020
+- Add scoring system and score display after game
+- Fix login function
+- Add login message for homepage (on GET `?login`)
+
+### v1.1.2 - 14 Mar 2020
+- Increased fruit countdown timer from 2s/fruit to 3s/fruit
 
 ### v1.1.1 - 14 Mar 2020
 - Completed fruit puzzle

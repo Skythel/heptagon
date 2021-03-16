@@ -9,6 +9,8 @@ class game {
         this.currentCell = this.map[0][0];
         this.obstaclesHit = 0;
         this.timeTaken = 0;
+        this.hintsUsed = 0;
         this.score = 0;
+        this.passcodeAttempts = 0;
     }
 }

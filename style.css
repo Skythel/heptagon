@@ -39,6 +39,7 @@ a {
 .wrapper {
     flex: 1 0 auto;
     width: 100%;
+    padding: 1em;
     padding-top: 1.5em;
 }
 
@@ -229,4 +230,25 @@ button {
 
 .fruit {
     display: inline;
+}
+
+.mini-profile {
+    text-align: center;
+    background-color: var(--main-bg-color);
+    border-radius: 0.5em;
+    box-shadow: 0 0 20px rgb(0, 0, 0, 0.15);
+    display: inline-block;
+    padding: 0.5em;
+    border: 1px solid #aaaaaa;
+}
+
+.mini-profile-name {
+    background-color: var(--sub-bg-color);
+    display: block;
+    padding: 0.25em;
+    font-size: 120%;
+    font-weight: bold;
+    border-radius: 0.5em;
+    max-width: 100%;
+    margin: auto;
 }

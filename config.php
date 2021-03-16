@@ -8,9 +8,7 @@ if(!isset($_SESSION)) {
 }
 
 // Initialise logged in variable
-if(!isset($logged_in)) {
-    $logged_in = false;
-}
+$logged_in = isset($_SESSION["userid"]) ? true : false;
 
 // Create connection
 $conn = new mysqli($db_serv, $db_user, $db_pass, $db_name);
@@ -20,7 +18,7 @@ if ($conn -> connect_errno) {
 }
 
 // Versioning for easier reference
-$app_ver = "1.1.0"; // General application version
-$assets_ver = "1.1.0"; // Stylesheets version
-$scripts_ver = "1.1.0"; // Scripts version
+$app_ver = "1.1.2"; // General application version
+$assets_ver = "1.1.2"; // Stylesheets version
+$scripts_ver = "1.1.2a"; // Scripts version
 ?>

@@ -14,22 +14,16 @@ var levels = {
         rows: 5,
         puzzleIcons: 3,
         puzzleChoices: 5,
-        countdownTimer: 5
+        countdownTimer: 4
     },
     hard: {
         cols: 6,
         rows: 6,
         puzzleIcons: 5,
         puzzleChoices: 7,
-        countdownTimer: 7
+        countdownTimer: 6
     }
 };
-
-// Define class maze
-// class maze {
-//     constructor() {
-//     }
-// }
 
 function setPath(cols, rows) {
     // Sets the path for a new maze. 
