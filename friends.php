@@ -13,7 +13,7 @@ include 'header.php'; ?>
     
     <div id="friend-suggestions"></div>
 </div>
-
+<br/>
 <div class="mini-profile">
     <span class="mini-profile-name">Auntie</span>
     <img src="./assets/avocado.png" class="mini-profile-img" /><br/>
@@ -42,6 +42,22 @@ function friendSearch(v) {
         xmlhttp.open("GET", "friend_search.php?q=" + v, true);
         xmlhttp.send();
     }   
+}
+function addFriend(id) {
+    if(parseInt(id) > 0) {
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if(this.responseText == "0") {
+                    document.getElementById("addfriend-"+id).innerHTML = "Added!";
+                }
+            }
+        };
+        xmlhttp.open("GET", "add_friend.php?q=" + id, true);
+        xmlhttp.send();
+    }
 }
 </script>
 
