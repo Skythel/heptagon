@@ -5,7 +5,7 @@ include 'config.php';
 $sql = $conn->prepare("SELECT `username`,`userid`,`usertag` FROM `users` WHERE `userid`!=?");
 if( 
     $sql &&
-    $sql->bind_param($_SESSION["userid"]) &&
+    $sql->bind_param('i',$_SESSION["userid"]) &&
     $sql->execute() &&
     $sql->store_result() &&
     $sql->bind_result($uname,$uid,$utag)
