@@ -1,7 +1,7 @@
 <?php // User profile
 // Set page title
-// include 'config.php';
-// $cfg_title = (isset($_SESSION["username"]) ? $_SESSION["username"]."'s " : "")."Profile - MemoryMaze";
+include 'config.php';
+$cfg_title = (isset($_SESSION["username"]) ? $_SESSION["username"]."'s " : "")."Profile - MemoryMaze";
 // Load standard header from file
 include 'header.php'; ?>
 

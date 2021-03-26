@@ -6,7 +6,7 @@ CZ3002
 - Puzzle icons by Icons8
 
 ## TODO: 
-- Backend - friend systems, view performance history, update profile, change password, logout
+- Backend - friend systems, view performance history, update profile, change password
 - Default/suggested difficulty
 - Scale font size 
 - Combined score leaderboard
