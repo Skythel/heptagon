@@ -2,7 +2,7 @@
 include 'config.php';
 
 // lazy-a way to pick all names from database since we won't be expecting a lot of users anyway for demo purposes
-$sql = $conn->prepare("SELECT TOP 10 `username`,`userid`,`usertag` FROM `users` WHERE `userid`!=?");
+$sql = $conn->prepare("SELECT `username`,`userid`,`usertag` FROM `users` WHERE `userid`!=? LIMIT 10");
 if( 
     $sql &&
     $sql->bind_param('i',$_SESSION["userid"]) &&
