@@ -36,6 +36,12 @@ a {
     color: var(--sub-color3);
 }
 
+a,
+input,
+button {
+    outline: none;
+}
+
 .wrapper {
     flex: 1 0 auto;
     width: 100%;

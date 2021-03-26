@@ -45,6 +45,7 @@ function friendSearch(v) {
 }
 function addFriend(id) {
     if(parseInt(id) > 0) {
+        console.log(id);
         return;
     } else {
         var xmlhttp = new XMLHttpRequest();
@@ -52,6 +53,9 @@ function addFriend(id) {
             if (this.readyState == 4 && this.status == 200) {
                 if(this.responseText == "0") {
                     document.getElementById("addfriend-"+id).innerHTML = "Added!";
+                }
+                else {
+                    console.log("error");
                 }
             }
         };
