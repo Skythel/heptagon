@@ -10,6 +10,7 @@ if(
     $sql->store_result() &&
     $sql->bind_result($uname,$uid,$utag)
 ) { 
+    $suggestions = [];
     while($sql->fetch()) {
         $suggestions[] = [$uname,$uid,$utag];
     }
