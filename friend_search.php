@@ -32,7 +32,7 @@ if(isset($_GET["q"])) {
                     $sql->execute() &&
                     $sql->store_result()
                 ) {
-                    $added = $sql->num_rows()>0 ? true : false;
+                    $added = $sql->num_rows>0 ? true : false;
                     $output .= '
                     <div class="friend-sugg micro-profile">
                         <a href="profile?u='.$user[1].'"><span class="micro-profile-name">'.$user[0].'</span>#<span class="micro-profile-tag">'.$user[2].'</span></a><br/>
