@@ -52,11 +52,12 @@ function addFriend(id) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if(this.responseText == "0") {
-                document.getElementById("addfriend-"+id).innerHTML = "Added!";
+            if(this.responseText == 0) {
+                document.getElementById("addfriend-"+id).innerHTML = "Added";
+                document.getElementById("addfriend-"+id).classList.add("greyed");
             }
             else {
-                console.log("error");
+                console.log(this.responseText);
             }
         }
     };

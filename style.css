@@ -258,3 +258,8 @@ button {
     max-width: 100%;
     margin: auto;
 }
+
+.greyed,
+.greyed:hover {
+    background: linear-gradient(#999999, #aaaaaa);
+}

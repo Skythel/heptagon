@@ -14,12 +14,13 @@ if(isset($_GET["q"]) && isset($_SESSION["userid"])) {
             if($sql->fetch()) {
                 $sql2 = $conn->prepare("INSERT INTO `friend_requests` (`sender_userid`,`recipient_userid`,`timestamp`,`status`) VALUES (?,?,?,?)");
                 $time = time();
+                $status = 0;
                 if(
                     $sql2 &&
-                    $sql2->bind_param('iiii',$_SESSION["userid"],$q,$time,0) &&
+                    $sql2->bind_param('iiii',$_SESSION["userid"],$q,$time,$status) &&
                     $sql2->execute() 
                 ) {
-                    echo "0";
+                    echo 0;
                 }
                 else {
                     echo $conn->error;
