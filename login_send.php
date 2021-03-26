@@ -42,17 +42,19 @@ if(isset($_POST["u"]) && isset($_POST["p"])) {
             if($sql->fetch()) {
                 if(password_verify($p,$hash)) {
                     // Get userid
-                    $sql2 = $conn->prepare("SELECT `userid` FROM `users` WHERE `email`=?");
+                    $sql2 = $conn->prepare("SELECT `username`,`userid`,`usertag` FROM `users` WHERE `email`=?");
                     if( 
                         $sql2 &&
                         $sql2->bind_param('s',$u) &&
                         $sql2->execute() &&
                         $sql2->store_result() &&
-                        $sql2->bind_result($uid)
+                        $sql2->bind_result($uname,$uid,$utag)
                     ) {
                         if($sql2->fetch()) {
                             // Log the user in
                             $_SESSION["userid"] = $uid;
+                            $_SESSION["username"] = $uname;
+                            $_SESSION["usertag"] = $utag;
                             // Update last login time in database
                             $sql2 = $conn->prepare("INSERT INTO `logins` (`userid`,`timestamp`,`ip`) VALUES (?,?,?)");
                             $time = time();
