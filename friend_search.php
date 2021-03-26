@@ -2,9 +2,10 @@
 include 'config.php';
 
 // lazy-a way to pick all names from database since we won't be expecting a lot of users anyway for demo purposes
-$sql = $conn->prepare("SELECT `username`,`userid`,`usertag` FROM `users`");
+$sql = $conn->prepare("SELECT `username`,`userid`,`usertag` FROM `users` WHERE `userid`!=?");
 if( 
     $sql &&
+    $sql->bind_param($_SESSION["userid"]) &&
     $sql->execute() &&
     $sql->store_result() &&
     $sql->bind_result($uname,$uid,$utag)
