@@ -36,7 +36,8 @@ if(isset($_POST["u"]) && isset($_POST["p"])) {
             $sql &&
             $sql->bind_param('s',$u) &&
             $sql->execute() &&
-            $sql->store_result() 
+            $sql->store_result() &&
+            $sql->bind_result($hash)
         ) {
             while($sql->fetch()) {
             if(password_verify($p,$hash)) {
