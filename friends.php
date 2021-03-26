@@ -7,6 +7,10 @@ include 'header.php'; ?>
 <!-- Content goes here -->
 <h1>Friend List</h1>
 
+<?php if(!isset($_SESSION["userid"])) {
+    ?>
+    <div class="error message">You must be logged in to do that. <a href="./login">Login</a></div>
+<?php } else { ?>
 <div class="searchbox">
     Search for a friend: <br/>
     <input class="friend-searchbox" id="friendsearch" onkeyup="friendSearch(this.value)" placeholder="Enter a username" />
@@ -44,26 +48,23 @@ function friendSearch(v) {
     }   
 }
 function addFriend(id) {
-    if(parseInt(id) > 0) {
-        console.log(id);
-        return;
-    } else {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                if(this.responseText == "0") {
-                    document.getElementById("addfriend-"+id).innerHTML = "Added!";
-                }
-                else {
-                    console.log("error");
-                }
+    if(parseInt(id) < 1) return;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if(this.responseText == "0") {
+                document.getElementById("addfriend-"+id).innerHTML = "Added!";
             }
-        };
-        xmlhttp.open("GET", "add_friend.php?q=" + id, true);
-        xmlhttp.send();
-    }
+            else {
+                console.log("error");
+            }
+        }
+    };
+    xmlhttp.open("GET", "add_friend.php?q=" + id, true);
+    xmlhttp.send();
 }
 </script>
 
-<?php // Load footer
+<?php }
+// Load footer
 include 'footer.php'; ?>
