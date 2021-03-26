@@ -7,6 +7,9 @@ CZ3002
 
 ## TODO: 
 - Backend - friend systems, view performance history, update profile, change password, logout
+- Default/suggested difficulty
+- Scale font size 
+- Combined score leaderboard
 - Add a feedback for clicking the wrong fruit
 - Cache fruits before starting timer [?]
 - Optimise for mobile viewports
