@@ -25,7 +25,7 @@ $sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`us
 FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`recipient_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
-WHERE `friend_requests`.`sender_userid`=? AND `friend_requests`.`status`=1");
+WHERE `friend_requests`.`sender_userid`=? AND `friend_requests`.`status`=1 LIMIT 10");
 if( 
     $sql &&
     $sql->bind_param('i',$_SESSION["userid"]) &&
@@ -55,7 +55,7 @@ $sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`us
 FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`sender_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
-WHERE `friend_requests`.`recipient_userid`=? AND `friend_requests`.`status`=0");
+WHERE `friend_requests`.`recipient_userid`=? AND `friend_requests`.`status`=0 LIMIT 10");
 if( 
     $sql &&
     $sql->bind_param('i',$_SESSION["userid"]) &&
@@ -87,7 +87,7 @@ $sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`us
 FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`recipient_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
-WHERE `friend_requests`.`sender_userid`=? AND `friend_requests`.`status`=0");
+WHERE `friend_requests`.`sender_userid`=? AND `friend_requests`.`status`=0 LIMIT 10");
 if( 
     $sql &&
     $sql->bind_param('i',$_SESSION["userid"]) &&
