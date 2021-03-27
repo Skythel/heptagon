@@ -43,8 +43,8 @@ if(
     <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
     <!-- <img src="./assets/avocado.png" class="mini-profile-img" /><br/> 
     <span class="mini-profile-high-score">High Score: 94</span><br/>-->
-    <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span>
-    <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span>
+    <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span><br/>
+    <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
     <span class="mini-profile-remove-friend" id="remove-friend-<?php echo $recipient_id; ?>" onclick="removeFriend(<?php echo $recipient_id; ?>)"><i class="fas fa-user-minus" aria-hidden="true"></i> Remove Friend</span>
 </div> &nbsp;
 <?php } } $sql->close(); } ?>
@@ -73,8 +73,8 @@ if(
     <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
     <!-- <img src="./assets/avocado.png" class="mini-profile-img" /><br/> 
     <span class="mini-profile-high-score">High Score: 94</span><br/>-->
-    <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span>
-    <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span>
+    <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span><br/>
+    <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
     <span class="mini-profile-accept-friend" onclick="acceptFriend(<?php echo $recipient_id; ?>)" id="accept-friend-<?php echo $recipient_id; ?>"><i class="fas fa-check-circle" aria-hidden="true"></i> Accept</span> | <span class="mini-profile-decline-friend" onclick="declineFriend(<?php echo $recipient_id; ?>)" id="decline-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Decline</span>
 </div> &nbsp;
 <?php } } $sql->close(); } else {
@@ -105,8 +105,8 @@ if(
     <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
     <!-- <img src="./assets/avocado.png" class="mini-profile-img" /><br/> 
     <span class="mini-profile-high-score">High Score: 94</span><br/>-->
-    <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span>
-    <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span>
+    <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span><br/>
+    <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
     <span class="mini-profile-cancel-request" onclick="cancelFriend(<?php echo $recipient_id; ?>)" id="cancel-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Cancel Request</span>
 </div> &nbsp;
 <?php } } $sql->close(); } ?>
