@@ -76,7 +76,7 @@ if(
     <span class="mini-profile-accept-friend" onclick="acceptFriend(<?php echo $recipient_id; ?>)" id="accept-friend-<?php echo $recipient_id; ?>"><i class="fas fa-check-circle" aria-hidden="true"></i> Accept</span> | <span class="mini-profile-decline-friend" onclick="declineFriend(<?php echo $recipient_id; ?>)" id="decline-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Decline</span>
 </div> &nbsp;
 <?php } } $sql->close(); } else {
-    echo $conn->error();
+    echo $conn->error;
 } ?>
 
 <h2>Outgoing Friend Requests</h2>
