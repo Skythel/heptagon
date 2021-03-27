@@ -10,7 +10,7 @@ if(isset($_GET["q"]) && isset($_SESSION["userid"])) {
         $sql->execute() &&
         $sql->store_result() 
     ) { 
-        if($sql->num_rows()>0) { 
+        if($sql->num_rows>0) { 
             if($sql->fetch()) {
                 $sql2 = $conn->prepare("INSERT INTO `friend_requests` (`sender_userid`,`recipient_userid`,`timestamp`,`status`) VALUES (?,?,?,?)");
                 $time = time();
