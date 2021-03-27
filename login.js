@@ -10,11 +10,10 @@ function login() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(typeof(this.responseText));
-            if (this.responseText == "2") { // Backend error
+            if (this.responseText == 2) { // Backend error
                 throwError("Sorry, the server experienced an error. Please try again later.");
                 return;
-            } else if (this.responseText == "1") { // Wrong username or password
+            } else if (this.responseText == 1) { // Wrong username or password
                 throwError("Sorry, that wasn't right. Please check your information and try again.");
                 return;
             } else {

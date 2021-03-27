@@ -21,11 +21,11 @@ if(isset($_POST["u"]) && isset($_POST["p"])) {
             $continue = true;
         }
         else {
-            echo "1";
+            echo 1;
         }
     }
     else {
-        echo "2";
+        echo 2;
     }
     $sql->close();
 
@@ -63,29 +63,29 @@ if(isset($_POST["u"]) && isset($_POST["p"])) {
                                 $sql2->bind_param('iis',$uid,$time,$_SERVER['REMOTE_ADDR']) &&
                                 $sql2->execute()
                             ) {
-                                echo "0";
+                                echo 0;
                             }
                             else {
                                 // echo $conn->error;
-                                echo "2";
+                                echo 2;
                             }
                         }
                         else {
                             // echo $conn->error;
-                            echo "2";
+                            echo 2;
                         }
                     }
                     $sql2->close();
                 }
                 else {
-                    echo "1";
+                    echo 1;
                 }
             }
             
         }
         else {
             // echo $conn->error;
-            echo "2";
+            echo 2;
             $sql->close();
         }
     }
