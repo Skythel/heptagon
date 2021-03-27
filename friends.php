@@ -40,7 +40,7 @@ if(
         while($sql->fetch()) {
 ?>
 <div class="mini-profile">
-    <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?></span>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></a><br/>
+    <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
     <!-- <img src="./assets/avocado.png" class="mini-profile-img" /><br/> 
     <span class="mini-profile-high-score">High Score: 94</span><br/>-->
     <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span>
@@ -70,7 +70,7 @@ if(
         while($sql->fetch()) {
 ?>
 <div class="mini-profile">
-    <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?></span>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></a><br/>
+    <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
     <!-- <img src="./assets/avocado.png" class="mini-profile-img" /><br/> 
     <span class="mini-profile-high-score">High Score: 94</span><br/>-->
     <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span>
@@ -102,7 +102,7 @@ if(
         while($sql->fetch()) {
 ?>
 <div class="mini-profile">
-    <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?></span>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></a><br/>
+    <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
     <!-- <img src="./assets/avocado.png" class="mini-profile-img" /><br/> 
     <span class="mini-profile-high-score">High Score: 94</span><br/>-->
     <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span>
