@@ -31,7 +31,7 @@ if(isset($_GET["q"]) && isset($_SESSION["userid"])) {
                         $sql2 = $conn->prepare("UPDATE `friend_requests` SET `status`=1 WHERE `sender_userid`=? AND `recipient_userid`=?");
                         if(
                             $sql2 &&
-                            $sql2->bind_param('iiii',$q,$_SESSION["userid"]) &&
+                            $sql2->bind_param('ii',$q,$_SESSION["userid"]) &&
                             $sql2->execute() 
                         ) {
                             echo 0;
@@ -45,7 +45,7 @@ if(isset($_GET["q"]) && isset($_SESSION["userid"])) {
                         $sql2 = $conn->prepare("UPDATE `friend_requests` SET `status`=-1 WHERE `sender_userid`=? AND `recipient_userid`=?");
                         if(
                             $sql2 &&
-                            $sql2->bind_param('iiii',$q,$_SESSION["userid"]) &&
+                            $sql2->bind_param('ii',$q,$_SESSION["userid"]) &&
                             $sql2->execute() 
                         ) {
                             echo 0;
@@ -59,7 +59,7 @@ if(isset($_GET["q"]) && isset($_SESSION["userid"])) {
                         $sql2 = $conn->prepare("DELETE FROM `friend_requests` WHERE `sender_userid`=? AND `recipient_userid`=?");
                         if(
                             $sql2 &&
-                            $sql2->bind_param('iiii',$_SESSION["userid"],$q) &&
+                            $sql2->bind_param('ii',$_SESSION["userid"],$q) &&
                             $sql2->execute() 
                         ) {
                             echo 0;
