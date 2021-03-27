@@ -9,12 +9,13 @@ function initGame(thisGame) {
     thisGame.map[0][0].setContent('<i class="fas fa-play"></i>');
     thisGame.map[thisGame.rows - 1][thisGame.cols - 1].setContent('<i class="fas fa-flag"></i>');
 
-    // Set score, time, obstacles and countdown displays
+    // Set hint, time, obstacles and countdown displays
     var stats = document.createElement("div");
     stats.classList.add("stats");
 
-    var scoreDisplay = document.createElement("div");
-    scoreDisplay.classList.add("gameDisplay", "score");
+    var hintDisplay = document.createElement("div");
+    hintDisplay.classList.add("gameDisplay", "hint");
+    hintDisplay.onclick = function() { showHint(thisGame); };
 
     var timerDisplay = document.createElement("div");
     timerDisplay.classList.add("gameDisplay", "timer");
@@ -26,13 +27,13 @@ function initGame(thisGame) {
     var countdownDisplay = document.createElement("div");
     countdownDisplay.classList.add("gameDisplay", "countdown");
 
-    stats.appendChild(scoreDisplay);
+    stats.appendChild(hintDisplay);
     stats.appendChild(timerDisplay);
     stats.appendChild(countdownDisplay);
     stats.appendChild(obstacleCountDisplay);
     gameDiv.appendChild(stats);
 
-    document.getElementsByClassName("score")[0].innerHTML = 0;
+    document.getElementsByClassName("hint")[0].innerHTML = '<i class="fas fa-lightbulb"></i>';
     document.getElementsByClassName("timer")[0].innerHTML = 0;
     document.getElementsByClassName("countdown")[0].innerHTML = thisGame.countdownTimer;
     document.getElementsByClassName("obstacleCount")[0].innerHTML = 0;
@@ -142,6 +143,27 @@ function checkKey(e) {
             document.getElementById(newId).click();
         }
     }
+}
+
+function showHint(thisGame) {
+    // Reveals the whole maze for 3 seconds
+    thisGame.hintsUsed += 1;
+    for (var y = 0; y < thisGame.rows; y++) {
+        for (var x = 0; x < thisGame.cols; x++) {
+            document.getElementById("x" + x + "y" + y).style.backgroundColor = "";
+            document.getElementById("x" + x + "y" + y).style.border = "";
+        }
+    }
+    setTimeout(function() {
+        for (var y = 0; y < thisGame.rows; y++) {
+            for (var x = 0; x < thisGame.cols; x++) {
+                if (!document.getElementById("x" + x + "y" + y).classList.contains("visited")) {
+                    document.getElementById("x" + x + "y" + y).style.backgroundColor = "#333333";
+                    document.getElementById("x" + x + "y" + y).style.border = "2px solid #aaaaaa";
+                }
+            }
+        }
+    }, 3000);
 }
 
 function navigateMaze(thisGame, newX, newY) {
@@ -296,10 +318,12 @@ function maskMaze(thisGame) {
     document.getElementById("x" + (thisGame.cols - 1) + "y" + (thisGame.rows - 1)).style.color = "#cccccc";
 }
 
+var gameTimer;
+
 function setTimer(thisGame) {
     var timer = document.getElementsByClassName("timer")[0];
     var beginTime = new Date().getTime();
-    setInterval(function() {
+    gameTimer = setInterval(function() {
         var now = new Date().getTime();
         var newTime = now - beginTime;
         thisGame.timeTaken = newTime;
@@ -309,6 +333,9 @@ function setTimer(thisGame) {
 
 function launchPuzzle(thisGame) {
     // Player has reached the end of the maze, generate fruit puzzle
+    // Stop the timer
+    clearInterval(gameTimer);
+    console.log("Time taken in milliseconds was " + thisGame.timeTaken);
     var choices = randFruits(thisGame);
     var answers = randFruitAnswers(thisGame, choices);
     var fruitChoicesHTML = "";
@@ -338,7 +365,7 @@ function launchPuzzle(thisGame) {
         'Incorrect attempts: <span id="attemptNum">0</span>/<span id="attemptsAllowed">3</span>' +
         '</div>';
     gameDiv.innerHTML = showAnswer;
-    setTimeout(doPuzzle, (2000 * thisGame.puzzleIcons), thisGame, puzzle, answers);
+    setTimeout(doPuzzle, (3000 + (thisGame.puzzleIcons * 500)), thisGame, puzzle, answers);
 }
 
 function backspace() {
@@ -365,6 +392,10 @@ function doPuzzle(thisGame, puzzle, answerKey) {
 function validatePuzzle(thisGame, clickedFruit, answerKey) {
     var currentAnswers = document.getElementById("userAnswers").getElementsByClassName("fruit");
     document.getElementById("userAnswers").innerHTML += '<div class="fruit" id="' + clickedFruit + '"><img src="./assets/' + clickedFruit + '.png"/></div>';
+    // Cheaty way to get it from dom value cause lazy
+    var incorrect = parseInt(document.getElementById("attemptNum").innerHTML);
+    var maxAttempts = parseInt(document.getElementById("attemptsAllowed").innerHTML);
+
     // Special handling if the fruit is the last one remaining
     if (currentAnswers.length == answerKey.length) {
         // Loop thru the user answers and check against answer key
@@ -372,46 +403,90 @@ function validatePuzzle(thisGame, clickedFruit, answerKey) {
             if (answerKey[i]["name"] !== currentAnswers[i].id) {
                 console.log("answer was incorrect");
                 // Record as incorrect attempt
-                // Cheaty way to get it from dom value cause lazy
-                var incorrect = parseInt(document.getElementById("attemptNum").innerHTML);
-                var maxAttempts = parseInt(document.getElementById("attemptsAllowed").innerHTML);
-                if (incorrect == maxAttempts) {
+                if (incorrect >= maxAttempts) {
                     // Jump to final score
-                    showFinalScore(thisGame, 0);
-                } else {
-                    console.log("resetting answers");
-                    // +1 incorrect
-                    document.getElementById("attemptNum").innerHTML = incorrect + 1;
-                    // Clear answers and try again
-                    document.getElementById("userAnswers").innerHTML = "";
+                    showFinalScore(thisGame);
+                    return;
                 }
+                console.log("resetting answers");
+                // +1 incorrect
+                document.getElementById("attemptNum").innerHTML = incorrect + 1;
+                thisGame.passcodeAttempts += 1;
+                // Clear answers and try again
+                document.getElementById("userAnswers").innerHTML = "";
                 return;
             }
         }
         // Assume no errors caught
-        var bonus = 100;
-        showFinalScore(thisGame, bonus);
+        showFinalScore(thisGame);
     }
 }
 
-function showFinalScore(thisGame, bonus) {
+function showFinalScore(thisGame) {
     // Calculate score things
-
+    // total_Score = 100 - (obstacles_Hit*5) - (maze_Completion_Time - offset_For_The_Level) - (passcode_Attempts*10) - (hint_Used*5)
+    // offset_For_The_Level = 2s (easy), 3s (medium), 5s (hard)
+    // hack to detect difficulty based on maze countdown
+    var difficulty = thisGame.countdownTimer == 3 ? "Easy" : thisGame.countdownTimer == 4 ? "Medium" : "Hard";
+    var offset = thisGame.countdownTimer - 1;
+    var finalScore = 100 - (thisGame.obstaclesHit * 5) - (Math.floor(thisGame.timeTaken / 1000) - offset) - (thisGame.passcodeAttempts * 10) - (thisGame.hintsUsed * 5);
+    thisGame.score = finalScore < 0 ? 0 : finalScore;
+    // Clear the game div and display score
+    var gameDiv = document.getElementById("game-container");
+    gameDiv.innerHTML = '<div id="score-display">' +
+        '<h3>Congratulations!</h3> You have completed the game on ' + difficulty + ' with a score of ' + thisGame.score + '.<br/><br/>' +
+        'Time Taken: <b>' + Math.floor(thisGame.timeTaken / 1000) + '</b> seconds<br/>' +
+        'Obstacles Hit: <b>' + thisGame.obstaclesHit + '</b><br/>' +
+        'Passcode Attempts: <b>' + (thisGame.passcodeAttempts + 1) + '</b><br/>' +
+        'Hints Used: <b>' + thisGame.hintsUsed + '</b><br/>' +
+        '</div>';
+    // Send data to server
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText == "2") { // Backend error
+                throwError("Sorry, the server experienced an error. Please try again later.");
+                return;
+                // } else if (this.responseText == "1") { // User was not logged in
+                //     throwError("Your score won't be saved to your account unless you log in.");
+                //     return;
+            } else {
+                console.log(this.responseText);
+            }
+        }
+    }
+    var convertedGame = JSON.stringify(thisGame);
+    xmlhttp.open("POST", "score_send.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("obj=" + convertedGame + "&diff=" + difficulty);
 }
 
 function randFruits(thisGame) {
     // Select the choices
     var puzzleChoices = [];
     var count = 0;
-    while (count < thisGame.puzzleChoices) { // || fruits.length > 0
-        var rand = Math.floor(Math.random() * fruits.length);
-        if (puzzleChoices.indexOf(fruits[rand]) === -1) {
-            // console.log(fruits[rand]);
-            count++;
-            puzzleChoices.push(fruits[rand]);
-            fruits.pop(rand);
-        } else
-            continue;
+    // Fix for hard mode
+    if (thisGame.puzzleChoices == fruits.length) {
+        return fruits;
+    } else if (thisGame.puzzleChoices == 5) {
+        while (puzzleChoices.length !== 5) {
+            var rand = Math.floor(Math.random() * fruits.length);
+            if (puzzleChoices.indexOf(fruits[rand]) === -1) {
+                puzzleChoices.push(fruits[rand]);
+            } else
+                continue;
+        }
+    } else {
+        while (count < thisGame.puzzleChoices) { // || fruits.length > 0
+            var rand = Math.floor(Math.random() * fruits.length);
+            if (puzzleChoices.indexOf(fruits[rand]) === -1) {
+                // console.log(fruits[rand]);
+                count++;
+                puzzleChoices.push(fruits[rand]);
+                fruits.pop(rand);
+            } else
+                continue;
+        }
     }
     return puzzleChoices;
 }
