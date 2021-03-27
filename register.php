@@ -52,6 +52,9 @@ function register() {
                         } else if(this.responseText=="1") {
                             return;
                         }
+                        else {
+                            successMessage("Successfully registered! You can now <a href=\"./login\">log in</a>. <!--Please check your email to complete the verification process.-->");
+                        }
                     }
                 }
                 var u = form.getElementsByClassName("input")[0].value;
@@ -59,7 +62,6 @@ function register() {
                 xmlhttp2.open("POST", "login_send.php", true);
                 xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlhttp2.send("u="+u+"&p="+p);
-                successMessage("Successfully registered! You can now <a href=\"./login\">log in</a>. <!--Please check your email to complete the verification process.-->");
             }
         }
     }
