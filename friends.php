@@ -22,6 +22,7 @@ include 'header.php'; ?>
 <h2>Your Friends</h2>
 <?php 
 $sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,`logins`.`timestamp`
+FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`recipient_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
 WHERE `friend_requests`.`sender_userid`=? AND `friend_requests`.`status`=1");
@@ -51,6 +52,7 @@ if(
 <h2>Incoming Friend Requests</h2>
 <?php 
 $sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,`logins`.`timestamp`
+FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`sender_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
 WHERE `friend_requests`.`recipient_userid`=? AND `friend_requests`.`status`=0");
@@ -82,6 +84,7 @@ if(
 <h2>Outgoing Friend Requests</h2>
 <?php 
 $sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,`logins`.`timestamp`
+FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`recipient_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
 WHERE `friend_requests`.`sender_userid`=? AND `friend_requests`.`status`=0");
