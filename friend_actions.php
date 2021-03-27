@@ -82,6 +82,6 @@ if(isset($_GET["q"]) && isset($_SESSION["userid"])) {
             echo "user cannot be found";
         }
     }
+    $sql->close();
 }
-$sql->close();
 ?>

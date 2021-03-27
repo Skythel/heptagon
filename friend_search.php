@@ -14,8 +14,8 @@ if(
     while($sql->fetch()) {
         $suggestions[] = [$uname,$uid,$utag];
     }
+    $sql->close();
 }
-$sql->close();
 
 if(isset($_GET["q"])) {
     $q = $_GET["q"];
