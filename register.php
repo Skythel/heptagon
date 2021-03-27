@@ -57,7 +57,7 @@ function register() {
                         }
                     }
                 }
-                var u = form.getElementsByClassName("input")[0].value;
+                var u = form.getElementsByClassName("input")[1].value;
                 var p = form.getElementsByClassName("input")[2].value;
                 xmlhttp2.open("POST", "login_send.php", true);
                 xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
