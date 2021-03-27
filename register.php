@@ -43,25 +43,7 @@ function register() {
                 return;
             }
             else {
-                var xmlhttp2 = new XMLHttpRequest();
-                xmlhttp2.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        if(this.responseText=="2") { // Backend error
-                            throwError("Sorry, the server experienced an error. Please try again later.");
-                            return;
-                        } else if(this.responseText=="1") {
-                            return;
-                        }
-                        else {
-                            successMessage("Successfully registered! You can now <a href=\"./login\">log in</a>. <!--Please check your email to complete the verification process.-->");
-                        }
-                    }
-                }
-                var u = form.getElementsByClassName("input")[1].value;
-                var p = form.getElementsByClassName("input")[2].value;
-                xmlhttp2.open("POST", "login_send.php", true);
-                xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp2.send("u="+u+"&p="+p);
+                successMessage("Successfully registered! You can now <a href=\"./login\">log in</a>. <!--Please check your email to complete the verification process.-->");
             }
         }
     }
