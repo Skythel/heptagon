@@ -18,7 +18,7 @@ function login() {
                 return;
             } else {
                 console.log("logged in!")
-                    // window.location.href = "./?login";
+                window.location.href = "./?login";
             }
         }
     }
