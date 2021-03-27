@@ -47,6 +47,8 @@ button {
     width: 100%;
     padding: 1em;
     padding-top: 1.5em;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .game {
@@ -263,7 +265,7 @@ button {
 
 .mini-profile-tag {
     font-size: 100%;
-    color: #555555;
+    color: #555555 !important;
 }
 
 .greyed,

@@ -35,14 +35,30 @@ function register() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
-            if(this.responseText=="2") { // Backend error
+            if(this.responseText==2) { // Backend error
                 throwError("Sorry, the server experienced an error. Please try again later.");
                 return;
-            } else if(this.responseText=="1") { // Email already exists
+            } else if(this.responseText==1) { // Email already exists
                 throwError("Sorry, that email address is already registered. Please use a different email and try again.");
                 return;
             }
             else {
+                var xmlhttp2 = new XMLHttpRequest();
+                xmlhttp2.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        if(this.responseText=="2") { // Backend error
+                            throwError("Sorry, the server experienced an error. Please try again later.");
+                            return;
+                        } else if(this.responseText=="1") {
+                            return;
+                        }
+                    }
+                }
+                var u = form.getElementsByClassName("input")[0].value;
+                var p = form.getElementsByClassName("input")[2].value;
+                xmlhttp.open("POST", "login_send.php", true);
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlhttp.send("u="+u+"&p="+p);
                 successMessage("Successfully registered! You can now <a href=\"./login\">log in</a>. <!--Please check your email to complete the verification process.-->");
             }
         }
