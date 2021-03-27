@@ -62,13 +62,13 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && isset($_POST["p"])) {
             // $txt = "Please click on this link to activate your account:";
             // $headers = "From: webmaster@example.com";
             // mail($e,$subject,$txt,$headers);
-            echo 0;
-            $sql->close();
+            return $query;
         }
         else {
             echo $conn->error;
-            echo 2;
+            return "2";
         }
+        $sql->close();
     }
 
 }

@@ -35,10 +35,10 @@ function register() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
-            if(this.responseText==2) { // Backend error
+            if(this.responseText=="2") { // Backend error
                 throwError("Sorry, the server experienced an error. Please try again later.");
                 return;
-            } else if(this.responseText==1) { // Email already exists
+            } else if(this.responseText=="1") { // Email already exists
                 throwError("Sorry, that email address is already registered. Please use a different email and try again.");
                 return;
             }
