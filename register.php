@@ -56,9 +56,9 @@ function register() {
                 }
                 var u = form.getElementsByClassName("input")[0].value;
                 var p = form.getElementsByClassName("input")[2].value;
-                xmlhttp.open("POST", "login_send.php", true);
-                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.send("u="+u+"&p="+p);
+                xmlhttp2.open("POST", "login_send.php", true);
+                xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlhttp2.send("u="+u+"&p="+p);
                 successMessage("Successfully registered! You can now <a href=\"./login\">log in</a>. <!--Please check your email to complete the verification process.-->");
             }
         }
