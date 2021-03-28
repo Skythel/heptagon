@@ -1,7 +1,7 @@
 <?php // Personal scores
 include 'config.php';
 include 'header.php';
-include "sidebar.html"?>
+include "sidebar.php"?>
 
 <!--main container start-->
 <div class="container-2">
