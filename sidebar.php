@@ -17,60 +17,65 @@ if(isset($_SESSION["userid"])) {
         $sql->store_result() &&
         $sql->bind_result($uid,$utag,$uname,$uregdate,$ulastlog)
     ) {
-        $result = true;
-        $sql2 = $conn->prepare("SELECT `timestamp`,`adjusted_score` 
-        FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `adjusted_score` ORDER BY `adjusted_score` DESC LIMIT 1");
-        $diff = "easy";
-        if(
-            $sql2 &&
-            $sql2->bind_param('is',$userprofile_id,$diff) &&
-            $sql2->execute() &&
-            $sql2->store_result() &&
-            $sql2->bind_result($easy_time,$easy_score)
-        ) {
-            if($sql2->num_rows<1) {
-                $easy_time = 0;
-                $easy_score = 0;
+        if($sql->fetch_result()) {
+            $result = true;
+            $sql2 = $conn->prepare("SELECT `timestamp`,`adjusted_score` 
+            FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `adjusted_score` ORDER BY `adjusted_score` DESC LIMIT 1");
+            $diff = "easy";
+            if(
+                $sql2 &&
+                $sql2->bind_param('is',$userprofile_id,$diff) &&
+                $sql2->execute() &&
+                $sql2->store_result() &&
+                $sql2->bind_result($easy_time,$easy_score)
+            ) {
+                if($sql2->num_rows<1) {
+                    $easy_time = 0;
+                    $easy_score = 0;
+                }
+                $sql2->close();
             }
-            $sql2->close();
-        }
-        else {
-            echo $conn->error;
-        }
-        $sql2 = $conn->prepare("SELECT `timestamp`,`adjusted_score` 
-        FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `adjusted_score` ORDER BY `adjusted_score` DESC LIMIT 1");
-        $diff = "medium";
-        if(
-            $sql2 &&
-            $sql2->bind_param('is',$userprofile_id,$diff) &&
-            $sql2->execute() &&
-            $sql2->store_result() &&
-            $sql2->bind_result($medium_time,$medium_score)
-        ) {
-            if($sql2->num_rows<1) {
-                $medium_time = 0;
-                $medium_score = 0;
+            else {
+                echo $conn->error;
             }
-            $sql2->close();
-        }
-        else {
-            echo $conn->error;
-        }
-        $sql2 = $conn->prepare("SELECT `timestamp`,`adjusted_score` 
-        FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `adjusted_score` ORDER BY `adjusted_score` DESC LIMIT 1");
-        $diff = "hard";
-        if(
-            $sql2 &&
-            $sql2->bind_param('is',$userprofile_id,$diff) &&
-            $sql2->execute() &&
-            $sql2->store_result() &&
-            $sql2->bind_result($hard_time,$hard_score)
-        ) {
-            if($sql2->num_rows<1) {
-                $hard_time = 0;
-                $hard_time = 0;
+            $sql2 = $conn->prepare("SELECT `timestamp`,`adjusted_score` 
+            FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `adjusted_score` ORDER BY `adjusted_score` DESC LIMIT 1");
+            $diff = "medium";
+            if(
+                $sql2 &&
+                $sql2->bind_param('is',$userprofile_id,$diff) &&
+                $sql2->execute() &&
+                $sql2->store_result() &&
+                $sql2->bind_result($medium_time,$medium_score)
+            ) {
+                if($sql2->num_rows<1) {
+                    $medium_time = 0;
+                    $medium_score = 0;
+                }
+                $sql2->close();
             }
-            $sql2->close();
+            else {
+                echo $conn->error;
+            }
+            $sql2 = $conn->prepare("SELECT `timestamp`,`adjusted_score` 
+            FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `adjusted_score` ORDER BY `adjusted_score` DESC LIMIT 1");
+            $diff = "hard";
+            if(
+                $sql2 &&
+                $sql2->bind_param('is',$userprofile_id,$diff) &&
+                $sql2->execute() &&
+                $sql2->store_result() &&
+                $sql2->bind_result($hard_time,$hard_score)
+            ) {
+                if($sql2->num_rows<1) {
+                    $hard_time = 0;
+                    $hard_score = 0;
+                }
+                $sql2->close();
+            }
+            else {
+                echo $conn->error;
+            }
         }
         else {
             echo $conn->error;
@@ -86,28 +91,24 @@ if($result) {
     <div class="sidebar-menu">
         <center class="profile">
             <!-- <img src="./assets/citrus.png" class="profile-img"/> -->
-            <p><?php echo $uname; ?></p>
-        </center>
-        <li class="item">
             <a href="./profile?u=<?php echo $uid; ?>" class="menu-btn">
                 <i class="fas fa-user"></i><span><?php echo $uname; ?>#<?php echo $utag; ?></span>
             </a>
-        </li>
-        <li class="item"><h3><span>Highscores</span></h3></li>
+        </center>
         <li class="item">
-            <a href="./my-scores" class="menu-btn">
-                <i class="fas fa-trophy"></i><span>Easy: <?php echo $easy_score; ?></span>
-            </a>
+            <i class="fas fa-user-plus"></i><span>Registered <?php echo date("j M Y",$uregdate); ?></span>
         </li>
         <li class="item">
-            <a href="./my-scores" class="menu-btn">
-                <i class="fas fa-trophy"></i><span>Medium: <?php echo $medium_score; ?></span>
-            </a>
+            <i class="fas fa-time"></i><span>Last Active <?php echo date("j M Y",$ulastlog); ?></span>
         </li>
         <li class="item">
-            <a href="./my-scores" class="menu-btn">
-                <i class="fas fa-trophy"></i><span>Hard: <?php echo $hard_score; ?></span>
-            </a>
+            <i class="fas fa-trophy"></i><span>Easy: <?php echo $easy_score; ?></span>
+        </li>
+        <li class="item">
+            <i class="fas fa-trophy"></i><span>Medium: <?php echo $medium_score; ?></span>
+        </li>
+        <li class="item">
+            <i class="fas fa-trophy"></i><span>Hard: <?php echo $hard_score; ?></span>
         </li>
         <?php 
         // if($userprofile_id!==$_SESSION["userid"]) { 
