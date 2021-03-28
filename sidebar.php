@@ -17,7 +17,7 @@ if(isset($_SESSION["userid"])) {
         $sql->store_result() &&
         $sql->bind_result($uid,$utag,$uname,$uregdate,$ulastlog)
     ) {
-        if($sql->fetch_result()) {
+        if($sql->fetch()) {
             $result = true;
             $sql2 = $conn->prepare("SELECT `timestamp`,`adjusted_score` 
             FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `adjusted_score` ORDER BY `adjusted_score` DESC LIMIT 1");
