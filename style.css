@@ -18,12 +18,13 @@
 html,
 body {
     height: 98%;
+    overflow: hidden;
 }
 
 body {
     background-color: var(--main-bg-color);
     font-family: var(--main-font-family);
-    font-size: large;
+    font-size: xx-large;
     color: var(--main-text-color);
     display: flex;
     justify-content: center;
