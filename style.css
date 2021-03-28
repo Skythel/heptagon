@@ -299,7 +299,7 @@ button {
 }
 
 .friend-sugg.micro-profile button {
-    width: 100%;
+    max-width: 7.5em;
 }
 
 .micro-profile-name {
