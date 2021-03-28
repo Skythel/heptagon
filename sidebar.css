@@ -2,13 +2,10 @@
 
 .sidebar {
     background: #552b12;
-    position: fixed;
-    top: 40px;
-    left: 0px;
-    width: 200px;
-    height: 100%;
+    width: 7.5em;
     transition: 0.3s;
     transition-property: width;
+    display: inline-block;
 }
 
 .sidebar .sidebar-menu .profile img {
@@ -45,8 +42,8 @@
 }
 
 .container-2 {
-    margin-left: 250px;
-    padding: 15px;
+    margin-left: 10%;
+    display: inline-block;
 }
 
 .sidebar li {

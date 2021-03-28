@@ -96,10 +96,10 @@ if($result) {
             </a>
         </center>
         <li class="item">
-            <i class="fas fa-user-plus"></i> <span>Registered <?php echo date("j M Y",$uregdate); ?></span>
+            <i class="fas fa-user-plus"></i> <span>Joined <?php echo date("j M Y",$uregdate); ?></span>
         </li>
         <li class="item">
-            <i class="fas fa-time"></i> <span>Last Active <?php echo date("j M Y",$ulastlog); ?></span>
+            <i class="fas fa-clock"></i> <span>Last Active <?php echo date("j M Y",$ulastlog); ?></span>
         </li>
         <li class="item">
             <i class="fas fa-trophy"></i> <span>Easy: <?php echo $easy_score; ?></span>
