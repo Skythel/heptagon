@@ -3,7 +3,8 @@
 include 'config.php';
 $cfg_title = (isset($_SESSION["username"]) ? $_SESSION["username"]."'s " : "")."Scores - MemoryMaze";
 // Load standard header from file
-include 'header.php'; ?>
+include 'header.php'; 
+include 'sidebar.php'; ?>
 
 <!-- Content goes here -->
 <!--main container start-->

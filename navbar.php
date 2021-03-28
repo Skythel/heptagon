@@ -13,6 +13,7 @@
         <a href="./friends"><li id="nav-friends"><i class="fas fa-user-friends" aria-hidden="true"></i> Friends</li></a>
         <a href="./my-scores"><li id="nav-scores"><i class="fas fa-award" aria-hidden="true"></i> My Scores</li></a>
         <a href="./leaderboard"><li id="nav-leaderboard"><i class="fas fa-trophy" aria-hidden="true"></i> Leaderboard</li></a>
+        <a href="./settings"><li id="nav-settings"><i class="fas fa-cog" aria-hidden="true"></i> Settings</li></a>
         <a href="./logout"><li id="nav-logout"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</li></a>
     <?php } ?>
 </ul>
