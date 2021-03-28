@@ -88,10 +88,10 @@ if(isset($_SESSION["userid"])) {
         </center>
         <li class="item">
             <a href="./profile?u=<?php echo $uid; ?>" class="menu-btn">
-                <i class="fas fa-user"></i><span>Profile</span>
+                <i class="fas fa-user"></i><span><?php echo $uname; ?>#<?php echo $utag; ?></span>
             </a>
         </li>
-        <li class="item"><h3>Highscores</h3></li>
+        <li class="item"><h3><span>Highscores</span></h3></li>
         <li class="item">
             <a href="./my-scores" class="menu-btn">
                 <i class="fas fa-trophy"></i><span>Easy: <?php echo $easy_score; ?></span>
