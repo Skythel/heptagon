@@ -145,56 +145,68 @@ else {
                         <h1><?php echo (isset($_SESSION["username"]) ? $_SESSION["username"]."'s " : "")."Profile"; ?></h1>
                         
                         <h2>Easy</h2>
-                        <table class="scoretable"> 
-                            <tr>
-                                <th>Date Played</th>
-                                <th>Time Taken</th>
-                                <th>Obstacles Hit</th>
-                                <th>Hints Used</th>
-                                <th>Passcode Attempts</th>
-                                <th>Final Score</th>
-                            </tr>
-                            <?php
-                            if(isset($easy_latest_output)) {
-                                echo $easy_latest_output;
-                            } else {
-                                echo "<td colspan=\"6\">This user has not played any games in this category yet.</td>";
-                            } ?>
+                        <table class="content-table"> 
+                            <thead>
+                                <tr>
+                                    <th>Date Played</th>
+                                    <th>Time Taken</th>
+                                    <th>Obstacles Hit</th>
+                                    <th>Hints Used</th>
+                                    <th>Passcode Attempts</th>
+                                    <th>Final Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if(isset($easy_latest_output)) {
+                                    echo $easy_latest_output;
+                                } else {
+                                    echo "<td colspan=\"6\">This user has not played any games in this category yet.</td>";
+                                } ?>
+                            </tbody>
                         </table>
 
                         <h2>Medium</h2>
-                        <table class="scoretable"> 
-                            <tr>
-                                <th>Date Played</th>
-                                <th>Time Taken</th>
-                                <th>Obstacles Hit</th>
-                                <th>Hints Used</th>
-                                <th>Passcode Attempts</th>
-                                <th>Final Score</th>
-                            </tr>
-                            <?php if(isset($medium_latest_output)) {
-                                echo $medium_latest_output;
-                            } else {
-                                echo "<td colspan=\"6\">This user has not played any games in this category yet.</td>";
-                            } ?>
+                        <table class="content-table"> 
+                            <thead>
+                                <tr>
+                                    <th>Date Played</th>
+                                    <th>Time Taken</th>
+                                    <th>Obstacles Hit</th>
+                                    <th>Hints Used</th>
+                                    <th>Passcode Attempts</th>
+                                    <th>Final Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if(isset($medium_latest_output)) {
+                                    echo $medium_latest_output;
+                                } else {
+                                    echo "<td colspan=\"6\">This user has not played any games in this category yet.</td>";
+                                } ?>
+                            </tbody>
                         </table>
 
                         <h2>Hard</h2>
-                        <table class="scoretable"> 
-                            <tr>
-                                <th>Date Played</th>
-                                <th>Time Taken</th>
-                                <th>Obstacles Hit</th>
-                                <th>Hints Used</th>
-                                <th>Passcode Attempts</th>
-                                <th>Final Score</th>
-                            </tr>
-                            <?php if(isset($hard_latest_output)) {
-                                echo $hard_latest_output;
-                            }
-                            else {
-                                echo "<td colspan=\"6\">This user has not played any games in this category yet.</td>";
-                            } ?>
+                        <table class="content-table"> 
+                            <thead>
+                                <tr>
+                                    <th>Date Played</th>
+                                    <th>Time Taken</th>
+                                    <th>Obstacles Hit</th>
+                                    <th>Hints Used</th>
+                                    <th>Passcode Attempts</th>
+                                    <th>Final Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if(isset($hard_latest_output)) {
+                                    echo $hard_latest_output;
+                                }
+                                else {
+                                    echo "<td colspan=\"6\">This user has not played any games in this category yet.</td>";
+                                } ?>
+                            </tbody>
                         </table>
 
                     </div>
