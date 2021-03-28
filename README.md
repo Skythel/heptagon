@@ -9,7 +9,7 @@ CZ3002
 - create user settings
 
 ## TODO: 
-- Backend - view performance history, update profile, change password
+- Backend - update profile, change password
 - Default/suggested difficulty
 - Combined score leaderboard
 - Add a feedback for clicking the wrong fruit

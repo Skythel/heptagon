@@ -96,7 +96,7 @@ if(
     $sql2->bind_param("s",$diff) &&
     $sql2->execute() &&
     $sql2->store_result() &&
-    $sql2->bind_result($hard_latest_timestamp,$hard_latest_timetaken,$hard_latest_obhit,$hard_latest_score,$hard_uid,$hard_utag,$hard_uname)
+    $sql2->bind_result($hard_latest_timestamp,$hard_latest_timetaken,$hard_latest_obhit,$hard_latest_score,$hard_latest_hints,$hard_latest_passcodes,$hard_uid,$hard_utag,$hard_uname)
 ) {
     if($sql2->num_rows>0) {
         $hard_latest_output = "";
@@ -128,7 +128,7 @@ if(
     // $sql2->bind_param("s",$diff) &&
     $sql2->execute() &&
     $sql2->store_result() &&
-    $sql2->bind_result($overall_diff,$overall_timestamp,$overall_timetaken,$overall_obhit,$overall_score,$overall_uid,$overall_utag,$overall_uname)
+    $sql2->bind_result($overall_diff,$overall_timestamp,$overall_timetaken,$overall_obhit,$overall_score,$overall_hints,$overall_passcodes,$overall_uid,$overall_utag,$overall_uname)
 ) {
     if($sql2->num_rows>0) {
         $overall_output = "";
