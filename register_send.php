@@ -56,6 +56,38 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && isset($_POST["p"])) {
             $sql->bind_param('isssiss',$tag,$u,$e,$p,$time,$_SERVER["REMOTE_ADDR"],$hash) &&
             $sql->execute()
         ) {
+            // Get userid
+            $sql2 = $conn->prepare("SELECT `userid` FROM `users` WHERE `email`=?");
+            if( 
+                $sql2 &&
+                $sql2->bind_param('s',$e) &&
+                $sql2->execute() &&
+                $sql2->store_result() &&
+                $sql2->bind_result($uid)
+            ) {
+                if($sql2->fetch()) {
+                    // Update last login time in database
+                    $sql3 = $conn->prepare("INSERT INTO `logins` (`userid`,`timestamp`,`ip`) VALUES (?,?,?)");
+                    $time = time();
+                    if( 
+                        $sql3 &&
+                        $sql3->bind_param('iis',$uid,$time,$_SERVER['REMOTE_ADDR']) &&
+                        $sql3->execute()
+                    ) {
+                        echo 0;
+                        $sql3->close();
+                    }
+                    else {
+                        // echo $conn->error;
+                        echo 2;
+                    }
+                }
+                else {
+                    // echo $conn->error;
+                    echo 2;
+                }
+                $sql2->close();
+            }
             // On hold, low priority
             // Email the verification code to user
             // $subject = "Welcome to MemoryMaze!";
