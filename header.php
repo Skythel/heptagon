@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./mobile.css?v=<?php echo $assets_ver; ?>" type="text/css">
     <link href="./css/all.css" rel="stylesheet"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php if($cfg_title == "Home - MemoryMaze") { ?>
+    <?php if($cfg_title == "Home - MemoryMaze" || $cfg_title == "Leaderboard - MemoryMaze") { ?>
         <style>
             body {
                 display: flex;
