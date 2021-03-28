@@ -3,6 +3,8 @@ const playerMarker = "<i class=\"fas fa-walking fa-3x playerMarker\"></i>";
 function initGame(thisGame) {
     // Clear the h1
     document.getElementById("h1-remove").style.visibility = "hidden";
+    // Restrict scrolling
+    document.getElementsByTagName("body")[0].style.overflowY = "hidden";
     // Select the game div
     var gameDiv = document.getElementById("game-container");
     // Clear the game div

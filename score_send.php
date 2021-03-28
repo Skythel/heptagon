@@ -7,7 +7,7 @@ $sql = $conn->prepare("INSERT INTO `game_logs` (`userid`,`timestamp`,`difficulty
 $time = time();
 if(
     $sql &&
-    $sql->bind_param("iiiiiiiis",$uid,$time,$_POST["diff"],$gameObj->timeTaken,$gameObj->obstaclesHit,$gameObj->score,$gameObj->hintsUsed,$gameObj->passcodeAttempts,$_POST["convertedGame"]) &&
+    $sql->bind_param("iiiiiiiis",$uid,$time,$_POST["diff"],$gameObj->timeTaken,$gameObj->obstaclesHit,$gameObj->score,$gameObj->hintsUsed,$gameObj->passcodeAttempts,$_POST["obj"]) &&
     $sql->execute()
 ) {
     if(!isset($_SESSION["userid"])) {
