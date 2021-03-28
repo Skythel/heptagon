@@ -276,6 +276,7 @@ button {
     background: indianred;
     border-radius: 0.25em;
     width: 80%;
+    padding: 0.25em;
 }
 
 .mini-profile-accept-friend,
@@ -284,6 +285,10 @@ button {
     border-radius: 0.25em;
     width: 35%;
     padding: 0.25em;
+}
+
+.mini-profile-accept-friend {
+    background: lightgreen;
 }
 
 .greyed,
