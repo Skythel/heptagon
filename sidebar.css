@@ -1,0 +1,50 @@
+/* The side navigation menu */
+
+.sidebar {
+    background: #552b12;
+    position: fixed;
+    top: 40px;
+    left: 0px;
+    width: 200px;
+    height: 100%;
+    transition: 0.3s;
+    transition-property: width;
+}
+
+.sidebar .sidebar-menu .profile img {
+    margin: 20px 0;
+    border-radius: 50%;
+}
+
+.sidebar .sidebar-menu .profile p {
+    color: #bbb;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 1px;
+}
+
+.sidebar .sidebar-menu .item .menu-btn {
+    display: block;
+    color: #fff;
+    position: relative;
+    padding: 15px 20px;
+}
+
+.sidebar .sidebar-menu .item .menu-btn:hover {
+    color: #fff237;
+}
+
+.sidebar .sidebar-menu .item .menu-btn i {
+    margin-right: 20px;
+}
+
+.container-1 {
+    margin-top: 100px;
+    margin-left: 250px;
+    padding: 15px;
+}
+
+.container-2 {
+    margin-left: 250px;
+    padding: 15px;
+}
