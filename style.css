@@ -25,10 +25,6 @@ body {
     background-color: var(--main-bg-color);
     font-family: var(--main-font-family);
     color: var(--main-text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
 body,
@@ -286,6 +282,7 @@ button {
     background: indianred;
     border-radius: 0.25em;
     width: 35%;
+    padding: 0.25em;
 }
 
 .greyed,

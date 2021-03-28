@@ -1,5 +1,5 @@
 <?php // Set page title
-$cfg_title = "Home"; 
+$cfg_title = "Home - MemoryMaze"; 
 // Load standard header from file
 include 'header.php'; 
 ?>
