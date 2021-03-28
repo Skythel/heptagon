@@ -49,6 +49,7 @@
     padding: 15px;
 }
 
-.sidebar li span {
+.sidebar li {
     color: #fff;
+    padding: 0.25em;
 }
