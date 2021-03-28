@@ -91,19 +91,20 @@ if(isset($_SESSION["userid"])) {
                 <i class="fas fa-user"></i><span>Profile</span>
             </a>
         </li>
+        <h3>Highscores</h3>
         <li class="item">
             <a href="./my-scores" class="menu-btn">
-                <i class="fas fa-trophy"></i><span>Highscore (Easy): <?php echo $easy_score; ?></span>
+                <i class="fas fa-trophy"></i><span>Easy: <?php echo $easy_score; ?></span>
             </a>
         </li>
         <li class="item">
             <a href="./my-scores" class="menu-btn">
-                <i class="fas fa-trophy"></i><span>Highscore (Medium): <?php echo $medium_score; ?></span>
+                <i class="fas fa-trophy"></i><span>Medium: <?php echo $medium_score; ?></span>
             </a>
         </li>
         <li class="item">
             <a href="./my-scores" class="menu-btn">
-                <i class="fas fa-trophy"></i><span>Highscore (Hard): <?php echo $hard_score; ?></span>
+                <i class="fas fa-trophy"></i><span>Hard: <?php echo $hard_score; ?></span>
             </a>
         </li>
         <?php 
