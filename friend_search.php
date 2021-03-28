@@ -35,7 +35,7 @@ if(isset($_GET["q"])) {
                     $added = $sql->num_rows>0 ? true : false;
                     $output .= '
                     <div class="friend-sugg micro-profile">
-                        <a href="profile?u='.$user[1].'"><span class="micro-profile-name">'.$user[0].'</span>#<span class="micro-profile-tag">'.$user[2].'</span></a><br/>
+                        <a href="profile?u='.$user[1].'"><span class="micro-profile-name">'.$user[0].'</span><span class="micro-profile-tag">#'.$user[2].'</span></a><br/>
                         '.($added ? '<button id="addfriend-'.$user[1].'" class="greyed">Add Friend</button>' : '<button onclick="addFriend('.$user[1].')" id="addfriend-'.$user[1].'">Add Friend</button>').'
                     </div>
                     ';
