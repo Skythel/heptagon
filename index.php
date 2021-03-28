@@ -3,7 +3,7 @@ $cfg_title = "Home";
 // Load standard header from file
 include 'header.php'; 
 ?>
-<h1>MemoryMaze</h1>
+<h1 id="h1-remove">MemoryMaze</h1>
 <?php
 if(isset($_GET["login"])) {
     ?>
