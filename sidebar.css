@@ -16,14 +16,14 @@
     border-radius: 50%;
 }
 
-.sidebar .sidebar-menu .profile p {
+.sidebar .sidebar-menu .profile {
     color: #bbb;
     font-weight: 700;
     margin-bottom: 10px;
     margin-top: 1px;
 }
 
-.sidebar .sidebar-menu .item .menu-btn {
+.sidebar .sidebar-menu .item {
     display: block;
     color: #fff;
     position: relative;
@@ -34,7 +34,7 @@
     color: #fff237;
 }
 
-.sidebar .sidebar-menu .item .menu-btn i {
+.sidebar .sidebar-menu .item i {
     margin-right: 20px;
 }
 

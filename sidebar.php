@@ -92,23 +92,23 @@ if($result) {
         <center class="profile">
             <!-- <img src="./assets/citrus.png" class="profile-img"/> -->
             <a href="./profile?u=<?php echo $uid; ?>" class="menu-btn">
-                <i class="fas fa-user"></i><span><?php echo $uname; ?>#<?php echo $utag; ?></span>
+                <i class="fas fa-user"></i> <span><?php echo $uname; ?>#<?php echo $utag; ?></span>
             </a>
         </center>
         <li class="item">
-            <i class="fas fa-user-plus"></i><span>Registered <?php echo date("j M Y",$uregdate); ?></span>
+            <i class="fas fa-user-plus"></i> <span>Registered <?php echo date("j M Y",$uregdate); ?></span>
         </li>
         <li class="item">
-            <i class="fas fa-time"></i><span>Last Active <?php echo date("j M Y",$ulastlog); ?></span>
+            <i class="fas fa-time"></i> <span>Last Active <?php echo date("j M Y",$ulastlog); ?></span>
         </li>
         <li class="item">
-            <i class="fas fa-trophy"></i><span>Easy: <?php echo $easy_score; ?></span>
+            <i class="fas fa-trophy"></i> <span>Easy: <?php echo $easy_score; ?></span>
         </li>
         <li class="item">
-            <i class="fas fa-trophy"></i><span>Medium: <?php echo $medium_score; ?></span>
+            <i class="fas fa-trophy"></i> <span>Medium: <?php echo $medium_score; ?></span>
         </li>
         <li class="item">
-            <i class="fas fa-trophy"></i><span>Hard: <?php echo $hard_score; ?></span>
+            <i class="fas fa-trophy"></i> <span>Hard: <?php echo $hard_score; ?></span>
         </li>
         <?php 
         // if($userprofile_id!==$_SESSION["userid"]) { 
