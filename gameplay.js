@@ -457,7 +457,7 @@ function showFinalScore(thisGame) {
             } else if (this.responseText == "0") {
                 successMessage("Your score has been saved.");
             } else {
-                console.log(this.responseText);
+                console.log("unexpected response: " + this.responseText);
             }
         }
     }
