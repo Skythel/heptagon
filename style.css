@@ -295,6 +295,11 @@ button {
 
 .friend-sugg.micro-profile {
     display: inline-block;
+    min-width: 20%;
+}
+
+.friend-sugg.micro-profile button {
+    width: 100%;
 }
 
 .micro-profile-name {
