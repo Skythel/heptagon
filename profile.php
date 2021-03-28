@@ -172,8 +172,7 @@ else {
         }
         else {
             echo $conn->error;
-        }
-        $sql->close();
+        } 
     } 
     else {
         echo "<h1>Profile</h1><div class=\"error message\">Sorry, this page cannot be displayed.</div>";
