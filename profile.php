@@ -7,8 +7,7 @@ include 'header.php'; ?>
 
 <!-- Content goes here -->
 <h1><?php echo (isset($_SESSION["username"]) ? $_SESSION["username"]."'s " : "")."Profile"; ?></h1>
-<img src="./assets/citrus.png" class="profile-img" /><br/>
-<span class="profile-high-score">High Score: 86</span>
+<?php include 'sidebar.php'; ?>
 
 <?php // Load footer
 include 'footer.php'; ?>
