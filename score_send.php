@@ -11,14 +11,14 @@ if(
     $sql->execute()
 ) {
     if(!isset($_SESSION["userid"])) {
-        echo "1";
+        echo 1;
     }
     else {
-        echo "0";
+        echo 0;
     }
 }
 else {
-    echo $conn->error;
-    echo "2";
+    // echo $conn->error;
+    echo 2;
 }
 ?>

@@ -448,13 +448,13 @@ function showFinalScore(thisGame) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText == "2") { // Backend error
+            if (this.responseText == 2) { // Backend error
                 throwError("Sorry, the server experienced an error. Please try again later.");
                 return;
-            } else if (this.responseText == "1") { // User was not logged in
+            } else if (this.responseText == 1) { // User was not logged in
                 throwError("Your score has been recorded, but it won't be saved to an account since you are not logged in.");
                 return;
-            } else if (this.responseText == "0") {
+            } else if (this.responseText == 0) {
                 successMessage("Your score has been saved.");
             } else {
                 console.log("unexpected response: " + this.responseText);
