@@ -449,9 +449,11 @@ function showFinalScore(thisGame) {
             if (this.responseText == "2") { // Backend error
                 throwError("Sorry, the server experienced an error. Please try again later.");
                 return;
-                // } else if (this.responseText == "1") { // User was not logged in
-                //     throwError("Your score won't be saved to your account unless you log in.");
-                //     return;
+            } else if (this.responseText == "1") { // User was not logged in
+                throwError("Your score has been recorded, but it won't be saved to an account since you are not logged in.");
+                return;
+            } else if (this.responseText == "0") {
+                successMessage("Your score has been saved.");
             } else {
                 console.log(this.responseText);
             }

@@ -1,12 +1,24 @@
 <?php include 'config.php';
-$gameObj = json_decode($_POST['convertedGame'],true);
+$gameObj = json_decode($_POST['convertedGame']);
 // File for processing scores.
-if(isset($logged_in) && $logged_in) {
-    // Save the score under the user's name
-    
+$uid = isset($_SESSION["userid"]) ? $_SESSION["userid"] : 0;
+// Save the score
+$sql = $conn->prepare("INSERT INTO `game_logs` (`userid`,`timestamp`,`difficulty`,`time_taken`,`obstacles_hit`,`adjusted_score`,`hints_used`,`passcode_attempts`,`raw_data`) VALUES (?,?,?,?,?,?,?,?,?,?)");
+$time = time();
+if(
+    $sql &&
+    $sql->bind_param("iiiiiiiiis",$uid,$time,$_POST["diff"],$gameObj->timeTaken,$gameObj->obstaclesHit,$gameObj->score,$gameObj->hintsUsed,$gameObj->passcodeAttempts,$_POST["convertedGame"]) &&
+    $sql->execute()
+) {
+    if(!isset($_SESSION["userid"])) {
+        echo "1";
+    }
+    else {
+        echo "0";
+    }
 }
 else {
-    // Save it as anon score, allow user to log in
-
+    echo $conn->error;
+    echo "2";
 }
 ?>

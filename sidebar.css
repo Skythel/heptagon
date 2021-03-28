@@ -6,6 +6,7 @@
     transition: 0.3s;
     transition-property: width;
     display: inline-block;
+    padding-top: 0.5em;
 }
 
 .sidebar .sidebar-menu .profile img {

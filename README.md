@@ -8,8 +8,6 @@ CZ3002
 (the real todo)
 - create user settings
 - update scores in database
-- fix styling for profile, myscores
-- whats up with the friend search?
 
 ## TODO: 
 - Backend - view performance history, update profile, change password
