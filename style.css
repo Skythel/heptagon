@@ -254,7 +254,7 @@ button {
     display: inline-block;
     padding: 0.5em;
     border: 1px solid #aaaaaa;
-    width: 12%;
+    width: 20%;
 }
 
 .mini-profile-name {
@@ -272,6 +272,20 @@ button {
 .mini-profile-tag {
     font-size: 100%;
     color: #555555 !important;
+}
+
+.mini-profile-cancel-request,
+.mini-profile-remove-friend {
+    background: indianred;
+    border-radius: 0.25em;
+    width: 80%;
+}
+
+.mini-profile-accept-friend,
+.mini-profile-decline-friend {
+    background: indianred;
+    border-radius: 0.25em;
+    width: 35%;
 }
 
 .greyed,
