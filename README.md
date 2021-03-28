@@ -5,12 +5,20 @@ CZ3002
 - UI icons by FontAwesome
 - Puzzle icons by Icons8
 
+(the real todo)
+- create user settings
+- update scores in database
+- fix styling for profile, myscores
+- whats up with the friend search?
+
 ## TODO: 
 - Backend - view performance history, update profile, change password
 - Default/suggested difficulty
-- Scale font size 
 - Combined score leaderboard
 - Add a feedback for clicking the wrong fruit
+
+## TBD: 
+- Create tabs to display highest scores in profile alongside latest scores
 - Cache fruits before starting timer [?]
 - Optimise for mobile viewports
 
