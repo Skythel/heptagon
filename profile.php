@@ -145,7 +145,7 @@ else {
                         <h1><?php echo (isset($_SESSION["username"]) ? $_SESSION["username"]."'s " : "")."Profile"; ?></h1>
                         
                         <h2>Easy</h2>
-                        <table> 
+                        <table class="scoretable"> 
                             <tr>
                                 <th>Date Played</th>
                                 <th>Time Taken</th>
@@ -163,7 +163,7 @@ else {
                         </table>
 
                         <h2>Medium</h2>
-                        <table> 
+                        <table class="scoretable"> 
                             <tr>
                                 <th>Date Played</th>
                                 <th>Time Taken</th>
@@ -180,7 +180,7 @@ else {
                         </table>
 
                         <h2>Hard</h2>
-                        <table> 
+                        <table class="scoretable"> 
                             <tr>
                                 <th>Date Played</th>
                                 <th>Time Taken</th>
