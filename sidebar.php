@@ -17,6 +17,7 @@ if(isset($_SESSION["userid"])) {
         $sql->store_result() &&
         $sql->bind_result($uid,$utag,$uname,$uregdate,$ulastlog)
     ) {
+        $result = true;
         $sql2 = $conn->prepare("SELECT `timestamp`,`adjusted_score` 
         FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `adjusted_score` ORDER BY `adjusted_score` DESC LIMIT 1");
         $diff = "easy";
@@ -79,6 +80,7 @@ if(isset($_SESSION["userid"])) {
     else {
         echo $conn->error;
     }
+if($result) {
 ?>
 <div class="sidebar">
     <div class="sidebar-menu">
@@ -129,5 +131,5 @@ if(isset($_SESSION["userid"])) {
         ?>
     </div>
 </div>
-<?php } ?>
+<?php } } ?>
 <!--sidebar end-->
