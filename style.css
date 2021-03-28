@@ -18,7 +18,7 @@
 html,
 body {
     height: 98%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 body {
