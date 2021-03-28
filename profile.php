@@ -117,15 +117,7 @@ else {
                     $sql2->bind_result($hard_latest_timestamp,$hard_latest_timetaken,$hard_latest_obhit,$hard_latest_score)
                 ) {
                     if($sql2->num_rows>0) {
-                        $hard_latest_output = "<table> 
-                            <tr>
-                                <th>Date Played</th>
-                                <th>Time Taken</th>
-                                <th>Obstacles Hit</th>
-                                <th>Hints Used</th>
-                                <th>Passcode Attempts</th>
-                                <th>Final Score</th>
-                            </tr>";
+                        $hard_latest_output = "";
                         while($sql2->fetch()) {
                             $hard_latest_output .= "
                             <tr>
@@ -137,7 +129,6 @@ else {
                                 <td>".$hard_latest_score."</td>
                             </tr>";
                         }
-                        $hard_latest_output .= "</table>";
                     }
                     $sql2->close();
                 }
@@ -153,17 +144,59 @@ else {
                     <div class="container-2">
                         <h1><?php echo (isset($_SESSION["username"]) ? $_SESSION["username"]."'s " : "")."Profile"; ?></h1>
                         
-                        <?php
-                        if(isset($easy_latest_output)) {
-                            echo $easy_latest_output;
-                        }
-                        if(isset($medium_latest_output)) {
-                            echo $medium_latest_output;
-                        }
-                        if(isset($hard_latest_output)) {
-                            echo $hard_latest_output;
-                        }
-                        ?>
+                        <h2>Easy</h2>
+                        <table> 
+                            <tr>
+                                <th>Date Played</th>
+                                <th>Time Taken</th>
+                                <th>Obstacles Hit</th>
+                                <th>Hints Used</th>
+                                <th>Passcode Attempts</th>
+                                <th>Final Score</th>
+                            </tr>
+                            <?php
+                            if(isset($easy_latest_output)) {
+                                echo $easy_latest_output;
+                            } else {
+                                echo "<td colspan=\"6\">This user has not played any games in this category yet.</td>";
+                            } ?>
+                        </table>
+
+                        <h2>Medium</h2>
+                        <table> 
+                            <tr>
+                                <th>Date Played</th>
+                                <th>Time Taken</th>
+                                <th>Obstacles Hit</th>
+                                <th>Hints Used</th>
+                                <th>Passcode Attempts</th>
+                                <th>Final Score</th>
+                            </tr>
+                            <?php if(isset($medium_latest_output)) {
+                                echo $medium_latest_output;
+                            } else {
+                                echo "<td colspan=\"6\">This user has not played any games in this category yet.</td>";
+                            } ?>
+                        </table>
+
+                        <h2>Hard</h2>
+                        <table> 
+                            <tr>
+                                <th>Date Played</th>
+                                <th>Time Taken</th>
+                                <th>Obstacles Hit</th>
+                                <th>Hints Used</th>
+                                <th>Passcode Attempts</th>
+                                <th>Final Score</th>
+                            </tr>
+                            <?php if(isset($hard_latest_output)) {
+                                echo $hard_latest_output;
+                            }
+                            else {
+                                echo "<td colspan=\"6\">This user has not played any games in this category yet.</td>";
+                            } ?>
+                        </table>
+
                     </div>
                     <!--main container end-->
                 </div>
