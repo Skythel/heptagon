@@ -6,7 +6,7 @@ $cfg_title = "Profile - MemoryMaze";
 if(!isset($_GET["u"]) || isset($_SESSION["userid"])) {
     // Load standard header from file
     include 'header.php';
-    echo "<div class=\"error message\">You must be logged in to view this page. <a href=\"./login\">Login</a></div>";
+    echo "<h1>Profile</h1><div class=\"error message\">You must be logged in to view this page. <a href=\"./login\">Login</a></div>";
 }
 else {
     if(isset($_GET["u"])) {
@@ -26,7 +26,7 @@ else {
             $sql->store_result()
         ) {
             if($sql->num_rows<1) {
-                echo "<div class=\"error message\">Sorry, this user does not exist.</div>";
+                echo "<h1>Profile</h1><div class=\"error message\">Sorry, this user does not exist.</div>";
             }
             else {
                 $cfg_title = (isset($uid) ? $uid."'s " : "")."Profile - MemoryMaze"; ?>
@@ -59,7 +59,7 @@ else {
         }
     } 
     else {
-        echo "<div class=\"error message\">Sorry, this page cannot be displayed.</div>";
+        echo "<h1>Profile</h1><div class=\"error message\">Sorry, this page cannot be displayed.</div>";
     }
 }
 
