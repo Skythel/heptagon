@@ -3,7 +3,7 @@
 include 'config.php';
 $cfg_title = "Profile - MemoryMaze";
 
-if(!isset($_GET["u"]) && !isset($_SESSION["userid"])) {
+if(!isset($_SESSION["userid"])) {
     // Load standard header from file
     include 'header.php';
     echo "<h1>Profile</h1><div class=\"error message\">You must be logged in to view this page. <a href=\"./login\">Login</a></div>";
