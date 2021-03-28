@@ -22,6 +22,7 @@
 .content-table tbody tr {
     border-bottom: 1px solid gray;
     background-color: whitesmoke;
+    text-align: center;
 }
 
 .content-table tbody tr:last-of-type {
