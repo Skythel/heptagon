@@ -292,3 +292,16 @@ button {
 .greyed:hover {
     background: linear-gradient(#999999, #aaaaaa);
 }
+
+.friend-sugg.micro-profile {
+    display: inline-block;
+}
+
+.micro-profile-name {
+    font-size: 110%;
+}
+
+.micro-profile-tag {
+    font-size: 80%;
+    color: grey;
+}
