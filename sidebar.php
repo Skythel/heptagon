@@ -91,7 +91,7 @@ if(isset($_SESSION["userid"])) {
                 <i class="fas fa-user"></i><span>Profile</span>
             </a>
         </li>
-        <h3>Highscores</h3>
+        <li class="item"><h3>Highscores</h3></li>
         <li class="item">
             <a href="./my-scores" class="menu-btn">
                 <i class="fas fa-trophy"></i><span>Easy: <?php echo $easy_score; ?></span>
