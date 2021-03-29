@@ -81,7 +81,7 @@ else {
                         $sql2->bind_result($medium_latest_timestamp,$medium_latest_timetaken,$medium_latest_obhit,$medium_latest_score,$medium_latest_hints,$medium_latest_passcodes)
                     ) {
                         if($sql2->num_rows>0) {
-                            $medium_latest_output = "<table> 
+                            $medium_latest_output = " 
                                 <tr>
                                     <th>Date Played</th>
                                     <th>Time Taken</th>
@@ -101,7 +101,6 @@ else {
                                     <td>".$medium_latest_score."</td>
                                 </tr>";
                             }
-                            $medium_latest_output .= "</table>";
                         }
                         $sql2->close();
                     }
