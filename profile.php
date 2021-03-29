@@ -57,7 +57,7 @@ else {
                                 $easy_latest_output .= "
                                 <tr>
                                     <td>".date("j M Y H:i",$easy_latest_timestamp)."</td>
-                                    <td>".$easy_latest_timetaken." seconds</td>
+                                    <td>".round($easy_latest_timetaken/1000)." seconds</td>
                                     <td>".$easy_latest_obhit."</td>
                                     <td>".$easy_latest_hints."</td>
                                     <td>".$easy_latest_passcodes."</td>
@@ -95,7 +95,7 @@ else {
                                 $medium_latest_output .= "
                                 <tr>
                                     <td>".date("j M Y H:i",$medium_latest_timestamp)."</td>
-                                    <td>".$medium_latest_timetaken." seconds</td>
+                                    <td>".round($medium_latest_timetaken/1000)." seconds</td>
                                     <td>".$medium_latest_obhit."</td>
                                     <td>".$medium_latest_hints."</td>
                                     <td>".$medium_latest_passcodes."</td>
@@ -124,7 +124,7 @@ else {
                                 $hard_latest_output .= "
                                 <tr>
                                     <td>".date("j M Y H:i",$hard_latest_timestamp)."</td>
-                                    <td>".$hard_latest_timetaken." seconds</td>
+                                    <td>".round($hard_latest_timetaken/1000)." seconds</td>
                                     <td>".$hard_latest_obhit."</td>
                                     <td>".$hard_latest_hints."</td>
                                     <td>".$hard_latest_passcodes."</td>

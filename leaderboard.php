@@ -30,7 +30,7 @@ if(
             <tr>
                 <td><a href=\"./profile.php?u=".$easy_uid."\">".$easy_uname."#".$easy_utag."</a></td>
                 <td>".date("j M Y H:i",$easy_latest_timestamp)."</td>
-                <td>".$easy_latest_timetaken." seconds</td>
+                <td>".round($easy_latest_timetaken/1000)." seconds</td>
                 <td>".$easy_latest_obhit."</td>
                 <td>".$easy_latest_hints."</td>
                 <td>".$easy_latest_passcodes."</td>
@@ -71,7 +71,7 @@ if(
             <tr>
                 <td><a href=\"./profile.php?u=".$medium_uid."\">".$medium_uname."#".$medium_utag."</a></td>
                 <td>".date("j M Y H:i",$medium_latest_timestamp)."</td>
-                <td>".$medium_latest_timetaken." seconds</td>
+                <td>".round($medium_latest_timetaken/1000)." seconds</td>
                 <td>".$medium_latest_obhit."</td>
                 <td>".$medium_latest_hints."</td>
                 <td>".$medium_latest_passcodes."</td>
@@ -103,7 +103,7 @@ if(
             <tr>   
                 <td><a href=\"./profile.php?u=".$hard_uid."\">".$hard_uname."#".$hard_utag."</a></td>
                 <td>".date("j M Y H:i",$hard_latest_timestamp)."</td>
-                <td>".$hard_latest_timetaken." seconds</td>
+                <td>".round($hard_latest_timetaken/1000)." seconds</td>
                 <td>".$hard_latest_obhit."</td>
                 <td>".$hard_latest_hints."</td>
                 <td>".$hard_latest_passcodes."</td>
@@ -136,7 +136,7 @@ if(
                 <td>".$overall_diff."</td>
                 <td><a href=\"./profile.php?u=".$overall_uid."\">".$overall_uname."#".$overall_utag."</a></td>
                 <td>".date("j M Y H:i",$overall_timestamp)."</td>
-                <td>".$overall_timetaken." seconds</td>
+                <td>".round($overall_timetaken/1000)." seconds</td>
                 <td>".$overall_obhit."</td>
                 <td>".$overall_hints."</td>
                 <td>".$overall_passcodes."</td>
