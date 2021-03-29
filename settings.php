@@ -1,9 +1,9 @@
 <?php // Personal scores
 include 'config.php';
-include 'header.php';
 $cfg_title = "Settings - MemoryMaze"; 
+include 'header.php';
 
-if(isset($_SESSION["userid"])) {
+if(!isset($_SESSION["userid"])) {
     echo "<div class=\"error message\">You must be logged in to view this page.</div>";
 }
 else { 
@@ -79,6 +79,6 @@ else {
 <!--main container end-->
 <script>
 function saveProfile() {
-    
+
 }
 </script>
