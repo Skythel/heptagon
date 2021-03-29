@@ -19,7 +19,7 @@ if(
         while($sql2->fetch()) {
             $easy_latest_output .= "
             <tr>
-                <td><a href=\"./profile.php?u=".$easy_uid."\">".$easy_uname."#".$easy_utag."</a></td>
+                <td><a href=\"./profile.php?u=".$easy_uid."\">".$easy_uname."<span class=\"micro-profile-tag\">#".$easy_utag."</span></a></td>
                 <td>".date("j M Y H:i",$easy_latest_timestamp)."</td>
                 <td>".round($easy_latest_timetaken/1000)." seconds</td>
                 <td>".$easy_latest_obhit."</td>
@@ -51,7 +51,7 @@ if(
         while($sql2->fetch()) {
             $medium_latest_output .= "
             <tr>
-                <td><a href=\"./profile.php?u=".$medium_uid."\">".$medium_uname."#".$medium_utag."</a></td>
+                <td><a href=\"./profile.php?u=".$medium_uid."\">".$medium_uname."<span class=\"micro-profile-tag\">#".$medium_utag."</span></a></td>
                 <td>".date("j M Y H:i",$medium_latest_timestamp)."</td>
                 <td>".round($medium_latest_timetaken/1000)." seconds</td>
                 <td>".$medium_latest_obhit."</td>
@@ -83,7 +83,7 @@ if(
         while($sql2->fetch()) {
             $hard_latest_output .= "
             <tr>   
-                <td><a href=\"./profile.php?u=".$hard_uid."\">".$hard_uname."#".$hard_utag."</a></td>
+                <td><a href=\"./profile.php?u=".$hard_uid."\">".$hard_uname."<span class=\"micro-profile-tag\">#".$hard_utag."</span></a></td>
                 <td>".date("j M Y H:i",$hard_latest_timestamp)."</td>
                 <td>".round($hard_latest_timetaken/1000)." seconds</td>
                 <td>".$hard_latest_obhit."</td>
@@ -116,7 +116,7 @@ if(
             $overall_output .= "
             <tr>   
                 <td>".$overall_diff."</td>
-                <td><a href=\"./profile.php?u=".$overall_uid."\">".$overall_uname."#".$overall_utag."</a></td>
+                <td><a href=\"./profile.php?u=".$overall_uid."\">".$overall_uname."<span class=\"micro-profile-tag\">#".$overall_utag."</span></a></td>
                 <td>".date("j M Y H:i",$overall_timestamp)."</td>
                 <td>".round($overall_timetaken/1000)." seconds</td>
                 <td>".$overall_obhit."</td>
