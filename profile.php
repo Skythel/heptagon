@@ -30,7 +30,7 @@ else {
                 echo "<h1>Profile</h1><div class=\"error message\">Sorry, this user does not exist.</div>";
             }
             else {
-                while($sql->fetch()) {
+                $sql->fetch();
                     $cfg_title = (isset($uname) ? $uname."'s " : "")."Profile - MemoryMaze"; 
 
                     $diff = "easy";
@@ -215,7 +215,7 @@ else {
                     </div>
                     <?php
                 }
-            }
+            
         }
         else {
             echo $conn->error;
