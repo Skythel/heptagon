@@ -1,7 +1,7 @@
 .content-table {
     border-collapse: collapse;
-    margin: auto;
-    font-size: 1.2em;
+    /* margin: auto; */
+    /* font-size: 1.1em; */
     /* min-width: 400px; */
     border-radius: 5px 5px 0 0;
     overflow: hidden;

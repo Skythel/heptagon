@@ -15,7 +15,7 @@ if(
     $sql2->bind_result($easy_latest_timestamp,$easy_latest_timetaken,$easy_latest_obhit,$easy_latest_score,$easy_latest_hints,$easy_latest_passcodes,$easy_uid,$easy_utag,$easy_uname)
 ) {
     if($sql2->num_rows>0) {
-        $easy_latest_output = "<table> 
+        $easy_latest_output = "
             <tr>   
                 <th>User</th>
                 <th>Date Played</th>
@@ -37,7 +37,6 @@ if(
                 <td>".$easy_latest_score."</td>
             </tr>";
         }
-        $easy_latest_output .= "</table>";
     }
     $sql2->close();
 }
@@ -57,7 +56,7 @@ if(
     $sql2->bind_result($medium_latest_timestamp,$medium_latest_timetaken,$medium_latest_obhit,$medium_latest_score,$medium_latest_hints,$medium_latest_passcodes,$medium_uid,$medium_utag,$medium_uname)
 ) {
     if($sql2->num_rows>0) {
-        $medium_latest_output = "<table> 
+        $medium_latest_output = " 
             <tr>
                 <th>User</th>
                 <th>Date Played</th>
@@ -79,7 +78,6 @@ if(
                 <td>".$medium_latest_score."</td>
             </tr>";
         }
-        $medium_latest_output .= "</table>";
     }
     $sql2->close();
 }

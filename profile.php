@@ -12,7 +12,7 @@ else {
     if(isset($_GET["u"])) {
         $uid = $_GET["u"];
     }
-    elseif(isset($_SESSION["userid"])) {
+    else {
         $uid = $_SESSION["userid"];
     }
     if(isset($uid)) {
