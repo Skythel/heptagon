@@ -116,7 +116,7 @@ else {
                         $sql2->bind_param("is",$uid,$diff) &&
                         $sql2->execute() &&
                         $sql2->store_result() &&
-                        $sql2->bind_result($hard_latest_timestamp,$hard_latest_timetaken,$hard_latest_obhit,$hard_latest_score)
+                        $sql2->bind_result($hard_latest_timestamp,$hard_latest_timetaken,$hard_latest_obhit,$hard_latest_score,$hard_latest_hints,$hard_latest_passcodes)
                     ) {
                         if($sql2->num_rows>0) {
                             $hard_latest_output = "";
