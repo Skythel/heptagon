@@ -110,7 +110,7 @@ else {
                     }
 
                     $diff = "hard";
-                    $sql2 = $conn->prepare("SELECT `timestamp`,`time_taken`,`obstacles_hit`,`adjusted_score` FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `timestamp` ORDER BY `timestamp` DESC LIMIT 5");
+                    $sql2 = $conn->prepare("SELECT `timestamp`,`time_taken`,`obstacles_hit`,`adjusted_score`,`hints_used`,`passcode_attempts` FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `timestamp` ORDER BY `timestamp` DESC LIMIT 5");
                     if(
                         $sql2 &&
                         $sql2->bind_param("is",$uid,$diff) &&
