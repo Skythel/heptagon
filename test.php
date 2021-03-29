@@ -1,6 +1,6 @@
 <?php include 'config.php'; 
 $sql = $conn->prepare("SELECT `username`,`usertag` FROM `users` WHERE `userid`=?");
-$uid = 10;
+$uid = "10";
 if(
     $sql &&
     $sql->bind_param("i",$uid) && 
