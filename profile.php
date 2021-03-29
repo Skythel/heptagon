@@ -215,9 +215,6 @@ else {
                     </div>
                     <?php
                 }
-                else {
-                    echo $conn->error;
-                }
             }
         }
         else {
