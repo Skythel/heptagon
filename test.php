@@ -13,5 +13,7 @@ if(
     $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate,$recipient_lastlogin)
 ) {
     echo $sql->num_rows;
+    $sql->fetch();
+    echo $request_timestamp;
 }
 ?>
