@@ -30,7 +30,6 @@ else {
                 echo "<h1>Profile</h1><div class=\"error message\">Sorry, this user does not exist.</div>";
             }
             else {
-                echo $uid.$uname;
                 $sql->fetch();
                     $cfg_title = (isset($uname) ? $uname."'s " : "")."Profile - MemoryMaze"; 
 
