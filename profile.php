@@ -10,7 +10,7 @@ if(!isset($_SESSION["userid"])) {
 }
 else {
     if(isset($_GET["u"])) {
-        $uid = $_GET["u"];
+        $uid = (int)$_GET["u"];
     }
     else {
         $uid = $_SESSION["userid"];
