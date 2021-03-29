@@ -313,3 +313,8 @@ button {
     font-size: 80%;
     color: grey;
 }
+
+.profile-settings {
+    margin-left: 0;
+    margin: auto;
+}

@@ -33,12 +33,14 @@ if(
     $sql->store_result() &&
     $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate,$recipient_lastlogin)
 ) {
-    if($sql->num_rows<2) {
+    if($sql->num_rows<1) {
         echo "Oops! It seems you don't have any friends yet. Why not add a user to your friend list?";
     }
     else {
+        $none = true;
         while($sql->fetch()) {
             if($recipient_lastlogin>0) {
+                $none = false;
 ?>
 <div class="mini-profile">
     <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
@@ -48,7 +50,10 @@ if(
     <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
     <span class="mini-profile-remove-friend" id="remove-friend-<?php echo $recipient_id; ?>" onclick="removeFriend(<?php echo $recipient_id; ?>)"><i class="fas fa-user-minus" aria-hidden="true"></i> Remove Friend</span>
 </div> &nbsp;
-<?php } } } $sql->close(); } ?>
+<?php } } } $sql->close(); }
+if(isset($none) && $none) {
+    echo "Oops! It seems you don't have any friends yet. Why not add a user to your friend list?";
+} ?>
 
 <h2>Incoming Friend Requests</h2>
 <?php 
@@ -64,12 +69,14 @@ if(
     $sql->store_result() &&
     $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate,$recipient_lastlogin)
 ) {
-    if($sql->num_rows<2) {
+    if($sql->num_rows<1) {
         echo "You currently have no incoming friend requests.";
     }
     else {
+        $none = true;
         while($sql->fetch()) {
             if($recipient_lastlogin>0) {
+                $none = false;
 ?>
 <div class="mini-profile">
     <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
@@ -81,6 +88,9 @@ if(
 </div> &nbsp;
 <?php } } } $sql->close(); } else {
     echo $conn->error;
+} 
+if(isset($none) && $none) {
+    echo "You currently have no incoming friend requests.";
 } ?>
 
 <h2>Outgoing Friend Requests</h2>
@@ -97,12 +107,14 @@ if(
     $sql->store_result() &&
     $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate,$recipient_lastlogin)
 ) {
-    if($sql->num_rows<2) {
+    if($sql->num_rows<1) {
         echo "You currently have no outgoing friend requests.";
     }
     else {
+        $none = true;
         while($sql->fetch()) {
             if($recipient_lastlogin>0) {
+                $none = false;
 ?>
 <div class="mini-profile">
     <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
@@ -112,7 +124,10 @@ if(
     <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
     <span class="mini-profile-cancel-request" onclick="cancelFriend(<?php echo $recipient_id; ?>)" id="cancel-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Cancel Request</span>
 </div> &nbsp;
-<?php } } } $sql->close(); } ?>
+<?php } } } $sql->close(); } 
+if(isset($none) && $none) {
+    echo "You currently have no outgoing friend requests.";
+} ?>
 
 <script>
 function friendSearch(v) {

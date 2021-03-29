@@ -19,7 +19,7 @@ else {
     ) {
         $sql->fetch();
         ?>
-        <table>
+        <table class="profile-settings">
             <tr>
                 <td>Username</td>
                 <td><input type="text" value="<?php echo $_SESSION["username"]; ?>" id="settings-username" /></td>
@@ -46,7 +46,7 @@ else {
             </tr>
             <tr>
                 <td>Biography</td>
-                <td><textarea cols="30" rows="10"><?php echo $bio; ?></textarea></td>
+                <td><textarea cols="60" rows="10"><?php echo $bio; ?></textarea></td>
             </tr>
             <tr>
                 <td>Preferred Difficulty</td>
