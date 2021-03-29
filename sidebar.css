@@ -2,7 +2,7 @@
 
 .sidebar {
     background: #552b12;
-    width: 7.5em;
+    width: 9em;
     transition: 0.3s;
     transition-property: width;
     display: inline-block;
