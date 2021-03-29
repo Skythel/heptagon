@@ -1,19 +1,14 @@
 <?php include 'config.php'; 
-$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,IFNULL(MAX(`logins`.`timestamp`),0)
-FROM `friend_requests`
-LEFT JOIN `users` ON `friend_requests`.`recipient_userid` = `users`.`userid`
-LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
-WHERE (`friend_requests`.`sender_userid`=? AND  `friend_requests`.`status`=1) OR (`friend_requests`.`recipient_userid`=? AND `friend_requests`.`status`=1) LIMIT 10");
-$i = 100;
+$sql = $conn->prepare("SELECT `username`,`usertag` FROM `users` WHERE `userid`=?");
+$uid = 10;
 if(
     $sql &&
-    $sql->bind_param('ii',$i,$i) &&
+    $sql->bind_param("i",$uid) && 
     $sql->execute() &&
     $sql->store_result() &&
-    $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate,$recipient_lastlogin)
+    $sql->bind_result($uname,$utag)
 ) {
-    echo $sql->num_rows;
     $sql->fetch();
-    echo $request_timestamp;
+    echo $uname.$utag;
 }
 ?>
