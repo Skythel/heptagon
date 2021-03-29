@@ -16,8 +16,6 @@ else {
         $uid = $_SESSION["userid"];
     }
     if(isset($uid)) {
-        // Load standard header from file
-        include 'header.php';
         $sql = $conn->prepare("SELECT `username`,`usertag` FROM `users` WHERE `userid`=?");
         if(
             $sql &&
@@ -27,12 +25,15 @@ else {
             $sql->bind_result($uname,$utag)
         ) {
             if($sql->num_rows<1) {
+                // Load standard header from file
+                include 'header.php';
                 echo "<h1>Profile</h1><div class=\"error message\">Sorry, this user does not exist.</div>";
             }
             else {
-                $sql->fetch(); echo $uname;
-                    $cfg_title = (isset($uname) ? $uname."'s " : "")."Profile - MemoryMaze"; 
-
+                $sql->fetch(); 
+                    $cfg_title = $uname."'s Profile - MemoryMaze"; 
+                    // Load standard header from file
+                    include 'header.php';
                     $diff = "easy";
                     $sql2 = $conn->prepare("SELECT `timestamp`,`time_taken`,`obstacles_hit`,`adjusted_score`,`hints_used`,`passcode_attempts` FROM `game_logs` WHERE `userid`=? AND `difficulty`=? GROUP BY `timestamp` ORDER BY `timestamp` DESC LIMIT 5");
                     if(

@@ -1,8 +1,8 @@
 <!--sidebar start-->
 <?php 
 if(isset($_SESSION["userid"])) {
-    if(!isset($userprofile_id)) {
-        $userprofile_id = $_SESSION["userid"];
+    if(!isset($uid)) {
+        $uid = $_SESSION["userid"];
     }
     $result = false;
     $sql = $conn->prepare("SELECT `users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,`logins`.`timestamp`
@@ -12,7 +12,7 @@ if(isset($_SESSION["userid"])) {
     WHERE `users`.`userid` = ?");
     if(
         $sql &&
-        $sql->bind_param('i',$userprofile_id) &&
+        $sql->bind_param('i',$uid) &&
         $sql->execute() &&
         $sql->store_result() &&
         $sql->bind_result($uid,$utag,$uname,$uregdate,$ulastlog)
@@ -24,7 +24,7 @@ if(isset($_SESSION["userid"])) {
             $diff = "easy";
             if(
                 $sql2 &&
-                $sql2->bind_param('is',$userprofile_id,$diff) &&
+                $sql2->bind_param('is',$uid,$diff) &&
                 $sql2->execute() &&
                 $sql2->store_result() &&
                 $sql2->bind_result($easy_time,$easy_score)
@@ -43,7 +43,7 @@ if(isset($_SESSION["userid"])) {
             $diff = "medium";
             if(
                 $sql2 &&
-                $sql2->bind_param('is',$userprofile_id,$diff) &&
+                $sql2->bind_param('is',$uid,$diff) &&
                 $sql2->execute() &&
                 $sql2->store_result() &&
                 $sql2->bind_result($medium_time,$medium_score)
@@ -62,7 +62,7 @@ if(isset($_SESSION["userid"])) {
             $diff = "hard";
             if(
                 $sql2 &&
-                $sql2->bind_param('is',$userprofile_id,$diff) &&
+                $sql2->bind_param('is',$uid,$diff) &&
                 $sql2->execute() &&
                 $sql2->store_result() &&
                 $sql2->bind_result($hard_time,$hard_score)
