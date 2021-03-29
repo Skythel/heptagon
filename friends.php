@@ -84,7 +84,7 @@ if(
     <span class="mini-profile-high-score">High Score: 94</span><br/>-->
     <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span><br/>
     <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
-    <span class="mini-profile-accept-friend" onclick="acceptFriend(<?php echo $recipient_id; ?>)" id="accept-friend-<?php echo $recipient_id; ?>"><i class="fas fa-check-circle" aria-hidden="true"></i> Accept</span> | <span class="mini-profile-decline-friend" onclick="declineFriend(<?php echo $recipient_id; ?>)" id="decline-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Decline</span>
+    <span class="mini-profile-accept-friend" onclick="acceptFriend(<?php echo $recipient_id; ?>)" id="accept-friend-<?php echo $recipient_id; ?>"><i class="fas fa-check-circle" aria-hidden="true"></i> Accept</span> <span class="mini-profile-decline-friend" onclick="declineFriend(<?php echo $recipient_id; ?>)" id="decline-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Decline</span>
 </div> &nbsp;
 <?php } } } $sql->close(); } else {
     echo $conn->error;
