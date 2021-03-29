@@ -14,7 +14,7 @@ else {
     }
     else {
         $uid = $_SESSION["userid"];
-    }echo $uid; 
+    }
     if(isset($uid)) {
         // Load standard header from file
         include 'header.php';
