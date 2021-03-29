@@ -2,7 +2,9 @@
 include 'config.php';
 $cfg_title = "Settings - MemoryMaze"; 
 include 'header.php';
-
+?>
+<h1>Profile Settings</h1>
+<?php
 if(!isset($_SESSION["userid"])) {
     echo "<div class=\"error message\">You must be logged in to view this page.</div>";
 }
