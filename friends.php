@@ -33,7 +33,7 @@ if(
     $sql->store_result() &&
     $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate,$recipient_lastlogin)
 ) {
-    if($sql->num_rows<1) {
+    if($sql->num_rows()<1) {
         echo "Oops! It seems you don't have any friends yet. Why not add a user to your friend list?";
     }
     else {
