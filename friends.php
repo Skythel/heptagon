@@ -21,7 +21,7 @@ include 'header.php'; ?>
 
 <h2>Your Friends</h2>
 <?php 
-$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,MAX(`logins`.`timestamp`)
+$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,IFNULL(MAX(`logins`.`timestamp`),0)
 FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`recipient_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
@@ -33,11 +33,12 @@ if(
     $sql->store_result() &&
     $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate,$recipient_lastlogin)
 ) {
-    if($sql->num_rows<1) {
+    if($sql->num_rows<2) {
         echo "Oops! It seems you don't have any friends yet. Why not add a user to your friend list?";
     }
     else {
         while($sql->fetch()) {
+            if($recipient_lastlogin>0) {
 ?>
 <div class="mini-profile">
     <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
@@ -47,11 +48,11 @@ if(
     <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
     <span class="mini-profile-remove-friend" id="remove-friend-<?php echo $recipient_id; ?>" onclick="removeFriend(<?php echo $recipient_id; ?>)"><i class="fas fa-user-minus" aria-hidden="true"></i> Remove Friend</span>
 </div> &nbsp;
-<?php } } $sql->close(); } ?>
+<?php } } } $sql->close(); } ?>
 
 <h2>Incoming Friend Requests</h2>
 <?php 
-$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,MAX(`logins`.`timestamp`)
+$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,IFNULL(MAX(`logins`.`timestamp`),0)
 FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`sender_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
@@ -63,11 +64,12 @@ if(
     $sql->store_result() &&
     $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate,$recipient_lastlogin)
 ) {
-    if($sql->num_rows<1) {
+    if($sql->num_rows<2) {
         echo "You currently have no incoming friend requests.";
     }
     else {
         while($sql->fetch()) {
+            if($recipient_lastlogin>0) {
 ?>
 <div class="mini-profile">
     <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
@@ -77,13 +79,13 @@ if(
     <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
     <span class="mini-profile-accept-friend" onclick="acceptFriend(<?php echo $recipient_id; ?>)" id="accept-friend-<?php echo $recipient_id; ?>"><i class="fas fa-check-circle" aria-hidden="true"></i> Accept</span> | <span class="mini-profile-decline-friend" onclick="declineFriend(<?php echo $recipient_id; ?>)" id="decline-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Decline</span>
 </div> &nbsp;
-<?php } } $sql->close(); } else {
+<?php } } } $sql->close(); } else {
     echo $conn->error;
 } ?>
 
 <h2>Outgoing Friend Requests</h2>
 <?php 
-$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,MAX(`logins`.`timestamp`)
+$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,IFNULL(MAX(`logins`.`timestamp`),0)
 FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`recipient_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
@@ -95,11 +97,12 @@ if(
     $sql->store_result() &&
     $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate,$recipient_lastlogin)
 ) {
-    if($sql->num_rows<1) {
+    if($sql->num_rows<2) {
         echo "You currently have no outgoing friend requests.";
     }
     else {
         while($sql->fetch()) {
+            if($recipient_lastlogin>0) {
 ?>
 <div class="mini-profile">
     <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
@@ -109,7 +112,7 @@ if(
     <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
     <span class="mini-profile-cancel-request" onclick="cancelFriend(<?php echo $recipient_id; ?>)" id="cancel-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Cancel Request</span>
 </div> &nbsp;
-<?php } } $sql->close(); } ?>
+<?php } } } $sql->close(); } ?>
 
 <script>
 function friendSearch(v) {

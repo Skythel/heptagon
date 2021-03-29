@@ -1,5 +1,5 @@
 <?php include 'config.php'; 
-$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,MAX(`logins`.`timestamp`)
+$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,IFNULL(MAX(`logins`.`timestamp`),0)
 FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`recipient_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
