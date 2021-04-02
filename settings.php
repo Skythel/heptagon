@@ -136,7 +136,7 @@ function saveProfile() {
     var hist = form.getElementsByClassName("input")[5].value;
     var fav = form.getElementsByClassName("input")[6].value;
     var pref = form.getElementsByClassName("input")[7].value;
-    var bio = form.getElementsByTagName("textarea")[0].innerHTML;
+    var bio = form.getElementsByTagName("textarea")[0].value;
     xmlhttp.open("POST", "settings_send.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("u="+u+"&e="+e+"&p="+p+"&pconf="+pconf+"&age="+age+"&hist="+hist+"&fav="+fav+"&bio="+bio+"&pref="+pref);
