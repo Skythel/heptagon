@@ -29,7 +29,8 @@ body {
 
 body,
 input,
-button {
+button,
+textarea {
     font-size: x-large;
 }
 
