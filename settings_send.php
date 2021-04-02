@@ -13,7 +13,7 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && $_POST["u"]!=="" && $_POST["e"]!=
     $pref = $conn->real_escape_string($_POST["pref"]);
 
     if(isset($p)) {
-        $sql = $conn->prepare("UPDATE `users` SET `username`=?, `email`=?, `age`=?, `hist`=?, `fav`=?, `bio`=?, `pref`=?, `password`=? WHERE `userid`=?");
+        $sql = $conn->prepare("UPDATE `users` SET `username`=?, `email`=?, `age`=?, `history`=?, `fav_food`=?, `bio`=?, `preferred_diff`=?, `password`=? WHERE `userid`=?");
         if(
             $sql &&
             $sql->bind_param($u,$e,$age,$hist,$fav,$bio,$pref,$p) &&
@@ -26,7 +26,7 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && $_POST["u"]!=="" && $_POST["e"]!=
         }
     }
     else {
-        $sql = $conn->prepare("UPDATE `users` SET `username`=?, `email`=?, `age`=?, `hist`=?, `fav`=?, `bio`=?, `pref`=? WHERE `userid`=?");
+        $sql = $conn->prepare("UPDATE `users` SET `username`=?, `email`=?, `age`=?, `history`=?, `fav_food`=?, `bio`=?, `preferred_diff`=? WHERE `userid`=?");
         if(
             $sql &&
             $sql->bind_param($u,$e,$age,$hist,$fav,$bio,$pref) &&
