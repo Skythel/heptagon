@@ -16,7 +16,7 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && $_POST["u"]!=="" && $_POST["e"]!=
         $sql = $conn->prepare("UPDATE `users` SET `username`=?, `email`=?, `age`=?, `history`=?, `fav_food`=?, `bio`=?, `preferred_diff`=?, `password`=? WHERE `userid`=?");
         if(
             $sql &&
-            $sql->bind_param($u,$e,$age,$hist,$fav,$bio,$pref,$p) &&
+            $sql->bind_param("ssisssss",$u,$e,$age,$hist,$fav,$bio,$pref,$p) &&
             $sql->execute()
         ) {
             echo 0;
@@ -29,7 +29,7 @@ if(isset($_POST["u"]) && isset($_POST["e"]) && $_POST["u"]!=="" && $_POST["e"]!=
         $sql = $conn->prepare("UPDATE `users` SET `username`=?, `email`=?, `age`=?, `history`=?, `fav_food`=?, `bio`=?, `preferred_diff`=? WHERE `userid`=?");
         if(
             $sql &&
-            $sql->bind_param($u,$e,$age,$hist,$fav,$bio,$pref) &&
+            $sql->bind_param("ssissss",$u,$e,$age,$hist,$fav,$bio,$pref) &&
             $sql->execute()
         ) {
             echo 0;

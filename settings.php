@@ -142,3 +142,6 @@ function saveProfile() {
     xmlhttp.send("u="+u+"&e="+e+"&p="+p+"&pconf="+pconf+"&age="+age+"&hist="+hist+"&fav="+fav+"&bio="+bio+"&pref="+pref);
 }
 </script>
+
+<?php // Load footer
+include 'footer.php'; ?>
