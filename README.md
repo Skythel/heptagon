@@ -10,20 +10,22 @@ CZ3002
 
 ## TODO: 
 - Backend - update profile, change password
+- Enforce password requirements
+- Select friend category
 - Default/suggested difficulty
-- Combined score leaderboard
 - Add a feedback for clicking the wrong fruit
 
 ## TBD: 
 - Create tabs to display highest scores in profile alongside latest scores
 - Cache fruits before starting timer [?]
 - Optimise for mobile viewports
+- Fix the 0 padding to make all usertags 4 digits
 
-## Placeholders: 
-- My Scores
-
-## Fix bugs: 
-- Limit incorrect passcodes to 3
+### v1.2.0 - 29 Mar 2020
+- Add leaderboard
+- Add friends
+- Add user profile
+- Placeholder: User settings
 
 ### v1.1.3 - 15 Mar 2020
 - Add scoring system and score display after game
