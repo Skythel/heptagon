@@ -50,7 +50,7 @@ else {
             </tr>
             <tr>
                 <td>Biography</td>
-                <td><textarea class="input-box" cols="60" rows="10"><?php echo $bio; ?></textarea></td>
+                <td><textarea class="input-box" cols="40" rows="10"><?php echo $bio; ?></textarea></td>
             </tr>
             <tr>
                 <td>Preferred Difficulty</td>
