@@ -121,7 +121,7 @@ if(
             $sql2 = $conn->prepare("SELECT `timestamp` FROM `logins` WHERE `userid`=?");
             if(
                 $sql2 &&
-                $sql2->bind_param($recipient_id) &&
+                $sql2->bind_param("i",$recipient_id) &&
                 $sql2->execute() &&
                 $sql2->store_result() &&
                 $sql2->bind_result($recipient_lastlogin)
