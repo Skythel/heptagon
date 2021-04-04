@@ -107,9 +107,7 @@ if(
     $sql->bind_param('i',$_SESSION["userid"]) &&
     $sql->execute() &&
     $sql->store_result() &&
-    $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate
-    // ,$recipient_lastlogin
-    )
+    $sql->bind_result(/*$request_timestamp,*/$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate/*,$recipient_lastlogin*/)
 ) {
     if($sql->num_rows<1) {
         echo "You currently have no outgoing friend requests.";
