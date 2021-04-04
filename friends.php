@@ -127,19 +127,30 @@ if(
                 $sql2->bind_result($recipient_lastlogin)
             ) {
                 $sql2->fetch();
-?>
-<div class="mini-profile">
-    <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
-    <!-- <img src="./assets/avocado.png" class="mini-profile-img" /><br/> 
-    <span class="mini-profile-high-score">High Score: 94</span><br/>-->
-    <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span><br/>
-    <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
-    <span class="mini-profile-cancel-request" onclick="cancelFriend(<?php echo $recipient_id; ?>)" id="cancel-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Cancel Request</span>
-</div> &nbsp;
-<?php } $sql2->close(); } } $sql->close(); } 
-if(isset($none) && $none) {
-    echo "You currently have no outgoing friend requests.";
-} ?>
+                ?>
+                <div class="mini-profile">
+                    <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
+                    <!-- <img src="./assets/avocado.png" class="mini-profile-img" /><br/> 
+                    <span class="mini-profile-high-score">High Score: 94</span><br/>-->
+                    <span class="mini-profile-registered">Registered <?php echo date("j M Y",$recipient_regdate); ?></span><br/>
+                    <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
+                    <span class="mini-profile-cancel-request" onclick="cancelFriend(<?php echo $recipient_id; ?>)" id="cancel-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Cancel Request</span>
+                </div> &nbsp;
+                <?php $sql2->close(); 
+            } 
+            else {
+                echo $conn->error;
+            } 
+        } 
+    } 
+    $sql->close(); 
+}
+else {
+    echo $conn->error;
+}
+// if(isset($none) && $none) {
+//     echo "You currently have no outgoing friend requests.";
+// } ?>
 
 <script>
 function friendSearch(v) {
