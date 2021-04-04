@@ -5,7 +5,7 @@ if(isset($_SESSION["userid"])) {
         $uid = $_SESSION["userid"];
     }
     $result = false;
-    $sql = $conn->prepare("SELECT `users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,`logins`.`timestamp`
+    $sql = $conn->prepare("SELECT `users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,`users`.`age`,`users`.`bio`,`users`.`history`,`users`.`fav_food`,MAX(`logins`.`timestamp`)
     FROM `users`
     LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
     LEFT JOIN `game_logs` ON `logins`.`userid` = `game_logs`.`userid`
@@ -15,7 +15,7 @@ if(isset($_SESSION["userid"])) {
         $sql->bind_param('i',$uid) &&
         $sql->execute() &&
         $sql->store_result() &&
-        $sql->bind_result($uid,$utag,$uname,$uregdate,$ulastlog)
+        $sql->bind_result($uid,$utag,$uname,$uregdate,$age,$bio,$hist,$fav,$ulastlog)
     ) {
         if($sql->fetch()) {
             $result = true;
@@ -32,6 +32,9 @@ if(isset($_SESSION["userid"])) {
                 if($sql2->num_rows<1) {
                     $easy_time = 0;
                     $easy_score = 0;
+                }
+                else {
+                    $sql2->fetch();
                 }
                 $sql2->close();
             }
@@ -52,6 +55,9 @@ if(isset($_SESSION["userid"])) {
                     $medium_time = 0;
                     $medium_score = 0;
                 }
+                else {
+                    $sql2->fetch();
+                }
                 $sql2->close();
             }
             else {
@@ -70,6 +76,9 @@ if(isset($_SESSION["userid"])) {
                 if($sql2->num_rows<1) {
                     $hard_time = 0;
                     $hard_score = 0;
+                }
+                else {
+                    $sql2->fetch();
                 }
                 $sql2->close();
             }
@@ -109,6 +118,18 @@ if($result) {
         </li>
         <li class="item">
             <i class="fas fa-trophy"></i> <span>Hard: <?php echo $hard_score; ?></span>
+        </li>
+        <li class="item">
+            <i class="fas fa-user-plus"></i> <span>Age: <?php echo $age; ?></span>
+        </li>
+        <li class="item">
+            <i class="fas fa-user-plus"></i> <span>Dementia History: <?php echo $hist; ?></span>
+        </li>
+        <li class="item">
+            <i class="fas fa-user-plus"></i> <span>Fav Food: <?php echo $fav; ?></span>
+        </li>
+        <li class="item">
+            <i class="fas fa-user-plus"></i> <span>Bio: <?php echo $bio; ?></span>
         </li>
         <?php 
         // if($userprofile_id!==$_SESSION["userid"]) { 
