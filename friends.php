@@ -95,7 +95,8 @@ if(isset($none) && $none) {
 
 <h2>Outgoing Friend Requests</h2>
 <?php 
-$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`
+$sql = $conn->prepare("SELECT DISTINCT -- `friend_requests`.`timestamp`,
+`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`
 -- , IFNULL(MAX(`logins`.`timestamp`),0)
 FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`recipient_userid` = `users`.`userid`
