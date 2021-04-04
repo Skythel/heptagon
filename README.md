@@ -5,21 +5,21 @@ CZ3002
 - UI icons by FontAwesome
 - Puzzle icons by Icons8
 
-(the real todo)
-- create user settings
-
 ## TODO: 
-- Backend - update profile, change password
 - Enforce password requirements
 - Select friend category
 - Default/suggested difficulty
-- Add a feedback for clicking the wrong fruit
+- Forgot password
 
 ## TBD: 
 - Create tabs to display highest scores in profile alongside latest scores
 - Cache fruits before starting timer [?]
+- Add a feedback for clicking the wrong fruit
 - Optimise for mobile viewports
 - Fix the 0 padding to make all usertags 4 digits
+
+### v1.2.1 - 2 Apr 2020
+- Add user settings
 
 ### v1.2.0 - 29 Mar 2020
 - Add leaderboard

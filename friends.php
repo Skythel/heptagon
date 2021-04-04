@@ -95,7 +95,8 @@ if(isset($none) && $none) {
 
 <h2>Outgoing Friend Requests</h2>
 <?php 
-$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,IFNULL(MAX(`logins`.`timestamp`),0)
+$sql = $conn->prepare("SELECT DISTINCT `friend_requests`.`timestamp`,`users`.`userid`,`users`.`usertag`,`users`.`username`,`users`.`registration_timestamp`,
+-- IFNULL(MAX(`logins`.`timestamp`),0)
 FROM `friend_requests`
 LEFT JOIN `users` ON `friend_requests`.`recipient_userid` = `users`.`userid`
 LEFT JOIN `logins` ON `users`.`userid` = `logins`.`userid`
@@ -105,16 +106,27 @@ if(
     $sql->bind_param('i',$_SESSION["userid"]) &&
     $sql->execute() &&
     $sql->store_result() &&
-    $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate,$recipient_lastlogin)
+    $sql->bind_result($request_timestamp,$recipient_id,$recipient_tag,$recipient_name,$recipient_regdate
+    // ,$recipient_lastlogin
+    )
 ) {
     if($sql->num_rows<1) {
         echo "You currently have no outgoing friend requests.";
     }
     else {
-        $none = true;
+        // $none = true;
         while($sql->fetch()) {
-            if($recipient_lastlogin>0) {
-                $none = false;
+            // if($recipient_lastlogin>0) {
+            //     $none = false;
+            $sql2 = $conn->prepare("SELECT `timestamp` FROM `logins` WHERE `userid`=?");
+            if(
+                $sql2 &&
+                $sql2->bind_param($recipient_id) &&
+                $sql2->execute() &&
+                $sql2->store_result() &&
+                $sql2->bind_result($recipient_lastlogin)
+            ) {
+                $sql2->fetch();
 ?>
 <div class="mini-profile">
     <a href="./profile?u=<?php echo $recipient_id; ?>"><span class="mini-profile-name"><?php echo $recipient_name; ?>#<span class="mini-profile-tag"><?php echo $recipient_tag; ?></span></span></a><br/>
@@ -124,7 +136,7 @@ if(
     <span class="mini-profile-last-login">Last Active <?php echo date("j M Y",$recipient_lastlogin); ?></span><br/>
     <span class="mini-profile-cancel-request" onclick="cancelFriend(<?php echo $recipient_id; ?>)" id="cancel-friend-<?php echo $recipient_id; ?>"><i class="fas fa-times-circle" aria-hidden="true"></i> Cancel Request</span>
 </div> &nbsp;
-<?php } } } $sql->close(); } 
+<?php } $sql2->close(); } } $sql->close(); } 
 if(isset($none) && $none) {
     echo "You currently have no outgoing friend requests.";
 } ?>
