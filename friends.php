@@ -118,7 +118,7 @@ if(
         while($sql->fetch()) {
             // if($recipient_lastlogin>0) {
             //     $none = false;
-            $sql2 = $conn->prepare("SELECT `timestamp` FROM `logins` WHERE `userid`=?");
+            $sql2 = $conn->prepare("SELECT MAX(`timestamp`) FROM `logins` WHERE `userid`=?");
             if(
                 $sql2 &&
                 $sql2->bind_param("i",$recipient_id) &&
