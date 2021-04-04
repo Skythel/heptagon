@@ -119,18 +119,18 @@ if($result) {
         <li class="item">
             <i class="fas fa-trophy"></i> <span>Hard: <?php echo $hard_score; ?></span>
         </li>
-        <li class="item">
+        <?php if($age>0) { ?><li class="item">
             <i class="fas fa-user-plus"></i> <span>Age: <?php echo $age; ?></span>
-        </li>
-        <li class="item">
-            <i class="fas fa-user-plus"></i> <span>Dementia History: <?php echo $hist; ?></span>
-        </li>
-        <li class="item">
+        </li><?php } ?>
+        <?php if($hist!=="") { ?><li class="item">
+            <i class="fas fa-user-plus"></i> <span>Dementia: <?php echo $hist; ?></span>
+        </li><?php } ?>
+        <?php if($fav!=="") { ?><li class="item">
             <i class="fas fa-user-plus"></i> <span>Fav Food: <?php echo $fav; ?></span>
-        </li>
-        <li class="item">
+        </li><?php } ?>
+        <?php if($bio!=="") { ?><li class="item">
             <i class="fas fa-user-plus"></i> <span>Bio: <?php echo $bio; ?></span>
-        </li>
+        </li><?php } ?>
         <?php 
         // if($userprofile_id!==$_SESSION["userid"]) { 
         //     $sql = $conn->prepare("SELECT `status` FROM `friend_requests` WHERE (`sender_userid`=? AND `recipient_userid`=?) OR (`sender_userid`=? AND `recipient_userid`=?)");

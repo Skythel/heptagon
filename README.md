@@ -11,7 +11,6 @@ CZ3002
 - Default/suggested difficulty
 - Forgot password
 - Dynamic update of friends page upon removing/accepting/declining
-- Show user settings in profile page
 
 ## TBD: 
 - Create tabs to display highest scores in profile alongside latest scores
@@ -21,6 +20,7 @@ CZ3002
 - Fix the 0 padding to make all usertags 4 digits
 
 ### v1.2.2 - 4 Apr 2020
+- Show user settings in profile page
 - Fix friendlist not showing multiple friends
 
 ### v1.2.1 - 2 Apr 2020
